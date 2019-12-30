@@ -11,7 +11,7 @@ type SuccessResult = {
     rme: number;
     mean: number;
     hz: number;
-    sample: number;
+    runs: number;
   };
 };
 
@@ -45,7 +45,7 @@ function extractResult(event: Benchmark.Event): BenchmarkResult {
         hz,
         rme,
         mean,
-        sample,
+        runs: sample.length,
       },
     };
   }
@@ -56,52 +56,23 @@ function isSuccess(result: BenchmarkResult): result is SuccessResult {
 }
 
 /**
- * Pretty print a benchmark result, along with its reference.
+ * Pretty print a benchmark result.
  * Mean difference, and rme computations inspired from
  * https://github.com/facebook/immutable-js/blob/master/resources/bench.js
  */
 
-function printResult(
-  result: BenchmarkResult,
-  //  Old result to use as reference for comparison
-  ref: BenchmarkResult | void,
-) {
+function printResult(result: BenchmarkResult) {
   const { name } = result;
 
   print(name);
 
   print(indent(2), "Current:	", formatPerf(result));
 
-  if (ref) {
-    print(indent(2), "Reference:	", formatPerf(ref));
-  }
-
-  // Print comparison
-
-  if (ref && isSuccess(result) && isSuccess(ref)) {
-    print(indent(2), `comparison: ${compare(result, ref)}`);
-  }
-
-  // Print difference as percentage
-  if (ref && isSuccess(result) && isSuccess(ref)) {
-    const newMean = 1 / result.stats.mean;
-    const prevMean = 1 / ref.stats.mean;
-    const diffMean = (100 * (newMean - prevMean)) / prevMean;
-
-    print(indent(2), `diff: ${signed(diffMean.toFixed(2))}%`); // diff: -3.45%
-  }
-
-  // Print relative mean error
-  if (ref && isSuccess(result) && isSuccess(ref)) {
-    const aRme =
-      100 *
-      Math.sqrt(
-        (square(result.stats.rme / 100) + square(ref.stats.rme / 100)) / 2,
-      );
-
-    print(indent(2), `rme: \xb1${aRme.toFixed(2)}%`); // rme: ±6.22%
-  } else if (isSuccess(result)) {
-    print(indent(2), `rme: \xb1${result.stats.rme.toFixed(2)}%`); // rme: ±6.22%
+  if (isSuccess(result)) {
+    print(
+      indent(2),
+      `Relative Error Margin: \xb1${result.stats.rme.toFixed(2)}%`,
+    ); // RME: ±6.22%
   }
 
   print(""); // newline
@@ -115,41 +86,13 @@ function printResult(
 
 function formatPerf(result: BenchmarkResult) {
   if (!isSuccess(result)) return result.error;
-  const { hz, sample } = result.stats;
-  const runs = sample;
+  const { hz, runs } = result.stats;
   const opsSec = Benchmark.formatNumber(+`${hz.toFixed(hz < 100 ? 2 : 0)}`);
   return `${opsSec} ops/sec (${runs} runs sampled)`;
 }
 
-/**
- * @param {Object} newResult
- * @param {Object} oldResult
- * @return {String} Faster, Slower, or Indeterminate
- */
-
-function compare(newResult: BenchmarkResult, oldResult: BenchmarkResult) {
-  const comparison = new Benchmark({}).compare.call(newResult, oldResult);
-
-  switch (comparison) {
-    case 1:
-      return "Faster";
-    case -1:
-      return "Slower";
-    default:
-      return "Indeterminate";
-  }
-}
-
 function indent(level = 0) {
   return Array(level + 1).join("  ");
-}
-
-function square(x: number) {
-  return x * x;
-}
-
-function signed(x: string): string {
-  return ((x as any) as number) > 0 ? "+" : "";
 }
 
 function print(...strs: any[]) {
