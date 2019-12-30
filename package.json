@@ -17,6 +17,9 @@
   },
   "homepage": "https://github.com/pillarstudio/tempo-message-splitter#readme",
   "devDependencies": {
+    "@types/benchmark": "^1.0.31",
+    "@types/cheerio": "^0.22.15",
+    "@types/jsdom": "^12.2.4",
     "@typescript-eslint/eslint-plugin": "^2.14.0",
     "@typescript-eslint/parser": "^2.14.0",
     "benchmark": "^2.1.4",
