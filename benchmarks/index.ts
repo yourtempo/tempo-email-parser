@@ -2,10 +2,13 @@ import jsdom from "jsdom";
 import cheerio from "cheerio";
 import Benchmark from "benchmark";
 import fs from "fs";
+import path from "path";
 
 import { printResult, extractResult } from "./utils";
 
-const EMAIL_BUFFER = fs.readFileSync("./freelance-work.html");
+const EMAIL_BUFFER = fs.readFileSync(
+  path.join(__dirname, "./basic-lorem-gmail.html"),
+);
 const EMAIL_STRING = EMAIL_BUFFER.toString();
 
 const suite = new Benchmark.Suite();
