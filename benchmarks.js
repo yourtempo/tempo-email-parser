@@ -1,7 +1,7 @@
-const jsdom = require("jsdom");
-const cheerio = require("cheerio");
-const Benchmark = require("benchmark");
-const fs = require("fs");
+import jsdom from "jsdom";
+import cheerio from "cheerio";
+import Benchmark from "benchmark";
+import fs from "fs";
 
 const EMAIL_BUFFER = fs.readFileSync("./freelance-work.html");
 const EMAIL_STRING = EMAIL_BUFFER.toString();
@@ -48,7 +48,7 @@ function serializeResult(event) {
   const { error, name } = target;
 
   const result = {
-    name
+    name,
   };
 
   if (target.error) {
@@ -62,8 +62,8 @@ function serializeResult(event) {
       stats: {
         rme,
         mean,
-        sample
-      }
+        sample,
+      },
     });
   }
 
@@ -112,7 +112,7 @@ function compareResult(result, reference = {}) {
     const aRme =
       100 *
       Math.sqrt(
-        (square(result.stats.rme / 100) + square(ref.stats.rme / 100)) / 2
+        (square(result.stats.rme / 100) + square(ref.stats.rme / 100)) / 2,
       );
 
     print(indent(2), `rme: \xb1${aRme.toFixed(2)}%`); // rme: ±6.22%
