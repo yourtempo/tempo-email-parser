@@ -3,6 +3,8 @@
  * Those are adapted from past projects of mines (Soreine).
  */
 
+import fs from "fs";
+import path from "path";
 import Benchmark from "benchmark";
 
 type SuccessResult = {
@@ -71,7 +73,7 @@ function printResult(result: BenchmarkResult) {
   if (isSuccess(result)) {
     print(
       indent(2),
-      `Relative Error Margin: \xb1${result.stats.rme.toFixed(2)}%`,
+      `Relative Margin of Error: \xb1${result.stats.rme.toFixed(2)}%`,
     ); // RME: ±6.22%
   }
 
@@ -99,4 +101,8 @@ function print(...strs: any[]) {
   console.log(...strs);
 }
 
-export { extractResult, printResult };
+function readFile(relativePath: string): string {
+  return fs.readFileSync(path.join(__dirname, relativePath)).toString();
+}
+
+export { extractResult, printResult, readFile };
