@@ -3,6 +3,8 @@
  * Those are adapted from past projects of mines (Soreine).
  */
 
+import fs from "fs";
+import path from "path";
 import Benchmark from "benchmark";
 
 type SuccessResult = {
@@ -66,14 +68,9 @@ function printResult(result: BenchmarkResult) {
 
   print(name);
 
-  print(indent(2), "Current:	", formatPerf(result));
+  print(indent(2), "Current:	");
 
-  if (isSuccess(result)) {
-    print(
-      indent(2),
-      `Relative Error Margin: \xb1${result.stats.rme.toFixed(2)}%`,
-    ); // RME: ±6.22%
-  }
+  formatPerf(result).map(s => print(indent(4), s));
 
   print(""); // newline
 }
@@ -84,11 +81,18 @@ function printResult(result: BenchmarkResult) {
  * @return {String}
  */
 
-function formatPerf(result: BenchmarkResult) {
-  if (!isSuccess(result)) return result.error;
+function formatPerf(result: BenchmarkResult): string[] {
+  if (!isSuccess(result)) return [result.error];
   const { hz, runs } = result.stats;
-  const opsSec = Benchmark.formatNumber(+`${hz.toFixed(hz < 100 ? 2 : 0)}`);
-  return `${opsSec} ops/sec (${runs} runs sampled)`;
+  const opsSec = Benchmark.formatNumber(+`${hz.toPrecision(4)}`);
+  const opDuration = Benchmark.formatNumber(+`${(1000 / hz).toPrecision(4)}`);
+
+  return [
+    `${opDuration} ms`,
+    `${opsSec} ops/sec`,
+    `(${runs} runs sampled)`,
+    `Relative Margin of Error: \xb1${result.stats.rme.toFixed(2)}%`,
+  ];
 }
 
 function indent(level = 0) {
@@ -99,4 +103,8 @@ function print(...strs: any[]) {
   console.log(...strs);
 }
 
-export { extractResult, printResult };
+function readFile(relativePath: string): string {
+  return fs.readFileSync(path.join(__dirname, relativePath)).toString();
+}
+
+export { extractResult, printResult, readFile };

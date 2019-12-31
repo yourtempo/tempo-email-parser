@@ -1,46 +1,44 @@
 import jsdom from "jsdom";
 import cheerio from "cheerio";
 import Benchmark from "benchmark";
-import fs from "fs";
-import path from "path";
 
-import { printResult, extractResult } from "./utils";
-
-const EMAIL_BUFFER = fs.readFileSync(
-  path.join(__dirname, "./basic-lorem-gmail.html"),
-);
-const EMAIL_STRING = EMAIL_BUFFER.toString();
+import { printResult, extractResult, readFile } from "./utils";
 
 const suite = new Benchmark.Suite();
 
-/* 
-### Understanding the results
+// On each benchmark completion
+suite.on("cycle", (event: any) => {
+  const result = extractResult(event);
+  printResult(result);
+});
 
-Each benchmark prints its results, showing:
-- The number of **operation per second**. This is the relevant value, that must be compared with values from different implementation.
-- The **number of samples** run. BenchmarkJS has a special heuristic to choose how many samples must be made. The results are more accurate with a high number of samples. Low samples count is often tied with high relative margin of error
-- The **relative margin of error** for the measure. The lower the value, the more accurate the results are. When compared with previous results, we display the average relative margin of error.
-- (comparison only) A **comparison** of the two implementation, according to BenchmarkJS. It can be Slower, Faster, or Indeterminate.
-- (comparison only) The **difference** in operations per second. Expressed as a percentage of the reference.
+const EMAILS = {
+  BASIC: readFile("basic-lorem-gmail.html"),
+  // The followings are the same as BASIC, but replied to itself one time, and two times
+  // We can consider their relative sizes to be 1, 2 and 3.
+  BASIC_REPLIED_X1: readFile("basic-lorem-gmail-replied-x1.html"),
+  BASIC_REPLIED_X2: readFile("basic-lorem-gmail-replied-x2.html"),
+};
 
-*/
-
-// const BENCHMARK_OPTIONS = {
-//   // To ensure a better accuracy, force a minimum number of samples
-//   minSamples: 50 // default 10
-// };
-
+// We test a simple parsing on basic HTML. Using a linear scale of input complexity, we can see if the performance is linear or worst.
 suite
-  .add("Parse#jsdom", () => {
-    new jsdom.JSDOM(EMAIL_STRING);
+  .add("Parse#JSDom Size 1", () => {
+    new jsdom.JSDOM(EMAILS.BASIC);
   })
-  .add("Parse#cheerio", () => {
-    cheerio.load(EMAIL_STRING);
+  .add("Parse#JSDom Size 2", () => {
+    new jsdom.JSDOM(EMAILS.BASIC_REPLIED_X1);
   })
-  // On each benchmark completion
-  .on("cycle", (event: any) => {
-    const result = extractResult(event);
-    printResult(result);
+  .add("Parse#JSDom Size 3", () => {
+    new jsdom.JSDOM(EMAILS.BASIC_REPLIED_X2);
+  })
+  .add("Parse#Cheerio Size 1", () => {
+    cheerio.load(EMAILS.BASIC);
+  })
+  .add("Parse#Cheerio Size 2", () => {
+    cheerio.load(EMAILS.BASIC_REPLIED_X1);
+  })
+  .add("Parse#Cheerio Size 3", () => {
+    cheerio.load(EMAILS.BASIC_REPLIED_X2);
   });
 
 suite.run();
