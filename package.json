@@ -5,6 +5,7 @@
 	"main": "benchmarks.js",
 	"scripts": {
 		"test": "echo \"Error: no test specified\" && exit 1",
+		"lint": "eslint \"./**/*.{js,jsx,ts,tsx}\"",
 		"benchmarks": "ts-node ./benchmarks/index.ts"
 	},
 	"repository": {
