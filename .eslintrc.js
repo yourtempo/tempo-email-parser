@@ -1,7 +1,9 @@
 module.exports = {
   env: {
     browser: true,
+    commonjs: true,
     es6: true,
+    node: true,
   },
   extends: [
     "eslint:recommended",
@@ -15,8 +17,9 @@ module.exports = {
   },
   plugins: ["prettier", "@typescript-eslint"],
   rules: {
+    indent: ["off", "tab", { SwitchCase: 1 }],
     "linebreak-style": ["error", "unix"],
-    quotes: ["error", "double"],
+    "no-useless-escape": [0, "unix"],
     semi: ["error", "always"],
   },
 };
