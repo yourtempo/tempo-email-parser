@@ -4,7 +4,7 @@
 	"description": "",
 	"main": "benchmarks.js",
 	"scripts": {
-		"test": "echo \"Error: no test specified\" && exit 1",
+		"test": "jest",
 		"lint": "eslint \"./**/*.{js,jsx,ts,tsx}\"",
 		"benchmarks": "ts-node ./benchmarks/index.ts"
 	},
@@ -25,13 +25,17 @@
 		"@typescript-eslint/eslint-plugin": "^2.14.0",
 		"@typescript-eslint/parser": "^2.14.0",
 		"benchmark": "^2.1.4",
-		"cheerio": "^1.0.0-rc.3",
 		"eslint": "^6.8.0",
 		"eslint-config-prettier": "^6.9.0",
 		"eslint-plugin-prettier": "^3.1.2",
+		"jest": "^24.9.0",
 		"jsdom": "^15.2.1",
 		"prettier": "^1.19.1",
-		"typescript": "^3.7.4"
+		"ts-jest": "^24.2.0",
+		"typescript": "^3.7.4",
+		"@types/jest": "^24.0.25"
 	},
-	"dependencies": {}
+	"dependencies": {
+		"cheerio": "^1.0.0-rc.3"
+	}
 }
