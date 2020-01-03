@@ -1,0 +1,2171 @@
+Delivered-To: xxxxxxx@xxxxx.xxx
+Received: by 2002:ad5:5350:0:0:0:0:0 with SMTP id v16csp179152imo;
+        Mon, 2 Dec 2019 08:29:33 -0800 (PST)
+X-Google-Smtp-Source: APXvYqxvRp9lFIXC1bo6teo2sWOT8MI4PBV3XQoET3c1O1GJjqP8Ceqp9yBwgiJq0YYSfmc9ZqbG
+X-Received: by 2002:a25:807:: with SMTP id 7mr173171ybi.229.1575304173633;
+        Mon, 02 Dec 2019 08:29:33 -0800 (PST)
+ARC-Seal: i=1; a=rsa-sha256; t=1575304173; cv=none;
+        d=google.com; s=arc-20160816;
+        b=QEiGvM/Q2luEM3ughdwH3Kn91PmCxV/wXXPzU4/gAt1Kz2a+5DgtTFntYVu4tKmJGK
+         5rrMe0PW6gdo2sLq2PBvojRmFxfaMMOtWLRaAWtub5GMWb7rrx4vw+UBjxXEmUkvYIAT
+         wGyqTx77emSFbYEWHrAogeoWb+yAg8RU0FzkmcOpn30rohMADN5RdjuufvBz8W8AMuM+
+         dk4Lx2AFpTkyTWFUbAwKr4dKFt4PEOjZLxUpKKDICE+sdCc/jN7eByaeSwmownWjwx8d
+         n4Bpb2r2PPYjMMtB7n6yIwe+PnM7BnG0jgRXw2cdOHqYBKbZC0qoeq1q4X9ZfHrDiD4n
+         3k5w==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20160816;
+        h=mime-version:list-unsubscribe-post:list-unsubscribe:list-id
+         :feedback-id:message-id:date:to:reply-to:from:subject:dkim-signature
+         :dkim-signature;
+        bh=9rd3jna6lkpe73Gi/xJc7hKEYMumsK12CS7X6jCBfbU=;
+        b=ZMUcLYsyPMPu+hZcQ2KSXvAIsY998mq4h2SKT5Z3YWEHh9dy2/Ng8zC41Kcsk7HAXJ
+         4ATYQn1DcyZsNnaY82IHplfi+A//5jG/1RYcjvXP557l+PnQOOjsOLHyuUhjYdRmn/9e
+         JKZfyIKzy24/IfX3mKLkhxYPt0Oo534vsDcRHobeA5TNSz5HZQKWwsY0t3/aTzn1QMyJ
+         q8HtTYWBgFm60XbGtA/z9icOH1wWx81p54qOKjZlzgqFWXndsjZmFgKZPyuv9u6VFJqU
+         GZX/mtLRTIPU3C/G9CaRd2MzVQWjTCXfkEWrJ7cdW6hS+Mns0Dp71YaraFV6GRxjiOXN
+         wH7g==
+ARC-Authentication-Results: i=1; mx.google.com;
+       dkim=pass header.i=@gmail.mcsv.net header.s=k1 header.b=YpBMugW0;
+       dkim=pass header.i=@mailchimpapp.net header.s=k1 header.b=mTbDbt0n;
+       spf=pass (google.com: domain of bounce-mc.us15_72499250.1243415-f4ab906c35@mail105.atl281.mcsv.net designates 198.2.143.105 as permitted sender) smtp.mailfrom=bounce-mc.us15_72499250.1243415-f4ab906c35@mail105.atl281.mcsv.net
+Return-Path: <bounce-mc.us15_72499250.1243415-f4ab906c35@mail105.atl281.mcsv.net>
+Received: from mail105.atl281.mcsv.net (mail105.atl281.mcsv.net. [198.2.143.105])
+        by mx.google.com with ESMTPS id i124si18798ywf.131.2019.12.02.08.29.32
+        for <xxxxxxx@xxxxx.xxx>
+        (xxxxxxx=xxxxxx xxxxxx=xxxxx-xxx-xxxxxx-xxx-xxxxxx xxxx=xxx/xxx);
+        Mon, 02 Dec 2019 08:29:33 -0800 (PST)
+Received-SPF: pass (google.com: domain of bounce-mc.us15_72499250.1243415-f4ab906c35@mail105.atl281.mcsv.net designates 198.2.143.105 as permitted sender) client-ip=198.2.143.105;
+Authentication-Results: mx.google.com;
+       dkim=pass header.i=@gmail.mcsv.net header.s=k1 header.b=YpBMugW0;
+       dkim=pass header.i=@mailchimpapp.net header.s=k1 header.b=mTbDbt0n;
+       spf=pass (google.com: domain of bounce-mc.us15_72499250.1243415-f4ab906c35@mail105.atl281.mcsv.net designates 198.2.143.105 as permitted sender) smtp.mailfrom=bounce-mc.us15_72499250.1243415-f4ab906c35@mail105.atl281.mcsv.net
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.mcsv.net;
+	s=k1; t=1575304160; bh=9rd3jna6lkpe73Gi/xJc7hKEYMumsK12CS7X6jCBfbU=;
+	h=Subject:From:Reply-To:To:Date:Message-ID:Feedback-ID:List-ID:
+	 List-Unsubscribe:Content-Type:MIME-Version;
+	b=YpBMugW0KWfLMxaY0hPLnd7s7H6In8W1z/Ods31SShOgliLa4TI0Q/CEhNr6FCpSt
+	 /m5OSVwnHffFGD/K/ZxkRJMGKQuDtVEBspraGtA9hZMnPFSKEY/wRa5Yk/OTsMGzMt
+	 stX4JqAJXSrEDB+8SxkgkPAkZJVPv+MF5Ol52Azc=
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=mailchimpapp.net;
+	s=k1; t=1575304160; i=team=3D3Dmossy.earth@mailchimpapp.net;
+	bh=9rd3jna6lkpe73Gi/xJc7hKEYMumsK12CS7X6jCBfbU=;
+	h=Subject:From:Reply-To:To:Date:Message-ID:List-ID:List-Unsubscribe:
+	 Content-Type:MIME-Version;
+	b=mTbDbt0nio4jrZ6ihn5L7nbXPPenNOdW0TEk3auiNGM0bsMdqo9QYysUQTSU44bPE
+	 OXC2HL2tN6cSkdEqohHr/TGsNTzDc2qd74LPiQrEIX/DIPiSy/geYvrhCS/PnwHpvS
+	 4e/Ho2HoCwoJ/UWX+NDCJGY61BNVmw3hcsLTZaUQ=
+Received: from localhost (localhost [127.0.0.1])
+	by mail105.atl281.mcsv.net (Mailchimp) with ESMTP id 47RVtm36b6zLfJG0q
+	for <xxxxxxx@xxxxx.xxx>; Mon,  2 Dec 2019 16:29:20 +0000 (GMT)
+Subject: =?utf-8?q?We_are_here_on_location_in_the_Southern_Carpathians=C2=A0=F0=9F=8C=B2=F0=9F=90=97?=
+From: =?utf-8?Q?Mossy=20Earth?= <team@mossy.earth>
+Reply-To: =?utf-8?Q?Mossy=20Earth?= <team@mossy.earth>
+To: <xxxxxxx@xxxxx.xxx>
+Date: Mon,  2 Dec 2019 16:29:16 +0000
+Message-ID: <894208798927fdb5e3804aa9d.f4ab906c35.20191202162909.0c08b80684.24d1dc33@mail105.atl281.mcsv.net>
+X-Mailer: MailChimp Mailer - **CID0c08b80684f4ab906c35**
+X-Campaign: mailchimp894208798927fdb5e3804aa9d.0c08b80684
+X-campaignid: mailchimp894208798927fdb5e3804aa9d.0c08b80684
+X-Report-Abuse: Please report abuse for this campaign here: https://mailchimp.com/contact/abuse/?u=xxxxxxxxxxxxxxxxxxxxxxxxx&id=xxxxxxxxxx&e=xxxxxxxxxx
+X-MC-User: 894208798927fdb5e3804aa9d
+Feedback-ID: 72499250:72499250.1243415:us15:mc
+List-ID: 894208798927fdb5e3804aa9dmc list <894208798927fdb5e3804aa9d.172115.list-id.mcsv.net>
+X-Accounttype: ff
+List-Unsubscribe: <https://earth.us15.list-manage.com/unsubscribe?u=xxxxxxxxxxxxxxxxxxxxxxxxx&id=xxxxxxxxxx&e=xxxxxxxxxx&c=xxxxxxxxxx%3E%2C <mailto:unsubscribe-mc.us15_894208798927fdb5e3804aa9d.0c08b80684-f4ab906c35@mailin.mcsv.net?subject=unsubscribe>
+List-Unsubscribe-Post: List-Unsubscribe=One-Click
+Content-Type: multipart/alternative; boundary="_----------=_MCPart_1897430268"
+MIME-Version: 1.0
+
+This is a multi-part message in MIME format
+
+--_----------=_MCPart_1897430268
+Content-Type: text/plain; charset="utf-8"; format="fixed"
+Content-Transfer-Encoding: quoted-printable
+
+We wish to take this opportunity=C2=A0to talk through=C2=A0the work that=E2=
+=80=99s being done, with your support, to help keep Romania wild.
+
+On location in Romania
+We are here on location in the Southern Carpathians, and so wish to take th=
+is opportunity to talk through the work that=E2=80=99s being done, with you=
+r support, to help keep Romania wild.
+
+https://earth.us15.list-manage.com/track/click?u=3Dxxxxxxxxxxxxxxxxxxxxxxxx=
+x&id=3Dxxxxxxxxxx&e=3Dxxxxxxxxxx
+
+A True Wilderness
+
+Romania=E2=80=99s natural world is arguably one of Europe=E2=80=99s last tr=
+ue areas of wilderness. Old-growth forests blanket vast mountain ranges tha=
+t stretch across the country. They offer refuge for European wildlife in an=
+ otherwise densely populated and highly developed continent. Wolves, bears =
+and lynxes all thrive here.
+
+To protect this landscape and the diversity of species that depend on it fr=
+om increasing human exploitation, Mossy Earth has partnered with the local =
+NGO Foundation Conservation Carpathia (FCC).
+
+Habitat Restoration
+
+Though Romania still has much of its forest habitat intact, many areas are =
+under immense pressure from unsustainable logging and exploitation practice=
+s. Huge areas of forest in the Carpathian Mountains are being cleared in th=
+eir entirety, rather than selectively cutting a few trees over a larger are=
+a, a much more sustainable practice. As huge swathes of trees are cleared f=
+rom area, the soil is left vulnerable to disastrous levels of soil erosion.
+
+To restore these clear-cut areas and improve the soil structure, the team s=
+urveys the area to assess the extent of the damage, the level of regenerati=
+on that is already taking place and the absence of important species. Once =
+this has been done, trees are grown in local nurseries until they are stron=
+g enough to be planted out in the field. Pioneer species are planted first =
+to help restore the soil before a diversity of other species are planted th=
+at recreate the original forest composition.
+Ranger Patrols
+
+To protect the existing old-growth forests, rangers from the local communit=
+y carry out regular forest patrols. Having a presence in the mountains help=
+s protect these forests from illegal logging and deters poachers from illeg=
+al hunting. It also helps to connect the local community, who are hired as =
+rangers, with the conservation of their natural environment
+
+Wildlife Conservation
+
+Once the clear-cut areas have been replanted and the trees have had time to=
+ grow, they will increase the habitat available for a diversity of species.=
+ Romania is home to a significant portion of the species that are threatene=
+d across Europe, many of them relying on these forest habitats for survival=
+. The project also helps reconnect isolated forest patches so that animals =
+can move safely across the landscape.
+
+To keep track of the species that are present in the region, camera traps a=
+re placed across the project area. This also allows the team to monitor wil=
+dlife movements, habitat use and behaviour, and can inform estimates of pop=
+ulation sizes and whether they are stable, increasing or decreasing. Our pa=
+rtners have recently translocated four Bison to the Southern Carpathians, w=
+hich had been extinct here for many decades.
+The Vision
+
+There are many reasons to celebrate Romania's natural world. But, as the co=
+untry continues to develop, the old-growth forests that have provided a wil=
+dlife refuge for Europe=E2=80=99s sensitive species are increasingly under =
+threat. Through our work with FCC, we aim to restore degraded clear-cuts to=
+ healthy, functioning and biodiverse forests. With your support we can prot=
+ect Romania=E2=80=99s great wild spaces.
+
+Until Next time...
+Should you have any questions about our Healing Clear Cuts project in Roman=
+ia or Mossy Earth at large, please don't hesitate to contact. We'd love to =
+hear from you!
+
+Hannah Kirkland
+hannah (https://earth.us15.list-manage.com/track/click?u=3Dxxxxxxxxxxxxxxxx=
+xxxxxxxxx&id=3Dxxxxxxxxxx&e=3Dxxxxxxxxxx%29 @mossy.earthhttps://earth.us15.=
+list-manage.com/track/click?u=3Dxxxxxxxxxxxxxxxxxxxxxxxxx&id=3Dxxxxxxxxxx&e=
+=3Dxxxxxxxxxx%295)
+
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D
+** Facebohttps://earth.us15.list-manage.com/track/click?u=3Dxxxxxxxxxxxxxxx=
+xxxxxxxxxx&id=3Dxxxxxxxxxx&e=3Dxxxxxxxxxx%29c35)
+** Twihttps://earth.us15.list-manage.com/track/click?u=3Dxxxxxxxxxxxxxxxxxx=
+xxxxxxx&id=3Dxxxxxxxxxx&e=3Dxxxxxxxxxx%2906c35)
+** Inshttps://earth.us15.list-manage.com/track/click?u=3Dxxxxxxxxxxxxxxxxxx=
+xxxxxxx&id=3Dxxxxxxxxxx&e=3Dxxxxxxxxxx%29b906c35)
+**https://earth.us15.list-manage.com/track/click?u=3Dxxxxxxxxxxxxxxxxxxxxxx=
+xxx&id=3Dxxxxxxxxxx&e=3Dxxxxxxxxxx%294ab906c35)
+*https://earth.us15.list-manage.com/track/click?u=3Dxxxxxxxxxxxxxxxxxxxxxxx=
+xx&id=3Dxxxxxxxxxx&e=3Dxxxxxxxxxx%29=3Df4ab906c35)
+Copyright =C2=A9 2018 Mossy Earth, All rights reserved.
+
+Our mailing address is:
+team@mossy.earth
+
+Want to change how you receive these emails?
+You can ** update yourhttps://earth.us15.list-manage.com/profile?u=3Dxxxxxx=
+xxxxxxxxxxxxxxxxxxx&id=3Dxxxxxxxxxx&e=3Dxxxxxxxxxx%29&e=3Df4ab906c35)
+or ** unsubscribe https://earth.us15.list-manage.com/unsubscribe?u=3Dxxxxxx=
+xxxxxxxxxxxxxxxxxxx&id=3Dxxxxxxxxxx&e=3Dxxxxxxxxxx&c=3Dxxxxxxxxxx%2935&c=3D=
+0c08b80684)
+=2E
+
+
+This email was sent to xxxxxxx@xxxxx.xxx (mailto:xxxxxxx@xxxxx.xxx)
+whyhttps://earth.us15.list-manage.com/about?u=3Dxxxxxxxxxxxxxxxxxxxxxxxxx&i=
+d=3Dxxxxxxxxxx&e=3Dxxxxxxxxxx&c=3Dxxxxxxxxxx%296c35&c=3D0c08b80684)     uns=
+ubscrhttps://earth.us15.list-manage.com/unsubscribe?u=3Dxxxxxxxxxxxxxxxxxxx=
+xxxxxx&id=3Dxxxxxxxxxx&e=3Dxxxxxxxxxx&c=3Dxxxxxxxxxx%29906c35&c=3D0c08b8068=
+4)     update subshttps://earth.us15.list-manage.com/profile?u=3Dxxxxxxxxxx=
+xxxxxxxxxxxxxxx&id=3Dxxxxxxxxxx&e=3Dxxxxxxxxxx%2911004f64&e=3Df4ab906c35)
+Mossy Earth . Boundary Oak Earnley Manor Close . Earnley, West Sussex PO20 =
+7JQ . United Kingdom
+
+Email Marketinhttp://www.mailchimp.com/monkey-rewards/?utm_source=3Dxxxxxxx=
+xxxxxxxxxxxx&utm_medium=3Dxxxxx&utm_campaign=3Dxxxxxxxxxxxxxx&aid=3Dxxxxxxx=
+xxxxxxxxxxxxxxxxxx&afl=3Dx98927fdb5e3804aa9d&afl=3D1
+--_----------=_MCPart_1897430268
+Content-Type: text/html; charset="utf-8"
+Content-Transfer-Encoding: quoted-printable
+
+<!DOCTYPE html>
+
+<html xmlns=3D"http://www.w3.org/1999/xhtml" xmlns:o=3D"urn:schemas-microso=
+ft-com:office:office" xmlns:v=3D"urn:schemas-microsoft-com:vml">
+<head>
+<!-- NAME: TELL A STORY -->
+<!--[if gte mso 15]>
+        <xml>
+            <o:OfficeDocumentSettings>
+            <o:AllowPNG/>
+            <o:PixelsPerInch>96</o:PixelsPerInch>
+            </o:OfficeDocumentSettings>
+        </xml>
+        <![endif]-->
+<meta charset=3D"utf-8"/>
+<meta content=3D"IE=3Dedge" http-equiv=3D"X-UA-Compatible"/>
+<meta content=3D"width=3Ddevice-width, initial-scale=3D1" name=3D"viewport"=
+/>
+<title>We are here on location in the Southern Carpathians=C2=A0=F0=9F=8C=
+=B2=F0=9F=90=97</title>
+<style type=3D"text/css">
+		p{
+			margin:10px 0;
+			padding:0;
+		}
+		table{
+			border-collapse:collapse;
+		}
+		h1,h2,h3,h4,h5,h6{
+			display:block;
+			margin:0;
+			padding:0;
+		}
+		img,a img{
+			border:0;
+			height:auto;
+			outline:none;
+			text-decoration:none;
+		}
+		body,#bodyTable,#bodyCell{
+			height:100%;
+			margin:0;
+			padding:0;
+			width:100%;
+		}
+		.mcnPreviewText{
+			display:none !important;
+		}
+		#outlook a{
+			padding:0;
+		}
+		img{
+			-ms-interpolation-mode:bicubic;
+		}
+		table{
+			mso-table-lspace:0pt;
+			mso-table-rspace:0pt;
+		}
+		.ReadMsgBody{
+			width:100%;
+		}
+		.ExternalClass{
+			width:100%;
+		}
+		p,a,li,td,blockquote{
+			mso-line-height-rule:exactly;
+		}
+		a[href^=3Dtel],a[href^=3Dsms]{
+			color:inherit;
+			cursor:default;
+			text-decoration:none;
+		}
+		p,a,li,td,body,table,blockquote{
+			-ms-text-size-adjust:100%;
+			-webkit-text-size-adjust:100%;
+		}
+		.ExternalClass,.ExternalClass p,.ExternalClass td,.ExternalClass div,.Ext=
+ernalClass span,.ExternalClass font{
+			line-height:100%;
+		}
+		a[x-apple-data-detectors]{
+			color:inherit !important;
+			text-decoration:none !important;
+			font-size:inherit !important;
+			font-family:inherit !important;
+			font-weight:inherit !important;
+			line-height:inherit !important;
+		}
+		.templateContainer{
+			max-width:600px !important;
+		}
+		a.mcnButton{
+			display:block;
+		}
+		.mcnImage,.mcnRetinaImage{
+			vertical-align:bottom;
+		}
+		.mcnTextContent{
+			word-break:break-word;
+		}
+		.mcnTextContent img{
+			height:auto !important;
+		}
+		.mcnDividerBlock{
+			table-layout:fixed !important;
+		}
+		h1{
+			color:#222222;
+			font-family:Helvetica;
+			font-size:40px;
+			font-style:normal;
+			font-weight:bold;
+			line-height:150%;
+			letter-spacing:normal;
+			text-align:center;
+		}
+		h2{
+			color:#222222;
+			font-family:Helvetica;
+			font-size:34px;
+			font-style:normal;
+			font-weight:bold;
+			line-height:150%;
+			letter-spacing:normal;
+			text-align:left;
+		}
+		h3{
+			color:#444444;
+			font-family:Helvetica;
+			font-size:22px;
+			font-style:normal;
+			font-weight:bold;
+			line-height:150%;
+			letter-spacing:normal;
+			text-align:left;
+		}
+		h4{
+			color:#949494;
+			font-family:Georgia;
+			font-size:20px;
+			font-style:italic;
+			font-weight:normal;
+			line-height:125%;
+			letter-spacing:normal;
+			text-align:left;
+		}
+		#templateHeader{
+			background-color:#F7F7F7;
+			background-image:url("https://gallery.mailchimp.com/894208798927fdb5e380=
+4aa9d/images/9deee357-a659-404d-b9f8-c83bb0b6bc22.jpg");
+			background-repeat:no-repeat;
+			background-position:center;
+			background-size:cover;
+			border-top:0;
+			border-bottom:0;
+			padding-top:37px;
+			padding-bottom:37px;
+		}
+		.headerContainer{
+			background-color:transparent;
+			background-image:none;
+			background-repeat:no-repeat;
+			background-position:center;
+			background-size:cover;
+			border-top:0;
+			border-bottom:0;
+			padding-top:0;
+			padding-bottom:0;
+		}
+		.headerContainer .mcnTextContent,.headerContainer .mcnTextContent p{
+			color:#757575;
+			font-family:Helvetica;
+			font-size:16px;
+			line-height:150%;
+			text-align:left;
+		}
+		.headerContainer .mcnTextContent a,.headerContainer .mcnTextContent p a{
+			color:#007C89;
+			font-weight:normal;
+			text-decoration:underline;
+		}
+		#templateBody{
+			background-color:#FFFFFF;
+			background-image:none;
+			background-repeat:no-repeat;
+			background-position:center;
+			background-size:cover;
+			border-top:0;
+			border-bottom:0;
+			padding-top:42px;
+			padding-bottom:42px;
+		}
+		.bodyContainer{
+			background-color:transparent;
+			background-image:none;
+			background-repeat:no-repeat;
+			background-position:center;
+			background-size:cover;
+			border-top:0;
+			border-bottom:0;
+			padding-top:0;
+			padding-bottom:0;
+		}
+		.bodyContainer .mcnTextContent,.bodyContainer .mcnTextContent p{
+			color:#757575;
+			font-family:Helvetica;
+			font-size:16px;
+			line-height:150%;
+			text-align:left;
+		}
+		.bodyContainer .mcnTextContent a,.bodyContainer .mcnTextContent p a{
+			color:#007C89;
+			font-weight:normal;
+			text-decoration:underline;
+		}
+		#templateFooter{
+			background-color:#333333;
+			background-image:none;
+			background-repeat:no-repeat;
+			background-position:center;
+			background-size:cover;
+			border-top:0;
+			border-bottom:0;
+			padding-top:45px;
+			padding-bottom:63px;
+		}
+		.footerContainer{
+			background-color:transparent;
+			background-image:none;
+			background-repeat:no-repeat;
+			background-position:center;
+			background-size:cover;
+			border-top:0;
+			border-bottom:0;
+			padding-top:0;
+			padding-bottom:0;
+		}
+		.footerContainer .mcnTextContent,.footerContainer .mcnTextContent p{
+			color:#FFFFFF;
+			font-family:Helvetica;
+			font-size:12px;
+			line-height:150%;
+			text-align:center;
+		}
+		.footerContainer .mcnTextContent a,.footerContainer .mcnTextContent p a{
+			color:#FFFFFF;
+			font-weight:normal;
+			text-decoration:underline;
+		}
+	@media only screen and (min-width:768px){
+		.templateContainer{
+			width:600px !important;
+		}
+
+}	@media only screen and (max-width: 480px){
+		body,table,td,p,a,li,blockquote{
+			-webkit-text-size-adjust:none !important;
+		}
+
+}	@media only screen and (max-width: 480px){
+		body{
+			width:100% !important;
+			min-width:100% !important;
+		}
+
+}	@media only screen and (max-width: 480px){
+		.mcnRetinaImage{
+			max-width:100% !important;
+		}
+
+}	@media only screen and (max-width: 480px){
+		.mcnImage{
+			width:100% !important;
+		}
+
+}	@media only screen and (max-width: 480px){
+		.mcnCartContainer,.mcnCaptionTopContent,.mcnRecContentContainer,.mcnCapti=
+onBottomContent,.mcnTextContentContainer,.mcnBoxedTextContentContainer,.mcn=
+ImageGroupContentContainer,.mcnCaptionLeftTextContentContainer,.mcnCaptionR=
+ightTextContentContainer,.mcnCaptionLeftImageContentContainer,.mcnCaptionRi=
+ghtImageContentContainer,.mcnImageCardLeftTextContentContainer,.mcnImageCar=
+dRightTextContentContainer,.mcnImageCardLeftImageContentContainer,.mcnImage=
+CardRightImageContentContainer{
+			max-width:100% !important;
+			width:100% !important;
+		}
+
+}	@media only screen and (max-width: 480px){
+		.mcnBoxedTextContentContainer{
+			min-width:100% !important;
+		}
+
+}	@media only screen and (max-width: 480px){
+		.mcnImageGroupContent{
+			padding:9px !important;
+		}
+
+}	@media only screen and (max-width: 480px){
+		.mcnCaptionLeftContentOuter .mcnTextContent,.mcnCaptionRightContentOuter =
+.mcnTextContent{
+			padding-top:9px !important;
+		}
+
+}	@media only screen and (max-width: 480px){
+		.mcnImageCardTopImageContent,.mcnCaptionBottomContent:last-child .mcnCapt=
+ionBottomImageContent,.mcnCaptionBlockInner .mcnCaptionTopContent:last-chil=
+d .mcnTextContent{
+			padding-top:18px !important;
+		}
+
+}	@media only screen and (max-width: 480px){
+		.mcnImageCardBottomImageContent{
+			padding-bottom:9px !important;
+		}
+
+}	@media only screen and (max-width: 480px){
+		.mcnImageGroupBlockInner{
+			padding-top:0 !important;
+			padding-bottom:0 !important;
+		}
+
+}	@media only screen and (max-width: 480px){
+		.mcnImageGroupBlockOuter{
+			padding-top:9px !important;
+			padding-bottom:9px !important;
+		}
+
+}	@media only screen and (max-width: 480px){
+		.mcnTextContent,.mcnBoxedTextContentColumn{
+			padding-right:18px !important;
+			padding-left:18px !important;
+		}
+
+}	@media only screen and (max-width: 480px){
+		.mcnImageCardLeftImageContent,.mcnImageCardRightImageContent{
+			padding-right:18px !important;
+			padding-bottom:0 !important;
+			padding-left:18px !important;
+		}
+
+}	@media only screen and (max-width: 480px){
+		.mcpreview-image-uploader{
+			display:none !important;
+			width:100% !important;
+		}
+
+}	@media only screen and (max-width: 480px){
+		h1{
+			font-size:30px !important;
+			line-height:125% !important;
+		}
+
+}	@media only screen and (max-width: 480px){
+		h2{
+			font-size:26px !important;
+			line-height:125% !important;
+		}
+
+}	@media only screen and (max-width: 480px){
+		h3{
+			font-size:20px !important;
+			line-height:150% !important;
+		}
+
+}	@media only screen and (max-width: 480px){
+		h4{
+			font-size:18px !important;
+			line-height:150% !important;
+		}
+
+}	@media only screen and (max-width: 480px){
+		.mcnBoxedTextContentContainer .mcnTextContent,.mcnBoxedTextContentContain=
+er .mcnTextContent p{
+			font-size:14px !important;
+			line-height:150% !important;
+		}
+
+}	@media only screen and (max-width: 480px){
+		.headerContainer .mcnTextContent,.headerContainer .mcnTextContent p{
+			font-size:16px !important;
+			line-height:150% !important;
+		}
+
+}	@media only screen and (max-width: 480px){
+		.bodyContainer .mcnTextContent,.bodyContainer .mcnTextContent p{
+			font-size:16px !important;
+			line-height:150% !important;
+		}
+
+}	@media only screen and (max-width: 480px){
+		.footerContainer .mcnTextContent,.footerContainer .mcnTextContent p{
+			font-size:14px !important;
+			line-height:150% !important;
+		}
+
+}</style><!--[if !mso]><!--><link href=3D"https://fonts.googleapis.com/css?=
+family=3DLato:400,400i,700,700i" rel=3D"stylesheet"/><!--<![endif]--></head>
+<body style=3D"height: 100%;margin: 0;padding: 0;width: 100%;-ms-text-size-=
+adjust: 100%;-webkit-text-size-adjust: 100%;">
+<!--
+-->
+<!--[if !gte mso 9]><!----><span class=3D"mcnPreviewText" style=3D"display:=
+none; font-size:0px; line-height:0px; max-height:0px; max-width:0px; opacit=
+y:0; overflow:hidden; visibility:hidden; mso-hide:all;">We wish to take thi=
+s opportunity=C2=A0to talk through=C2=A0the work that=E2=80=99s being done,=
+ with your support, to help keep Romania wild.</span><!--<![endif]-->
+<!--
+-->
+<center>
+<table align=3D"center" border=3D"0" cellpadding=3D"0" cellspacing=3D"0" he=
+ight=3D"100%" id=3D"bodyTable" style=3D"border-collapse: collapse;mso-table=
+-lspace: 0pt;mso-table-rspace: 0pt;-ms-text-size-adjust: 100%;-webkit-text-=
+size-adjust: 100%;height: 100%;margin: 0;padding: 0;width: 100%;" width=3D"=
+100%">
+<tr>
+<td align=3D"center" id=3D"bodyCell" style=3D"mso-line-height-rule: exactly=
+;-ms-text-size-adjust: 100%;-webkit-text-size-adjust: 100%;height: 100%;mar=
+gin: 0;padding: 0;width: 100%;" valign=3D"top">
+<!-- BEGIN TEMPLATE // -->
+<table border=3D"0" cellpadding=3D"0" cellspacing=3D"0" style=3D"border-col=
+lapse: collapse;mso-table-lspace: 0pt;mso-table-rspace: 0pt;-ms-text-size-a=
+djust: 100%;-webkit-text-size-adjust: 100%;" width=3D"100%">
+<tr>
+<td align=3D"center" data-template-container=3D"" id=3D"templateHeader" sty=
+le=3D'background:#F7F7F7 url("https://gallery.mailchimp.com/894208798927fdb=
+5e3804aa9d/images/9deee357-a659-404d-b9f8-c83bb0b6bc22.jpg") no-repeat cent=
+er/cover;mso-line-height-rule: exactly;-ms-text-size-adjust: 100%;-webkit-t=
+ext-size-adjust: 100%;background-color: #F7F7F7;background-image: url(https=
+://gallery.mailchimp.com/894208798927fdb5e3804aa9d/images/9deee357-a659-404=
+d-b9f8-c83bb0b6bc22.jpg);background-repeat: no-repeat;background-position: =
+center;background-size: cover;border-top: 0;border-bottom: 0;padding-top: 3=
+7px;padding-bottom: 37px;' valign=3D"top">
+<!--[if (gte mso 9)|(IE)]>
+                                    <table align=3D"center" border=3D"0" ce=
+llspacing=3D"0" cellpadding=3D"0" width=3D"600" style=3D"width:600px;">
+                                    <tr>
+                                    <td align=3D"center" valign=3D"top" wid=
+th=3D"600" style=3D"width:600px;">
+                                    <![endif]-->
+<table align=3D"center" border=3D"0" cellpadding=3D"0" cellspacing=3D"0" cl=
+ass=3D"templateContainer" style=3D"border-collapse: collapse;mso-table-lspa=
+ce: 0pt;mso-table-rspace: 0pt;-ms-text-size-adjust: 100%;-webkit-text-size-=
+adjust: 100%;max-width: 600px !important;" width=3D"100%">
+<tr>
+<td class=3D"headerContainer" style=3D"background:transparent none no-repea=
+t center/cover;mso-line-height-rule: exactly;-ms-text-size-adjust: 100%;-we=
+bkit-text-size-adjust: 100%;background-color: transparent;background-image:=
+ none;background-repeat: no-repeat;background-position: center;background-s=
+ize: cover;border-top: 0;border-bottom: 0;padding-top: 0;padding-bottom: 0;=
+" valign=3D"top"><table border=3D"0" cellpadding=3D"0" cellspacing=3D"0" cl=
+ass=3D"mcnImageBlock" style=3D"min-width: 100%;border-collapse: collapse;ms=
+o-table-lspace: 0pt;mso-table-rspace: 0pt;-ms-text-size-adjust: 100%;-webki=
+t-text-size-adjust: 100%;" width=3D"100%">
+<tbody class=3D"mcnImageBlockOuter">
+<tr>
+<td class=3D"mcnImageBlockInner" style=3D"padding: 9px;mso-line-height-rule=
+: exactly;-ms-text-size-adjust: 100%;-webkit-text-size-adjust: 100%;" valig=
+n=3D"top">
+<table align=3D"left" border=3D"0" cellpadding=3D"0" cellspacing=3D"0" clas=
+s=3D"mcnImageContentContainer" style=3D"min-width: 100%;border-collapse: co=
+llapse;mso-table-lspace: 0pt;mso-table-rspace: 0pt;-ms-text-size-adjust: 10=
+0%;-webkit-text-size-adjust: 100%;" width=3D"100%">
+<tbody><tr>
+<td class=3D"mcnImageContent" style=3D"padding-right: 9px;padding-left: 9px=
+;padding-top: 0;padding-bottom: 0;text-align: center;mso-line-height-rule: =
+exactly;-ms-text-size-adjust: 100%;-webkit-text-size-adjust: 100%;" valign=
+=3D"top">
+<img align=3D"center" alt=3D"" class=3D"mcnImage" src=3D"https://gallery.ma=
+ilchimp.com/894208798927fdb5e3804aa9d/images/ff1cf83b-6132-4e65-96bc-1a1e90=
+4d821b.png" style=3D"max-width: 800px;padding-bottom: 0;display: inline !im=
+portant;vertical-align: bottom;border: 0;height: auto;outline: none;text-de=
+coration: none;-ms-interpolation-mode: bicubic;" width=3D"564"/>
+</td>
+</tr>
+</tbody></table>
+</td>
+</tr>
+</tbody>
+</table></td>
+</tr>
+</table>
+<!--[if (gte mso 9)|(IE)]>
+                                    </td>
+                                    </tr>
+                                    </table>
+                                    <![endif]-->
+</td>
+</tr>
+<tr>
+<td align=3D"center" data-template-container=3D"" id=3D"templateBody" style=
+=3D"background:#FFFFFF none no-repeat center/cover;mso-line-height-rule: ex=
+actly;-ms-text-size-adjust: 100%;-webkit-text-size-adjust: 100%;background-=
+color: #FFFFFF;background-image: none;background-repeat: no-repeat;backgrou=
+nd-position: center;background-size: cover;border-top: 0;border-bottom: 0;p=
+adding-top: 42px;padding-bottom: 42px;" valign=3D"top">
+<!--[if (gte mso 9)|(IE)]>
+                                    <table align=3D"center" border=3D"0" ce=
+llspacing=3D"0" cellpadding=3D"0" width=3D"600" style=3D"width:600px;">
+                                    <tr>
+                                    <td align=3D"center" valign=3D"top" wid=
+th=3D"600" style=3D"width:600px;">
+                                    <![endif]-->
+<table align=3D"center" border=3D"0" cellpadding=3D"0" cellspacing=3D"0" cl=
+ass=3D"templateContainer" style=3D"border-collapse: collapse;mso-table-lspa=
+ce: 0pt;mso-table-rspace: 0pt;-ms-text-size-adjust: 100%;-webkit-text-size-=
+adjust: 100%;max-width: 600px !important;" width=3D"100%">
+<tr>
+<td class=3D"bodyContainer" style=3D"background:transparent none no-repeat =
+center/cover;mso-line-height-rule: exactly;-ms-text-size-adjust: 100%;-webk=
+it-text-size-adjust: 100%;background-color: transparent;background-image: n=
+one;background-repeat: no-repeat;background-position: center;background-siz=
+e: cover;border-top: 0;border-bottom: 0;padding-top: 0;padding-bottom: 0;" =
+valign=3D"top"><table border=3D"0" cellpadding=3D"0" cellspacing=3D"0" clas=
+s=3D"mcnTextBlock" style=3D"min-width: 100%;border-collapse: collapse;mso-t=
+able-lspace: 0pt;mso-table-rspace: 0pt;-ms-text-size-adjust: 100%;-webkit-t=
+ext-size-adjust: 100%;" width=3D"100%">
+<tbody class=3D"mcnTextBlockOuter">
+<tr>
+<td class=3D"mcnTextBlockInner" style=3D"padding-top: 9px;mso-line-height-r=
+ule: exactly;-ms-text-size-adjust: 100%;-webkit-text-size-adjust: 100%;" va=
+lign=3D"top">
+<!--[if mso]>
+				<table align=3D"left" border=3D"0" cellspacing=3D"0" cellpadding=3D"0" =
+width=3D"100%" style=3D"width:100%;">
+				<tr>
+				<![endif]-->
+<!--[if mso]>
+				<td valign=3D"top" width=3D"600" style=3D"width:600px;">
+				<![endif]-->
+<table align=3D"left" border=3D"0" cellpadding=3D"0" cellspacing=3D"0" clas=
+s=3D"mcnTextContentContainer" style=3D"max-width: 100%;min-width: 100%;bord=
+er-collapse: collapse;mso-table-lspace: 0pt;mso-table-rspace: 0pt;-ms-text-=
+size-adjust: 100%;-webkit-text-size-adjust: 100%;" width=3D"100%">
+<tbody><tr>
+<td class=3D"mcnTextContent" style=3D"padding-top: 0;padding-right: 18px;pa=
+dding-bottom: 9px;padding-left: 18px;mso-line-height-rule: exactly;-ms-text=
+-size-adjust: 100%;-webkit-text-size-adjust: 100%;word-break: break-word;co=
+lor: #757575;font-family: Helvetica;font-size: 16px;line-height: 150%;text-=
+align: left;" valign=3D"top">
+<div style=3D"text-align: center;"><span style=3D"font-size:32px"><span sty=
+le=3D"font-family:lato,helvetica neue,helvetica,arial,sans-serif"><span sty=
+le=3D"color:#008000">On location in=C2=A0Romania</span></span></span></div>
+</td>
+</tr>
+</tbody></table>
+<!--[if mso]>
+				</td>
+				<![endif]-->
+<!--[if mso]>
+				</tr>
+				</table>
+				<![endif]-->
+</td>
+</tr>
+</tbody>
+</table><table border=3D"0" cellpadding=3D"0" cellspacing=3D"0" class=3D"mc=
+nTextBlock" style=3D"min-width: 100%;border-collapse: collapse;mso-table-ls=
+pace: 0pt;mso-table-rspace: 0pt;-ms-text-size-adjust: 100%;-webkit-text-siz=
+e-adjust: 100%;" width=3D"100%">
+<tbody class=3D"mcnTextBlockOuter">
+<tr>
+<td class=3D"mcnTextBlockInner" style=3D"padding-top: 9px;mso-line-height-r=
+ule: exactly;-ms-text-size-adjust: 100%;-webkit-text-size-adjust: 100%;" va=
+lign=3D"top">
+<!--[if mso]>
+				<table align=3D"left" border=3D"0" cellspacing=3D"0" cellpadding=3D"0" =
+width=3D"100%" style=3D"width:100%;">
+				<tr>
+				<![endif]-->
+<!--[if mso]>
+				<td valign=3D"top" width=3D"600" style=3D"width:600px;">
+				<![endif]-->
+<table align=3D"left" border=3D"0" cellpadding=3D"0" cellspacing=3D"0" clas=
+s=3D"mcnTextContentContainer" style=3D"max-width: 100%;min-width: 100%;bord=
+er-collapse: collapse;mso-table-lspace: 0pt;mso-table-rspace: 0pt;-ms-text-=
+size-adjust: 100%;-webkit-text-size-adjust: 100%;" width=3D"100%">
+<tbody><tr>
+<td class=3D"mcnTextContent" style=3D"padding-top: 0;padding-right: 18px;pa=
+dding-bottom: 9px;padding-left: 18px;mso-line-height-rule: exactly;-ms-text=
+-size-adjust: 100%;-webkit-text-size-adjust: 100%;word-break: break-word;co=
+lor: #757575;font-family: Helvetica;font-size: 16px;line-height: 150%;text-=
+align: left;" valign=3D"top">
+<div style=3D"text-align: justify;"><br/>
+<span style=3D"font-size:15px"><span style=3D"color:#000000">We are here=C2=
+=A0on location in the Southern Carpathians, and so=C2=A0wish to take this o=
+pportunity=C2=A0to talk through=C2=A0the work that=E2=80=99s being done, wi=
+th your support, to help keep Romania wild.</span></span></div>
+</td>
+</tr>
+</tbody></table>
+<!--[if mso]>
+				</td>
+				<![endif]-->
+<!--[if mso]>
+				</tr>
+				</table>
+				<![endif]-->
+</td>
+</tr>
+</tbody>
+</table><table border=3D"0" cellpadding=3D"0" cellspacing=3D"0" class=3D"mc=
+nDividerBlock" style=3D"min-width: 100%;border-collapse: collapse;mso-table=
+-lspace: 0pt;mso-table-rspace: 0pt;-ms-text-size-adjust: 100%;-webkit-text-=
+size-adjust: 100%;table-layout: fixed !important;" width=3D"100%">
+<tbody class=3D"mcnDividerBlockOuter">
+<tr>
+<td class=3D"mcnDividerBlockInner" style=3D"min-width: 100%;padding: 18px;m=
+so-line-height-rule: exactly;-ms-text-size-adjust: 100%;-webkit-text-size-a=
+djust: 100%;">
+<table border=3D"0" cellpadding=3D"0" cellspacing=3D"0" class=3D"mcnDivider=
+Content" style=3D"min-width: 100%;border-top: 2px solid #EAEAEA;border-coll=
+apse: collapse;mso-table-lspace: 0pt;mso-table-rspace: 0pt;-ms-text-size-ad=
+just: 100%;-webkit-text-size-adjust: 100%;" width=3D"100%">
+<tbody><tr>
+<td style=3D"mso-line-height-rule: exactly;-ms-text-size-adjust: 100%;-webk=
+it-text-size-adjust: 100%;">
+<span></span>
+</td>
+</tr>
+</tbody></table>
+<!--
+                <td class=3D"mcnDividerBlockInner" style=3D"padding: 18px;"=
+>
+                <hr class=3D"mcnDividerContent" style=3D"border-bottom-colo=
+r:none; border-left-color:none; border-right-color:none; border-bottom-widt=
+h:0; border-left-width:0; border-right-width:0; margin-top:0; margin-right:=
+0; margin-bottom:0; margin-left:0;" />
+-->
+</td>
+</tr>
+</tbody>
+</table><table border=3D"0" cellpadding=3D"0" cellspacing=3D"0" class=3D"mc=
+nImageCardBlock" style=3D"border-collapse: collapse;mso-table-lspace: 0pt;m=
+so-table-rspace: 0pt;-ms-text-size-adjust: 100%;-webkit-text-size-adjust: 1=
+00%;" width=3D"100%">
+<tbody class=3D"mcnImageCardBlockOuter">
+<tr>
+<td class=3D"mcnImageCardBlockInner" style=3D"padding-top: 9px;padding-righ=
+t: 18px;padding-bottom: 9px;padding-left: 18px;mso-line-height-rule: exactl=
+y;-ms-text-size-adjust: 100%;-webkit-text-size-adjust: 100%;" valign=3D"top=
+">
+<table align=3D"right" border=3D"0" cellpadding=3D"0" cellspacing=3D"0" cla=
+ss=3D"mcnImageCardBottomContent" style=3D"background-color: #404040;border-=
+collapse: collapse;mso-table-lspace: 0pt;mso-table-rspace: 0pt;-ms-text-siz=
+e-adjust: 100%;-webkit-text-size-adjust: 100%;" width=3D"100%">
+<tbody><tr>
+<td align=3D"left" class=3D"mcnImageCardBottomImageContent" style=3D"paddin=
+g-top: 0px;padding-right: 0px;padding-bottom: 0;padding-left: 0px;mso-line-=
+height-rule: exactly;-ms-text-size-adjust: 100%;-webkit-text-size-adjust: 1=
+00%;" valign=3D"top">
+<a class=3D"" href=3D"https://earth.us15.list-manage.com/track/click?u=3Dxx=
+xxxxxxxxxxxxxxxxxxxxxxx&amp;id=3Dxxxxxxxxxx&amp;e=3Dxxxxxxxxxx" style=3D"ms=
+o-line-height-rule: exactly;-ms-text-size-adjust: 100%;-webkit-text-size-ad=
+just: 100%;" target=3D"" title=3D"">
+<img alt=3D"" class=3D"mcnImage" src=3D"https://gallery.mailchimp.com/video=
+_thumbnails_new/f88d5a37ff6b3bbc4aa859c389efd330.png" style=3D"max-width: 6=
+40px;border: 0;height: auto;outline: none;text-decoration: none;-ms-interpo=
+lation-mode: bicubic;vertical-align: bottom;" width=3D"564"/>
+</a>
+</td>
+</tr>
+<tr>
+<td class=3D"mcnTextContent" style=3D"padding: 9px 18px;color: #F2F2F2;font=
+-family: Helvetica;font-size: 14px;font-weight: normal;text-align: center;m=
+so-line-height-rule: exactly;-ms-text-size-adjust: 100%;-webkit-text-size-a=
+djust: 100%;word-break: break-word;line-height: 150%;" valign=3D"top" width=
+=3D"546">
+</td>
+</tr>
+</tbody></table>
+</td>
+</tr>
+</tbody>
+</table><table border=3D"0" cellpadding=3D"0" cellspacing=3D"0" class=3D"mc=
+nDividerBlock" style=3D"min-width: 100%;border-collapse: collapse;mso-table=
+-lspace: 0pt;mso-table-rspace: 0pt;-ms-text-size-adjust: 100%;-webkit-text-=
+size-adjust: 100%;table-layout: fixed !important;" width=3D"100%">
+<tbody class=3D"mcnDividerBlockOuter">
+<tr>
+<td class=3D"mcnDividerBlockInner" style=3D"min-width: 100%;padding: 18px;m=
+so-line-height-rule: exactly;-ms-text-size-adjust: 100%;-webkit-text-size-a=
+djust: 100%;">
+<table border=3D"0" cellpadding=3D"0" cellspacing=3D"0" class=3D"mcnDivider=
+Content" style=3D"min-width: 100%;border-top: 2px solid #EAEAEA;border-coll=
+apse: collapse;mso-table-lspace: 0pt;mso-table-rspace: 0pt;-ms-text-size-ad=
+just: 100%;-webkit-text-size-adjust: 100%;" width=3D"100%">
+<tbody><tr>
+<td style=3D"mso-line-height-rule: exactly;-ms-text-size-adjust: 100%;-webk=
+it-text-size-adjust: 100%;">
+<span></span>
+</td>
+</tr>
+</tbody></table>
+<!--
+                <td class=3D"mcnDividerBlockInner" style=3D"padding: 18px;"=
+>
+                <hr class=3D"mcnDividerContent" style=3D"border-bottom-colo=
+r:none; border-left-color:none; border-right-color:none; border-bottom-widt=
+h:0; border-left-width:0; border-right-width:0; margin-top:0; margin-right:=
+0; margin-bottom:0; margin-left:0;" />
+-->
+</td>
+</tr>
+</tbody>
+</table><table border=3D"0" cellpadding=3D"0" cellspacing=3D"0" class=3D"mc=
+nTextBlock" style=3D"min-width: 100%;border-collapse: collapse;mso-table-ls=
+pace: 0pt;mso-table-rspace: 0pt;-ms-text-size-adjust: 100%;-webkit-text-siz=
+e-adjust: 100%;" width=3D"100%">
+<tbody class=3D"mcnTextBlockOuter">
+<tr>
+<td class=3D"mcnTextBlockInner" style=3D"padding-top: 9px;mso-line-height-r=
+ule: exactly;-ms-text-size-adjust: 100%;-webkit-text-size-adjust: 100%;" va=
+lign=3D"top">
+<!--[if mso]>
+				<table align=3D"left" border=3D"0" cellspacing=3D"0" cellpadding=3D"0" =
+width=3D"100%" style=3D"width:100%;">
+				<tr>
+				<![endif]-->
+<!--[if mso]>
+				<td valign=3D"top" width=3D"600" style=3D"width:600px;">
+				<![endif]-->
+<table align=3D"left" border=3D"0" cellpadding=3D"0" cellspacing=3D"0" clas=
+s=3D"mcnTextContentContainer" style=3D"max-width: 100%;min-width: 100%;bord=
+er-collapse: collapse;mso-table-lspace: 0pt;mso-table-rspace: 0pt;-ms-text-=
+size-adjust: 100%;-webkit-text-size-adjust: 100%;" width=3D"100%">
+<tbody><tr>
+<td class=3D"mcnTextContent" style=3D"padding-top: 0;padding-right: 18px;pa=
+dding-bottom: 9px;padding-left: 18px;mso-line-height-rule: exactly;-ms-text=
+-size-adjust: 100%;-webkit-text-size-adjust: 100%;word-break: break-word;co=
+lor: #757575;font-family: Helvetica;font-size: 16px;line-height: 150%;text-=
+align: left;" valign=3D"top">
+<font color=3D"#008000" face=3D"lato, helvetica neue, helvetica, arial, san=
+s-serif"><span style=3D"font-size:20px">A True Wilderness</span></font>
+</td>
+</tr>
+</tbody></table>
+<!--[if mso]>
+				</td>
+				<![endif]-->
+<!--[if mso]>
+				</tr>
+				</table>
+				<![endif]-->
+</td>
+</tr>
+</tbody>
+</table><table border=3D"0" cellpadding=3D"0" cellspacing=3D"0" class=3D"mc=
+nCaptionBlock" style=3D"border-collapse: collapse;mso-table-lspace: 0pt;mso=
+-table-rspace: 0pt;-ms-text-size-adjust: 100%;-webkit-text-size-adjust: 100=
+%;" width=3D"100%">
+<tbody class=3D"mcnCaptionBlockOuter">
+<tr>
+<td class=3D"mcnCaptionBlockInner" style=3D"padding: 9px;mso-line-height-ru=
+le: exactly;-ms-text-size-adjust: 100%;-webkit-text-size-adjust: 100%;" val=
+ign=3D"top">
+<table border=3D"0" cellpadding=3D"0" cellspacing=3D"0" class=3D"mcnCaption=
+RightContentOuter" style=3D"border-collapse: collapse;mso-table-lspace: 0pt=
+;mso-table-rspace: 0pt;-ms-text-size-adjust: 100%;-webkit-text-size-adjust:=
+ 100%;" width=3D"100%">
+<tbody><tr>
+<td class=3D"mcnCaptionRightContentInner" style=3D"padding: 0 9px 9px 9px;m=
+so-line-height-rule: exactly;-ms-text-size-adjust: 100%;-webkit-text-size-a=
+djust: 100%;" valign=3D"top">
+<table align=3D"left" border=3D"0" cellpadding=3D"0" cellspacing=3D"0" clas=
+s=3D"mcnCaptionRightImageContentContainer" style=3D"border-collapse: collap=
+se;mso-table-lspace: 0pt;mso-table-rspace: 0pt;-ms-text-size-adjust: 100%;-=
+webkit-text-size-adjust: 100%;" width=3D"264">
+<tbody><tr>
+<td align=3D"center" class=3D"mcnCaptionRightImageContent" style=3D"mso-lin=
+e-height-rule: exactly;-ms-text-size-adjust: 100%;-webkit-text-size-adjust:=
+ 100%;" valign=3D"top">
+<img alt=3D"" class=3D"mcnImage" src=3D"https://gallery.mailchimp.com/89420=
+8798927fdb5e3804aa9d/images/c76a04b1-91ca-43a4-87ea-a0ae1fe8566f.jpg" style=
+=3D"max-width: 798px;border: 0;height: auto;outline: none;text-decoration: =
+none;-ms-interpolation-mode: bicubic;vertical-align: bottom;" width=3D"264"=
+/>
+</td>
+</tr>
+</tbody></table>
+<table align=3D"right" border=3D"0" cellpadding=3D"0" cellspacing=3D"0" cla=
+ss=3D"mcnCaptionRightTextContentContainer" style=3D"border-collapse: collap=
+se;mso-table-lspace: 0pt;mso-table-rspace: 0pt;-ms-text-size-adjust: 100%;-=
+webkit-text-size-adjust: 100%;" width=3D"264">
+<tbody><tr>
+<td class=3D"mcnTextContent" style=3D"mso-line-height-rule: exactly;-ms-tex=
+t-size-adjust: 100%;-webkit-text-size-adjust: 100%;word-break: break-word;c=
+olor: #757575;font-family: Helvetica;font-size: 16px;line-height: 150%;text=
+-align: left;" valign=3D"top">
+<div style=3D"text-align: justify;"><br/>
+<span style=3D"font-size:15px"><span style=3D"color:#000000">Romania=E2=80=
+=99s natural world is arguably one of Europe=E2=80=99s last true areas of w=
+ilderness. Old-growth forests blanket vast mountain ranges that stretch acr=
+oss the country. They offer refuge for European wildlife in an otherwise de=
+nsely populated and highly developed continent. Wolves, bears and lynxes al=
+l thrive here.=C2=A0</span></span></div>
+</td>
+</tr>
+</tbody></table>
+</td>
+</tr>
+</tbody></table>
+<table border=3D"0" cellpadding=3D"0" cellspacing=3D"0" class=3D"mcnCaption=
+RightContentOuter" style=3D"border-collapse: collapse;mso-table-lspace: 0pt=
+;mso-table-rspace: 0pt;-ms-text-size-adjust: 100%;-webkit-text-size-adjust:=
+ 100%;" width=3D"100%">
+<tbody><tr>
+<td class=3D"mcnCaptionRightContentInner" style=3D"padding: 9px 9px 0 9px;m=
+so-line-height-rule: exactly;-ms-text-size-adjust: 100%;-webkit-text-size-a=
+djust: 100%;" valign=3D"top">
+<table align=3D"left" border=3D"0" cellpadding=3D"0" cellspacing=3D"0" clas=
+s=3D"mcnCaptionRightImageContentContainer" style=3D"border-collapse: collap=
+se;mso-table-lspace: 0pt;mso-table-rspace: 0pt;-ms-text-size-adjust: 100%;-=
+webkit-text-size-adjust: 100%;" width=3D"264">
+<tbody><tr>
+<td align=3D"center" class=3D"mcnCaptionRightImageContent" style=3D"mso-lin=
+e-height-rule: exactly;-ms-text-size-adjust: 100%;-webkit-text-size-adjust:=
+ 100%;" valign=3D"top">
+<img alt=3D"" class=3D"mcnImage" src=3D"https://gallery.mailchimp.com/89420=
+8798927fdb5e3804aa9d/images/e4d4665d-dc6a-4693-a8d0-8a0d088f3f31.jpg" style=
+=3D"max-width: 680px;border: 0;height: auto;outline: none;text-decoration: =
+none;-ms-interpolation-mode: bicubic;vertical-align: bottom;" width=3D"264"=
+/>
+</td>
+</tr>
+</tbody></table>
+<table align=3D"right" border=3D"0" cellpadding=3D"0" cellspacing=3D"0" cla=
+ss=3D"mcnCaptionRightTextContentContainer" style=3D"border-collapse: collap=
+se;mso-table-lspace: 0pt;mso-table-rspace: 0pt;-ms-text-size-adjust: 100%;-=
+webkit-text-size-adjust: 100%;" width=3D"264">
+<tbody><tr>
+<td class=3D"mcnTextContent" style=3D"mso-line-height-rule: exactly;-ms-tex=
+t-size-adjust: 100%;-webkit-text-size-adjust: 100%;word-break: break-word;c=
+olor: #757575;font-family: Helvetica;font-size: 16px;line-height: 150%;text=
+-align: left;" valign=3D"top">
+<div style=3D"text-align: justify;"><br/>
+<br/>
+<span style=3D"font-size:15px"><span style=3D"color:#000000">To protect thi=
+s landscape and the diversity of species that depend on it from increasing =
+human exploitation, Mossy Earth has partnered with the local NGO Foundation=
+ Conservation Carpathia (FCC).=C2=A0</span></span></div>
+</td>
+</tr>
+</tbody></table>
+</td>
+</tr>
+</tbody></table>
+</td>
+</tr>
+</tbody>
+</table><table border=3D"0" cellpadding=3D"0" cellspacing=3D"0" class=3D"mc=
+nDividerBlock" style=3D"min-width: 100%;border-collapse: collapse;mso-table=
+-lspace: 0pt;mso-table-rspace: 0pt;-ms-text-size-adjust: 100%;-webkit-text-=
+size-adjust: 100%;table-layout: fixed !important;" width=3D"100%">
+<tbody class=3D"mcnDividerBlockOuter">
+<tr>
+<td class=3D"mcnDividerBlockInner" style=3D"min-width: 100%;padding: 18px;m=
+so-line-height-rule: exactly;-ms-text-size-adjust: 100%;-webkit-text-size-a=
+djust: 100%;">
+<table border=3D"0" cellpadding=3D"0" cellspacing=3D"0" class=3D"mcnDivider=
+Content" style=3D"min-width: 100%;border-top: 2px solid #EAEAEA;border-coll=
+apse: collapse;mso-table-lspace: 0pt;mso-table-rspace: 0pt;-ms-text-size-ad=
+just: 100%;-webkit-text-size-adjust: 100%;" width=3D"100%">
+<tbody><tr>
+<td style=3D"mso-line-height-rule: exactly;-ms-text-size-adjust: 100%;-webk=
+it-text-size-adjust: 100%;">
+<span></span>
+</td>
+</tr>
+</tbody></table>
+<!--
+                <td class=3D"mcnDividerBlockInner" style=3D"padding: 18px;"=
+>
+                <hr class=3D"mcnDividerContent" style=3D"border-bottom-colo=
+r:none; border-left-color:none; border-right-color:none; border-bottom-widt=
+h:0; border-left-width:0; border-right-width:0; margin-top:0; margin-right:=
+0; margin-bottom:0; margin-left:0;" />
+-->
+</td>
+</tr>
+</tbody>
+</table><table border=3D"0" cellpadding=3D"0" cellspacing=3D"0" class=3D"mc=
+nTextBlock" style=3D"min-width: 100%;border-collapse: collapse;mso-table-ls=
+pace: 0pt;mso-table-rspace: 0pt;-ms-text-size-adjust: 100%;-webkit-text-siz=
+e-adjust: 100%;" width=3D"100%">
+<tbody class=3D"mcnTextBlockOuter">
+<tr>
+<td class=3D"mcnTextBlockInner" style=3D"padding-top: 9px;mso-line-height-r=
+ule: exactly;-ms-text-size-adjust: 100%;-webkit-text-size-adjust: 100%;" va=
+lign=3D"top">
+<!--[if mso]>
+				<table align=3D"left" border=3D"0" cellspacing=3D"0" cellpadding=3D"0" =
+width=3D"100%" style=3D"width:100%;">
+				<tr>
+				<![endif]-->
+<!--[if mso]>
+				<td valign=3D"top" width=3D"600" style=3D"width:600px;">
+				<![endif]-->
+<table align=3D"left" border=3D"0" cellpadding=3D"0" cellspacing=3D"0" clas=
+s=3D"mcnTextContentContainer" style=3D"max-width: 100%;min-width: 100%;bord=
+er-collapse: collapse;mso-table-lspace: 0pt;mso-table-rspace: 0pt;-ms-text-=
+size-adjust: 100%;-webkit-text-size-adjust: 100%;" width=3D"100%">
+<tbody><tr>
+<td class=3D"mcnTextContent" style=3D"padding-top: 0;padding-right: 18px;pa=
+dding-bottom: 9px;padding-left: 18px;mso-line-height-rule: exactly;-ms-text=
+-size-adjust: 100%;-webkit-text-size-adjust: 100%;word-break: break-word;co=
+lor: #757575;font-family: Helvetica;font-size: 16px;line-height: 150%;text-=
+align: left;" valign=3D"top">
+<span style=3D"color:#008000"><span style=3D"font-family:lato,helvetica neu=
+e,helvetica,arial,sans-serif"><span style=3D"font-size:20px">Habitat Restor=
+ation</span></span></span>
+</td>
+</tr>
+</tbody></table>
+<!--[if mso]>
+				</td>
+				<![endif]-->
+<!--[if mso]>
+				</tr>
+				</table>
+				<![endif]-->
+</td>
+</tr>
+</tbody>
+</table><table border=3D"0" cellpadding=3D"0" cellspacing=3D"0" class=3D"mc=
+nCaptionBlock" style=3D"border-collapse: collapse;mso-table-lspace: 0pt;mso=
+-table-rspace: 0pt;-ms-text-size-adjust: 100%;-webkit-text-size-adjust: 100=
+%;" width=3D"100%">
+<tbody class=3D"mcnCaptionBlockOuter">
+<tr>
+<td class=3D"mcnCaptionBlockInner" style=3D"padding: 9px;mso-line-height-ru=
+le: exactly;-ms-text-size-adjust: 100%;-webkit-text-size-adjust: 100%;" val=
+ign=3D"top">
+<table border=3D"0" cellpadding=3D"0" cellspacing=3D"0" class=3D"mcnCaption=
+LeftContentOuter" style=3D"border-collapse: collapse;mso-table-lspace: 0pt;=
+mso-table-rspace: 0pt;-ms-text-size-adjust: 100%;-webkit-text-size-adjust: =
+100%;" width=3D"100%">
+<tbody><tr>
+<td class=3D"mcnCaptionLeftContentInner" style=3D"padding: 0 9px 9px 9px;ms=
+o-line-height-rule: exactly;-ms-text-size-adjust: 100%;-webkit-text-size-ad=
+just: 100%;" valign=3D"top">
+<table align=3D"right" border=3D"0" cellpadding=3D"0" cellspacing=3D"0" cla=
+ss=3D"mcnCaptionLeftImageContentContainer" style=3D"border-collapse: collap=
+se;mso-table-lspace: 0pt;mso-table-rspace: 0pt;-ms-text-size-adjust: 100%;-=
+webkit-text-size-adjust: 100%;" width=3D"264">
+<tbody><tr>
+<td align=3D"center" class=3D"mcnCaptionLeftImageContent" style=3D"mso-line=
+-height-rule: exactly;-ms-text-size-adjust: 100%;-webkit-text-size-adjust: =
+100%;" valign=3D"top">
+<img alt=3D"" class=3D"mcnImage" src=3D"https://gallery.mailchimp.com/89420=
+8798927fdb5e3804aa9d/images/f9526f92-c64e-42e9-acfd-f91ffb455478.jpg" style=
+=3D"max-width: 1200px;border: 0;height: auto;outline: none;text-decoration:=
+ none;-ms-interpolation-mode: bicubic;vertical-align: bottom;" width=3D"264=
+"/>
+</td>
+</tr>
+</tbody></table>
+<table align=3D"left" border=3D"0" cellpadding=3D"0" cellspacing=3D"0" clas=
+s=3D"mcnCaptionLeftTextContentContainer" style=3D"border-collapse: collapse=
+;mso-table-lspace: 0pt;mso-table-rspace: 0pt;-ms-text-size-adjust: 100%;-we=
+bkit-text-size-adjust: 100%;" width=3D"264">
+<tbody><tr>
+<td class=3D"mcnTextContent" style=3D"mso-line-height-rule: exactly;-ms-tex=
+t-size-adjust: 100%;-webkit-text-size-adjust: 100%;word-break: break-word;c=
+olor: #757575;font-family: Helvetica;font-size: 16px;line-height: 150%;text=
+-align: left;" valign=3D"top">
+<div style=3D"text-align: justify;"><span style=3D"font-size:15px"><span st=
+yle=3D"color:#000000">Though Romania still has much of its forest habitat i=
+ntact, many areas are under immense pressure from unsustainable logging and=
+ exploitation practices. Huge areas of forest in the Carpathian Mountains a=
+re being cleared in their entirety, rather than selectively cutting a few t=
+rees over a larger area, a much more sustainable practice. As huge swathes =
+of trees are cleared from area, the soil is left vulnerable to disastrous l=
+evels of soil erosion.=C2=A0</span></span><br/>
+<span style=3D"font-size:16px"><span style=3D"color:#000000">=C2=A0</span><=
+/span></div>
+</td>
+</tr>
+</tbody></table>
+</td>
+</tr>
+</tbody></table>
+<table border=3D"0" cellpadding=3D"0" cellspacing=3D"0" class=3D"mcnCaption=
+LeftContentOuter" style=3D"border-collapse: collapse;mso-table-lspace: 0pt;=
+mso-table-rspace: 0pt;-ms-text-size-adjust: 100%;-webkit-text-size-adjust: =
+100%;" width=3D"100%">
+<tbody><tr>
+<td class=3D"mcnCaptionLeftContentInner" style=3D"padding: 9px 9px 0 9px;ms=
+o-line-height-rule: exactly;-ms-text-size-adjust: 100%;-webkit-text-size-ad=
+just: 100%;" valign=3D"top">
+<table align=3D"right" border=3D"0" cellpadding=3D"0" cellspacing=3D"0" cla=
+ss=3D"mcnCaptionLeftImageContentContainer" style=3D"border-collapse: collap=
+se;mso-table-lspace: 0pt;mso-table-rspace: 0pt;-ms-text-size-adjust: 100%;-=
+webkit-text-size-adjust: 100%;" width=3D"264">
+<tbody><tr>
+<td align=3D"center" class=3D"mcnCaptionLeftImageContent" style=3D"mso-line=
+-height-rule: exactly;-ms-text-size-adjust: 100%;-webkit-text-size-adjust: =
+100%;" valign=3D"top">
+<img alt=3D"" class=3D"mcnImage" src=3D"https://gallery.mailchimp.com/89420=
+8798927fdb5e3804aa9d/images/fda4ed96-bcc8-4d94-846e-d149866a5e85.jpg" style=
+=3D"max-width: 800px;border: 0;height: auto;outline: none;text-decoration: =
+none;-ms-interpolation-mode: bicubic;vertical-align: bottom;" width=3D"264"=
+/>
+</td>
+</tr>
+</tbody></table>
+<table align=3D"left" border=3D"0" cellpadding=3D"0" cellspacing=3D"0" clas=
+s=3D"mcnCaptionLeftTextContentContainer" style=3D"border-collapse: collapse=
+;mso-table-lspace: 0pt;mso-table-rspace: 0pt;-ms-text-size-adjust: 100%;-we=
+bkit-text-size-adjust: 100%;" width=3D"264">
+<tbody><tr>
+<td class=3D"mcnTextContent" style=3D"mso-line-height-rule: exactly;-ms-tex=
+t-size-adjust: 100%;-webkit-text-size-adjust: 100%;word-break: break-word;c=
+olor: #757575;font-family: Helvetica;font-size: 16px;line-height: 150%;text=
+-align: left;" valign=3D"top">
+<div style=3D"text-align: justify;"><br/>
+<span style=3D"font-size:15px"><span style=3D"color:#000000">To restore the=
+se clear-cut areas and improve the soil structure, the team surveys the are=
+a to assess the extent of the damage, the level of regeneration that is alr=
+eady taking place and the absence of important species. Once this has been =
+done, trees are grown in local nurseries until they are strong enough to be=
+ planted out in the field. Pioneer species are planted first to help restor=
+e the soil before a diversity of other species are planted that recreate th=
+e original forest composition.</span></span></div>
+</td>
+</tr>
+</tbody></table>
+</td>
+</tr>
+</tbody></table>
+</td>
+</tr>
+</tbody>
+</table><table border=3D"0" cellpadding=3D"0" cellspacing=3D"0" class=3D"mc=
+nDividerBlock" style=3D"min-width: 100%;border-collapse: collapse;mso-table=
+-lspace: 0pt;mso-table-rspace: 0pt;-ms-text-size-adjust: 100%;-webkit-text-=
+size-adjust: 100%;table-layout: fixed !important;" width=3D"100%">
+<tbody class=3D"mcnDividerBlockOuter">
+<tr>
+<td class=3D"mcnDividerBlockInner" style=3D"min-width: 100%;padding: 18px;m=
+so-line-height-rule: exactly;-ms-text-size-adjust: 100%;-webkit-text-size-a=
+djust: 100%;">
+<table border=3D"0" cellpadding=3D"0" cellspacing=3D"0" class=3D"mcnDivider=
+Content" style=3D"min-width: 100%;border-top: 2px solid #EAEAEA;border-coll=
+apse: collapse;mso-table-lspace: 0pt;mso-table-rspace: 0pt;-ms-text-size-ad=
+just: 100%;-webkit-text-size-adjust: 100%;" width=3D"100%">
+<tbody><tr>
+<td style=3D"mso-line-height-rule: exactly;-ms-text-size-adjust: 100%;-webk=
+it-text-size-adjust: 100%;">
+<span></span>
+</td>
+</tr>
+</tbody></table>
+<!--
+                <td class=3D"mcnDividerBlockInner" style=3D"padding: 18px;"=
+>
+                <hr class=3D"mcnDividerContent" style=3D"border-bottom-colo=
+r:none; border-left-color:none; border-right-color:none; border-bottom-widt=
+h:0; border-left-width:0; border-right-width:0; margin-top:0; margin-right:=
+0; margin-bottom:0; margin-left:0;" />
+-->
+</td>
+</tr>
+</tbody>
+</table><table border=3D"0" cellpadding=3D"0" cellspacing=3D"0" class=3D"mc=
+nTextBlock" style=3D"min-width: 100%;border-collapse: collapse;mso-table-ls=
+pace: 0pt;mso-table-rspace: 0pt;-ms-text-size-adjust: 100%;-webkit-text-siz=
+e-adjust: 100%;" width=3D"100%">
+<tbody class=3D"mcnTextBlockOuter">
+<tr>
+<td class=3D"mcnTextBlockInner" style=3D"padding-top: 9px;mso-line-height-r=
+ule: exactly;-ms-text-size-adjust: 100%;-webkit-text-size-adjust: 100%;" va=
+lign=3D"top">
+<!--[if mso]>
+				<table align=3D"left" border=3D"0" cellspacing=3D"0" cellpadding=3D"0" =
+width=3D"100%" style=3D"width:100%;">
+				<tr>
+				<![endif]-->
+<!--[if mso]>
+				<td valign=3D"top" width=3D"600" style=3D"width:600px;">
+				<![endif]-->
+<table align=3D"left" border=3D"0" cellpadding=3D"0" cellspacing=3D"0" clas=
+s=3D"mcnTextContentContainer" style=3D"max-width: 100%;min-width: 100%;bord=
+er-collapse: collapse;mso-table-lspace: 0pt;mso-table-rspace: 0pt;-ms-text-=
+size-adjust: 100%;-webkit-text-size-adjust: 100%;" width=3D"100%">
+<tbody><tr>
+<td class=3D"mcnTextContent" style=3D"padding-top: 0;padding-right: 18px;pa=
+dding-bottom: 9px;padding-left: 18px;mso-line-height-rule: exactly;-ms-text=
+-size-adjust: 100%;-webkit-text-size-adjust: 100%;word-break: break-word;co=
+lor: #757575;font-family: Helvetica;font-size: 16px;line-height: 150%;text-=
+align: left;" valign=3D"top">
+<font color=3D"#008000" face=3D"lato, helvetica neue, helvetica, arial, san=
+s-serif"><span style=3D"font-size:20px">Ranger Patrols</span></font>
+</td>
+</tr>
+</tbody></table>
+<!--[if mso]>
+				</td>
+				<![endif]-->
+<!--[if mso]>
+				</tr>
+				</table>
+				<![endif]-->
+</td>
+</tr>
+</tbody>
+</table><table border=3D"0" cellpadding=3D"0" cellspacing=3D"0" class=3D"mc=
+nCaptionBlock" style=3D"border-collapse: collapse;mso-table-lspace: 0pt;mso=
+-table-rspace: 0pt;-ms-text-size-adjust: 100%;-webkit-text-size-adjust: 100=
+%;" width=3D"100%">
+<tbody class=3D"mcnCaptionBlockOuter">
+<tr>
+<td class=3D"mcnCaptionBlockInner" style=3D"padding: 9px;mso-line-height-ru=
+le: exactly;-ms-text-size-adjust: 100%;-webkit-text-size-adjust: 100%;" val=
+ign=3D"top">
+<table border=3D"0" cellpadding=3D"0" cellspacing=3D"0" class=3D"mcnCaption=
+RightContentOuter" style=3D"border-collapse: collapse;mso-table-lspace: 0pt=
+;mso-table-rspace: 0pt;-ms-text-size-adjust: 100%;-webkit-text-size-adjust:=
+ 100%;" width=3D"100%">
+<tbody><tr>
+<td class=3D"mcnCaptionRightContentInner" style=3D"padding: 0 9px;mso-line-=
+height-rule: exactly;-ms-text-size-adjust: 100%;-webkit-text-size-adjust: 1=
+00%;" valign=3D"top">
+<table align=3D"left" border=3D"0" cellpadding=3D"0" cellspacing=3D"0" clas=
+s=3D"mcnCaptionRightImageContentContainer" style=3D"border-collapse: collap=
+se;mso-table-lspace: 0pt;mso-table-rspace: 0pt;-ms-text-size-adjust: 100%;-=
+webkit-text-size-adjust: 100%;" width=3D"264">
+<tbody><tr>
+<td align=3D"center" class=3D"mcnCaptionRightImageContent" style=3D"mso-lin=
+e-height-rule: exactly;-ms-text-size-adjust: 100%;-webkit-text-size-adjust:=
+ 100%;" valign=3D"top">
+<img alt=3D"" class=3D"mcnImage" src=3D"https://gallery.mailchimp.com/89420=
+8798927fdb5e3804aa9d/images/32e2942a-3dba-43ef-b8e4-dfabf9336c9b.jpg" style=
+=3D"max-width: 1200px;border: 0;height: auto;outline: none;text-decoration:=
+ none;-ms-interpolation-mode: bicubic;vertical-align: bottom;" width=3D"264=
+"/>
+</td>
+</tr>
+</tbody></table>
+<table align=3D"right" border=3D"0" cellpadding=3D"0" cellspacing=3D"0" cla=
+ss=3D"mcnCaptionRightTextContentContainer" style=3D"border-collapse: collap=
+se;mso-table-lspace: 0pt;mso-table-rspace: 0pt;-ms-text-size-adjust: 100%;-=
+webkit-text-size-adjust: 100%;" width=3D"264">
+<tbody><tr>
+<td class=3D"mcnTextContent" style=3D"mso-line-height-rule: exactly;-ms-tex=
+t-size-adjust: 100%;-webkit-text-size-adjust: 100%;word-break: break-word;c=
+olor: #757575;font-family: Helvetica;font-size: 16px;line-height: 150%;text=
+-align: left;" valign=3D"top">
+<div style=3D"text-align: justify;"><span style=3D"color:#000000"><span sty=
+le=3D"font-size:15px">To protect the existing old-growth forests, rangers f=
+rom the local community carry out regular forest patrols. Having a presence=
+ in the mountains helps protect these forests from illegal logging and dete=
+rs poachers from illegal hunting. It also helps to connect the local commun=
+ity, who are hired as rangers, with the conservation of their natural envir=
+onment</span></span></div>
+</td>
+</tr>
+</tbody></table>
+</td>
+</tr>
+</tbody></table>
+</td>
+</tr>
+</tbody>
+</table><table border=3D"0" cellpadding=3D"0" cellspacing=3D"0" class=3D"mc=
+nDividerBlock" style=3D"min-width: 100%;border-collapse: collapse;mso-table=
+-lspace: 0pt;mso-table-rspace: 0pt;-ms-text-size-adjust: 100%;-webkit-text-=
+size-adjust: 100%;table-layout: fixed !important;" width=3D"100%">
+<tbody class=3D"mcnDividerBlockOuter">
+<tr>
+<td class=3D"mcnDividerBlockInner" style=3D"min-width: 100%;padding: 18px;m=
+so-line-height-rule: exactly;-ms-text-size-adjust: 100%;-webkit-text-size-a=
+djust: 100%;">
+<table border=3D"0" cellpadding=3D"0" cellspacing=3D"0" class=3D"mcnDivider=
+Content" style=3D"min-width: 100%;border-top: 2px solid #EAEAEA;border-coll=
+apse: collapse;mso-table-lspace: 0pt;mso-table-rspace: 0pt;-ms-text-size-ad=
+just: 100%;-webkit-text-size-adjust: 100%;" width=3D"100%">
+<tbody><tr>
+<td style=3D"mso-line-height-rule: exactly;-ms-text-size-adjust: 100%;-webk=
+it-text-size-adjust: 100%;">
+<span></span>
+</td>
+</tr>
+</tbody></table>
+<!--
+                <td class=3D"mcnDividerBlockInner" style=3D"padding: 18px;"=
+>
+                <hr class=3D"mcnDividerContent" style=3D"border-bottom-colo=
+r:none; border-left-color:none; border-right-color:none; border-bottom-widt=
+h:0; border-left-width:0; border-right-width:0; margin-top:0; margin-right:=
+0; margin-bottom:0; margin-left:0;" />
+-->
+</td>
+</tr>
+</tbody>
+</table><table border=3D"0" cellpadding=3D"0" cellspacing=3D"0" class=3D"mc=
+nTextBlock" style=3D"min-width: 100%;border-collapse: collapse;mso-table-ls=
+pace: 0pt;mso-table-rspace: 0pt;-ms-text-size-adjust: 100%;-webkit-text-siz=
+e-adjust: 100%;" width=3D"100%">
+<tbody class=3D"mcnTextBlockOuter">
+<tr>
+<td class=3D"mcnTextBlockInner" style=3D"padding-top: 9px;mso-line-height-r=
+ule: exactly;-ms-text-size-adjust: 100%;-webkit-text-size-adjust: 100%;" va=
+lign=3D"top">
+<!--[if mso]>
+				<table align=3D"left" border=3D"0" cellspacing=3D"0" cellpadding=3D"0" =
+width=3D"100%" style=3D"width:100%;">
+				<tr>
+				<![endif]-->
+<!--[if mso]>
+				<td valign=3D"top" width=3D"600" style=3D"width:600px;">
+				<![endif]-->
+<table align=3D"left" border=3D"0" cellpadding=3D"0" cellspacing=3D"0" clas=
+s=3D"mcnTextContentContainer" style=3D"max-width: 100%;min-width: 100%;bord=
+er-collapse: collapse;mso-table-lspace: 0pt;mso-table-rspace: 0pt;-ms-text-=
+size-adjust: 100%;-webkit-text-size-adjust: 100%;" width=3D"100%">
+<tbody><tr>
+<td class=3D"mcnTextContent" style=3D"padding-top: 0;padding-right: 18px;pa=
+dding-bottom: 9px;padding-left: 18px;mso-line-height-rule: exactly;-ms-text=
+-size-adjust: 100%;-webkit-text-size-adjust: 100%;word-break: break-word;co=
+lor: #757575;font-family: Helvetica;font-size: 16px;line-height: 150%;text-=
+align: left;" valign=3D"top">
+<font color=3D"#008000" face=3D"lato, helvetica neue, helvetica, arial, san=
+s-serif"><span style=3D"font-size:20px">Wildlife Conservation</span></font>
+</td>
+</tr>
+</tbody></table>
+<!--[if mso]>
+				</td>
+				<![endif]-->
+<!--[if mso]>
+				</tr>
+				</table>
+				<![endif]-->
+</td>
+</tr>
+</tbody>
+</table><table border=3D"0" cellpadding=3D"0" cellspacing=3D"0" class=3D"mc=
+nCaptionBlock" style=3D"border-collapse: collapse;mso-table-lspace: 0pt;mso=
+-table-rspace: 0pt;-ms-text-size-adjust: 100%;-webkit-text-size-adjust: 100=
+%;" width=3D"100%">
+<tbody class=3D"mcnCaptionBlockOuter">
+<tr>
+<td class=3D"mcnCaptionBlockInner" style=3D"padding: 9px;mso-line-height-ru=
+le: exactly;-ms-text-size-adjust: 100%;-webkit-text-size-adjust: 100%;" val=
+ign=3D"top">
+<table border=3D"0" cellpadding=3D"0" cellspacing=3D"0" class=3D"mcnCaption=
+LeftContentOuter" style=3D"border-collapse: collapse;mso-table-lspace: 0pt;=
+mso-table-rspace: 0pt;-ms-text-size-adjust: 100%;-webkit-text-size-adjust: =
+100%;" width=3D"100%">
+<tbody><tr>
+<td class=3D"mcnCaptionLeftContentInner" style=3D"padding: 0 9px 9px 9px;ms=
+o-line-height-rule: exactly;-ms-text-size-adjust: 100%;-webkit-text-size-ad=
+just: 100%;" valign=3D"top">
+<table align=3D"right" border=3D"0" cellpadding=3D"0" cellspacing=3D"0" cla=
+ss=3D"mcnCaptionLeftImageContentContainer" style=3D"border-collapse: collap=
+se;mso-table-lspace: 0pt;mso-table-rspace: 0pt;-ms-text-size-adjust: 100%;-=
+webkit-text-size-adjust: 100%;" width=3D"264">
+<tbody><tr>
+<td align=3D"center" class=3D"mcnCaptionLeftImageContent" style=3D"mso-line=
+-height-rule: exactly;-ms-text-size-adjust: 100%;-webkit-text-size-adjust: =
+100%;" valign=3D"top">
+<img alt=3D"" class=3D"mcnImage" src=3D"https://gallery.mailchimp.com/89420=
+8798927fdb5e3804aa9d/images/923fc829-bbb5-4873-9e4e-1ccd3e36bf09.jpg" style=
+=3D"max-width: 1079px;border: 0;height: auto;outline: none;text-decoration:=
+ none;-ms-interpolation-mode: bicubic;vertical-align: bottom;" width=3D"264=
+"/>
+</td>
+</tr>
+</tbody></table>
+<table align=3D"left" border=3D"0" cellpadding=3D"0" cellspacing=3D"0" clas=
+s=3D"mcnCaptionLeftTextContentContainer" style=3D"border-collapse: collapse=
+;mso-table-lspace: 0pt;mso-table-rspace: 0pt;-ms-text-size-adjust: 100%;-we=
+bkit-text-size-adjust: 100%;" width=3D"264">
+<tbody><tr>
+<td class=3D"mcnTextContent" style=3D"mso-line-height-rule: exactly;-ms-tex=
+t-size-adjust: 100%;-webkit-text-size-adjust: 100%;word-break: break-word;c=
+olor: #757575;font-family: Helvetica;font-size: 16px;line-height: 150%;text=
+-align: left;" valign=3D"top">
+<div style=3D"text-align: justify;"><span style=3D"color:#000000"><span sty=
+le=3D"font-size:15px">Once the clear-cut areas have been replanted and the =
+trees have had time to grow, they will increase the habitat available for a=
+ diversity of species. Romania is home to a significant portion of the spec=
+ies that are threatened across Europe, many of them relying on these forest=
+ habitats for survival. The project also helps reconnect isolated forest pa=
+tches so that animals can move safely across the landscape.=C2=A0</span></s=
+pan></div>
+</td>
+</tr>
+</tbody></table>
+</td>
+</tr>
+</tbody></table>
+<table border=3D"0" cellpadding=3D"0" cellspacing=3D"0" class=3D"mcnCaption=
+LeftContentOuter" style=3D"border-collapse: collapse;mso-table-lspace: 0pt;=
+mso-table-rspace: 0pt;-ms-text-size-adjust: 100%;-webkit-text-size-adjust: =
+100%;" width=3D"100%">
+<tbody><tr>
+<td class=3D"mcnCaptionLeftContentInner" style=3D"padding: 9px 9px 0 9px;ms=
+o-line-height-rule: exactly;-ms-text-size-adjust: 100%;-webkit-text-size-ad=
+just: 100%;" valign=3D"top">
+<table align=3D"right" border=3D"0" cellpadding=3D"0" cellspacing=3D"0" cla=
+ss=3D"mcnCaptionLeftImageContentContainer" style=3D"border-collapse: collap=
+se;mso-table-lspace: 0pt;mso-table-rspace: 0pt;-ms-text-size-adjust: 100%;-=
+webkit-text-size-adjust: 100%;" width=3D"264">
+<tbody><tr>
+<td align=3D"center" class=3D"mcnCaptionLeftImageContent" style=3D"mso-line=
+-height-rule: exactly;-ms-text-size-adjust: 100%;-webkit-text-size-adjust: =
+100%;" valign=3D"top">
+<img alt=3D"" class=3D"mcnImage" src=3D"https://gallery.mailchimp.com/89420=
+8798927fdb5e3804aa9d/images/5dabb77d-b2af-4c31-a54a-1400ba648219.jpg" style=
+=3D"max-width: 1200px;border: 0;height: auto;outline: none;text-decoration:=
+ none;-ms-interpolation-mode: bicubic;vertical-align: bottom;" width=3D"264=
+"/>
+</td>
+</tr>
+</tbody></table>
+<table align=3D"left" border=3D"0" cellpadding=3D"0" cellspacing=3D"0" clas=
+s=3D"mcnCaptionLeftTextContentContainer" style=3D"border-collapse: collapse=
+;mso-table-lspace: 0pt;mso-table-rspace: 0pt;-ms-text-size-adjust: 100%;-we=
+bkit-text-size-adjust: 100%;" width=3D"264">
+<tbody><tr>
+<td class=3D"mcnTextContent" style=3D"mso-line-height-rule: exactly;-ms-tex=
+t-size-adjust: 100%;-webkit-text-size-adjust: 100%;word-break: break-word;c=
+olor: #757575;font-family: Helvetica;font-size: 16px;line-height: 150%;text=
+-align: left;" valign=3D"top">
+<div style=3D"text-align: justify;"><span style=3D"color:#000000"><span sty=
+le=3D"font-size:15px">To keep track of the species that are present in the =
+region, camera traps are placed across the project area. This also allows t=
+he team to monitor wildlife movements, habitat use and behaviour, and can i=
+nform estimates of population sizes and whether they are stable, increasing=
+ or decreasing. Our partners have recently translocated four Bison to the S=
+outhern Carpathians, which had been extinct here for many=C2=A0decades.=C2=
+=A0</span></span></div>
+</td>
+</tr>
+</tbody></table>
+</td>
+</tr>
+</tbody></table>
+</td>
+</tr>
+</tbody>
+</table><table border=3D"0" cellpadding=3D"0" cellspacing=3D"0" class=3D"mc=
+nDividerBlock" style=3D"min-width: 100%;border-collapse: collapse;mso-table=
+-lspace: 0pt;mso-table-rspace: 0pt;-ms-text-size-adjust: 100%;-webkit-text-=
+size-adjust: 100%;table-layout: fixed !important;" width=3D"100%">
+<tbody class=3D"mcnDividerBlockOuter">
+<tr>
+<td class=3D"mcnDividerBlockInner" style=3D"min-width: 100%;padding: 18px;m=
+so-line-height-rule: exactly;-ms-text-size-adjust: 100%;-webkit-text-size-a=
+djust: 100%;">
+<table border=3D"0" cellpadding=3D"0" cellspacing=3D"0" class=3D"mcnDivider=
+Content" style=3D"min-width: 100%;border-top: 2px solid #EAEAEA;border-coll=
+apse: collapse;mso-table-lspace: 0pt;mso-table-rspace: 0pt;-ms-text-size-ad=
+just: 100%;-webkit-text-size-adjust: 100%;" width=3D"100%">
+<tbody><tr>
+<td style=3D"mso-line-height-rule: exactly;-ms-text-size-adjust: 100%;-webk=
+it-text-size-adjust: 100%;">
+<span></span>
+</td>
+</tr>
+</tbody></table>
+<!--
+                <td class=3D"mcnDividerBlockInner" style=3D"padding: 18px;"=
+>
+                <hr class=3D"mcnDividerContent" style=3D"border-bottom-colo=
+r:none; border-left-color:none; border-right-color:none; border-bottom-widt=
+h:0; border-left-width:0; border-right-width:0; margin-top:0; margin-right:=
+0; margin-bottom:0; margin-left:0;" />
+-->
+</td>
+</tr>
+</tbody>
+</table><table border=3D"0" cellpadding=3D"0" cellspacing=3D"0" class=3D"mc=
+nTextBlock" style=3D"min-width: 100%;border-collapse: collapse;mso-table-ls=
+pace: 0pt;mso-table-rspace: 0pt;-ms-text-size-adjust: 100%;-webkit-text-siz=
+e-adjust: 100%;" width=3D"100%">
+<tbody class=3D"mcnTextBlockOuter">
+<tr>
+<td class=3D"mcnTextBlockInner" style=3D"padding-top: 9px;mso-line-height-r=
+ule: exactly;-ms-text-size-adjust: 100%;-webkit-text-size-adjust: 100%;" va=
+lign=3D"top">
+<!--[if mso]>
+				<table align=3D"left" border=3D"0" cellspacing=3D"0" cellpadding=3D"0" =
+width=3D"100%" style=3D"width:100%;">
+				<tr>
+				<![endif]-->
+<!--[if mso]>
+				<td valign=3D"top" width=3D"600" style=3D"width:600px;">
+				<![endif]-->
+<table align=3D"left" border=3D"0" cellpadding=3D"0" cellspacing=3D"0" clas=
+s=3D"mcnTextContentContainer" style=3D"max-width: 100%;min-width: 100%;bord=
+er-collapse: collapse;mso-table-lspace: 0pt;mso-table-rspace: 0pt;-ms-text-=
+size-adjust: 100%;-webkit-text-size-adjust: 100%;" width=3D"100%">
+<tbody><tr>
+<td class=3D"mcnTextContent" style=3D"padding-top: 0;padding-right: 18px;pa=
+dding-bottom: 9px;padding-left: 18px;mso-line-height-rule: exactly;-ms-text=
+-size-adjust: 100%;-webkit-text-size-adjust: 100%;word-break: break-word;co=
+lor: #757575;font-family: Helvetica;font-size: 16px;line-height: 150%;text-=
+align: left;" valign=3D"top">
+<font color=3D"#008000" face=3D"lato, helvetica neue, helvetica, arial, san=
+s-serif"><span style=3D"font-size:20px">The Vision</span></font>
+</td>
+</tr>
+</tbody></table>
+<!--[if mso]>
+				</td>
+				<![endif]-->
+<!--[if mso]>
+				</tr>
+				</table>
+				<![endif]-->
+</td>
+</tr>
+</tbody>
+</table><table border=3D"0" cellpadding=3D"0" cellspacing=3D"0" class=3D"mc=
+nCaptionBlock" style=3D"border-collapse: collapse;mso-table-lspace: 0pt;mso=
+-table-rspace: 0pt;-ms-text-size-adjust: 100%;-webkit-text-size-adjust: 100=
+%;" width=3D"100%">
+<tbody class=3D"mcnCaptionBlockOuter">
+<tr>
+<td class=3D"mcnCaptionBlockInner" style=3D"padding: 9px;mso-line-height-ru=
+le: exactly;-ms-text-size-adjust: 100%;-webkit-text-size-adjust: 100%;" val=
+ign=3D"top">
+<table border=3D"0" cellpadding=3D"0" cellspacing=3D"0" class=3D"mcnCaption=
+RightContentOuter" style=3D"border-collapse: collapse;mso-table-lspace: 0pt=
+;mso-table-rspace: 0pt;-ms-text-size-adjust: 100%;-webkit-text-size-adjust:=
+ 100%;" width=3D"100%">
+<tbody><tr>
+<td class=3D"mcnCaptionRightContentInner" style=3D"padding: 0 9px;mso-line-=
+height-rule: exactly;-ms-text-size-adjust: 100%;-webkit-text-size-adjust: 1=
+00%;" valign=3D"top">
+<table align=3D"left" border=3D"0" cellpadding=3D"0" cellspacing=3D"0" clas=
+s=3D"mcnCaptionRightImageContentContainer" style=3D"border-collapse: collap=
+se;mso-table-lspace: 0pt;mso-table-rspace: 0pt;-ms-text-size-adjust: 100%;-=
+webkit-text-size-adjust: 100%;" width=3D"264">
+<tbody><tr>
+<td align=3D"center" class=3D"mcnCaptionRightImageContent" style=3D"mso-lin=
+e-height-rule: exactly;-ms-text-size-adjust: 100%;-webkit-text-size-adjust:=
+ 100%;" valign=3D"top">
+<img alt=3D"" class=3D"mcnImage" src=3D"https://gallery.mailchimp.com/89420=
+8798927fdb5e3804aa9d/images/b47e1004-ccc7-42d4-a9b1-0183a1562322.jpg" style=
+=3D"max-width: 1200px;border: 0;height: auto;outline: none;text-decoration:=
+ none;-ms-interpolation-mode: bicubic;vertical-align: bottom;" width=3D"264=
+"/>
+</td>
+</tr>
+</tbody></table>
+<table align=3D"right" border=3D"0" cellpadding=3D"0" cellspacing=3D"0" cla=
+ss=3D"mcnCaptionRightTextContentContainer" style=3D"border-collapse: collap=
+se;mso-table-lspace: 0pt;mso-table-rspace: 0pt;-ms-text-size-adjust: 100%;-=
+webkit-text-size-adjust: 100%;" width=3D"264">
+<tbody><tr>
+<td class=3D"mcnTextContent" style=3D"mso-line-height-rule: exactly;-ms-tex=
+t-size-adjust: 100%;-webkit-text-size-adjust: 100%;word-break: break-word;c=
+olor: #757575;font-family: Helvetica;font-size: 16px;line-height: 150%;text=
+-align: left;" valign=3D"top">
+<div style=3D"text-align: justify;"><span style=3D"font-size:15px"><span st=
+yle=3D"color:#000000">There are many reasons to celebrate Romania's natural=
+ world. But, as the country continues to develop, the old-growth forests th=
+at have provided a wildlife refuge for Europe=E2=80=99s sensitive species a=
+re increasingly under threat. Through our work with FCC, we aim to restore =
+degraded clear-cuts to healthy, functioning and biodiverse forests. With yo=
+ur support we can protect Romania=E2=80=99s great wild spaces.</span></span=
+></div>
+</td>
+</tr>
+</tbody></table>
+</td>
+</tr>
+</tbody></table>
+</td>
+</tr>
+</tbody>
+</table><table border=3D"0" cellpadding=3D"0" cellspacing=3D"0" class=3D"mc=
+nDividerBlock" style=3D"min-width: 100%;border-collapse: collapse;mso-table=
+-lspace: 0pt;mso-table-rspace: 0pt;-ms-text-size-adjust: 100%;-webkit-text-=
+size-adjust: 100%;table-layout: fixed !important;" width=3D"100%">
+<tbody class=3D"mcnDividerBlockOuter">
+<tr>
+<td class=3D"mcnDividerBlockInner" style=3D"min-width: 100%;padding: 18px;m=
+so-line-height-rule: exactly;-ms-text-size-adjust: 100%;-webkit-text-size-a=
+djust: 100%;">
+<table border=3D"0" cellpadding=3D"0" cellspacing=3D"0" class=3D"mcnDivider=
+Content" style=3D"min-width: 100%;border-top: 2px solid #EAEAEA;border-coll=
+apse: collapse;mso-table-lspace: 0pt;mso-table-rspace: 0pt;-ms-text-size-ad=
+just: 100%;-webkit-text-size-adjust: 100%;" width=3D"100%">
+<tbody><tr>
+<td style=3D"mso-line-height-rule: exactly;-ms-text-size-adjust: 100%;-webk=
+it-text-size-adjust: 100%;">
+<span></span>
+</td>
+</tr>
+</tbody></table>
+<!--
+                <td class=3D"mcnDividerBlockInner" style=3D"padding: 18px;"=
+>
+                <hr class=3D"mcnDividerContent" style=3D"border-bottom-colo=
+r:none; border-left-color:none; border-right-color:none; border-bottom-widt=
+h:0; border-left-width:0; border-right-width:0; margin-top:0; margin-right:=
+0; margin-bottom:0; margin-left:0;" />
+-->
+</td>
+</tr>
+</tbody>
+</table><table border=3D"0" cellpadding=3D"0" cellspacing=3D"0" class=3D"mc=
+nCaptionBlock" style=3D"border-collapse: collapse;mso-table-lspace: 0pt;mso=
+-table-rspace: 0pt;-ms-text-size-adjust: 100%;-webkit-text-size-adjust: 100=
+%;" width=3D"100%">
+<tbody class=3D"mcnCaptionBlockOuter">
+<tr>
+<td class=3D"mcnCaptionBlockInner" style=3D"padding: 9px;mso-line-height-ru=
+le: exactly;-ms-text-size-adjust: 100%;-webkit-text-size-adjust: 100%;" val=
+ign=3D"top">
+<table border=3D"0" cellpadding=3D"0" cellspacing=3D"0" class=3D"mcnCaption=
+LeftContentOuter" style=3D"border-collapse: collapse;mso-table-lspace: 0pt;=
+mso-table-rspace: 0pt;-ms-text-size-adjust: 100%;-webkit-text-size-adjust: =
+100%;" width=3D"100%">
+<tbody><tr>
+<td class=3D"mcnCaptionLeftContentInner" style=3D"padding: 0 9px;mso-line-h=
+eight-rule: exactly;-ms-text-size-adjust: 100%;-webkit-text-size-adjust: 10=
+0%;" valign=3D"top">
+<table align=3D"right" border=3D"0" cellpadding=3D"0" cellspacing=3D"0" cla=
+ss=3D"mcnCaptionLeftImageContentContainer" style=3D"border-collapse: collap=
+se;mso-table-lspace: 0pt;mso-table-rspace: 0pt;-ms-text-size-adjust: 100%;-=
+webkit-text-size-adjust: 100%;" width=3D"264">
+<tbody><tr>
+<td align=3D"center" class=3D"mcnCaptionLeftImageContent" style=3D"mso-line=
+-height-rule: exactly;-ms-text-size-adjust: 100%;-webkit-text-size-adjust: =
+100%;" valign=3D"top">
+<img alt=3D"" class=3D"mcnImage" src=3D"https://gallery.mailchimp.com/89420=
+8798927fdb5e3804aa9d/images/69c9518a-67c2-4b5c-b481-4634699c124e.jpg" style=
+=3D"max-width: 1197px;border: 0;height: auto;outline: none;text-decoration:=
+ none;-ms-interpolation-mode: bicubic;vertical-align: bottom;" width=3D"264=
+"/>
+</td>
+</tr>
+</tbody></table>
+<table align=3D"left" border=3D"0" cellpadding=3D"0" cellspacing=3D"0" clas=
+s=3D"mcnCaptionLeftTextContentContainer" style=3D"border-collapse: collapse=
+;mso-table-lspace: 0pt;mso-table-rspace: 0pt;-ms-text-size-adjust: 100%;-we=
+bkit-text-size-adjust: 100%;" width=3D"264">
+<tbody><tr>
+<td class=3D"mcnTextContent" style=3D"text-align: justify;mso-line-height-r=
+ule: exactly;-ms-text-size-adjust: 100%;-webkit-text-size-adjust: 100%;word=
+-break: break-word;color: #757575;font-family: Helvetica;font-size: 16px;li=
+ne-height: 150%;" valign=3D"top">
+<span style=3D"font-family:lato,helvetica neue,helvetica,arial,sans-serif">=
+<span style=3D"color:#008000"><span style=3D"font-size:20px">Until Next tim=
+e...</span></span></span>
+<div style=3D"text-align: justify;"><br/>
+<font color=3D"#000000" face=3D"lato, helvetica neue, helvetica, arial, san=
+s-serif"><span style=3D"font-size:16px"><em>Should you have any questions a=
+bout our Healing Clear Cuts=C2=A0project in Romania=C2=A0or Mossy Earth at =
+large, please don't hesitate to contact. We'd love to hear from you!</em></=
+span></font><br/>
+<em><font color=3D"#000000"><span style=3D"font-size:15px">=C2=A0</span></f=
+ont></em><br/>
+<span style=3D"font-size:15px"><span style=3D"color:#000000">Hannah Kirklan=
+d</span></span><br/>
+<a href=3D"https://earth.us15.list-manage.com/track/click?u=3Dxxxxxxxxxxxxx=
+xxxxxxxxxxxx&amp;id=3Dxxxxxxxxxx&amp;e=3Dxxxxxxxxxx" style=3D"mso-line-heig=
+ht-rule: exactly;-ms-text-size-adjust: 100%;-webkit-text-size-adjust: 100%;=
+color: #007C89;font-weight: normal;text-decoration: underline;" target=3D"_=
+blank"><span style=3D"color:#008000"><span style=3D"font-size:15px">hannah<=
+/span></span></a><span style=3D"font-size:15px"><a href=3D"https://earth.us=
+15.list-manage.com/track/click?u=3Dxxxxxxxxxxxxxxxxxxxxxxxxx&amp;id=3Dxxxxx=
+xxxxx&amp;e=3Dxxxxxxxxxx" style=3D"font-size: 15px;mso-line-height-rule: ex=
+actly;-ms-text-size-adjust: 100%;-webkit-text-size-adjust: 100%;color: #007=
+C89;font-weight: normal;text-decoration: underline;" target=3D"_blank"><spa=
+n style=3D"color:#008000">@mossy.earth</span></a></span></div>
+</td>
+</tr>
+</tbody></table>
+</td>
+</tr>
+</tbody></table>
+</td>
+</tr>
+</tbody>
+</table></td>
+</tr>
+</table>
+<!--[if (gte mso 9)|(IE)]>
+                                    </td>
+                                    </tr>
+                                    </table>
+                                    <![endif]-->
+</td>
+</tr>
+<tr>
+<td align=3D"center" data-template-container=3D"" id=3D"templateFooter" sty=
+le=3D"background:#333333 none no-repeat center/cover;mso-line-height-rule: =
+exactly;-ms-text-size-adjust: 100%;-webkit-text-size-adjust: 100%;backgroun=
+d-color: #333333;background-image: none;background-repeat: no-repeat;backgr=
+ound-position: center;background-size: cover;border-top: 0;border-bottom: 0=
+;padding-top: 45px;padding-bottom: 63px;" valign=3D"top">
+<!--[if (gte mso 9)|(IE)]>
+                                    <table align=3D"center" border=3D"0" ce=
+llspacing=3D"0" cellpadding=3D"0" width=3D"600" style=3D"width:600px;">
+                                    <tr>
+                                    <td align=3D"center" valign=3D"top" wid=
+th=3D"600" style=3D"width:600px;">
+                                    <![endif]-->
+<table align=3D"center" border=3D"0" cellpadding=3D"0" cellspacing=3D"0" cl=
+ass=3D"templateContainer" style=3D"border-collapse: collapse;mso-table-lspa=
+ce: 0pt;mso-table-rspace: 0pt;-ms-text-size-adjust: 100%;-webkit-text-size-=
+adjust: 100%;max-width: 600px !important;" width=3D"100%">
+<tr>
+<td class=3D"footerContainer" style=3D"background:transparent none no-repea=
+t center/cover;mso-line-height-rule: exactly;-ms-text-size-adjust: 100%;-we=
+bkit-text-size-adjust: 100%;background-color: transparent;background-image:=
+ none;background-repeat: no-repeat;background-position: center;background-s=
+ize: cover;border-top: 0;border-bottom: 0;padding-top: 0;padding-bottom: 0;=
+" valign=3D"top"><table border=3D"0" cellpadding=3D"0" cellspacing=3D"0" cl=
+ass=3D"mcnFollowBlock" style=3D"min-width: 100%;border-collapse: collapse;m=
+so-table-lspace: 0pt;mso-table-rspace: 0pt;-ms-text-size-adjust: 100%;-webk=
+it-text-size-adjust: 100%;" width=3D"100%">
+<tbody class=3D"mcnFollowBlockOuter">
+<tr>
+<td align=3D"center" class=3D"mcnFollowBlockInner" style=3D"padding: 9px;ms=
+o-line-height-rule: exactly;-ms-text-size-adjust: 100%;-webkit-text-size-ad=
+just: 100%;" valign=3D"top">
+<table border=3D"0" cellpadding=3D"0" cellspacing=3D"0" class=3D"mcnFollowC=
+ontentContainer" style=3D"min-width: 100%;border-collapse: collapse;mso-tab=
+le-lspace: 0pt;mso-table-rspace: 0pt;-ms-text-size-adjust: 100%;-webkit-tex=
+t-size-adjust: 100%;" width=3D"100%">
+<tbody><tr>
+<td align=3D"center" style=3D"padding-left: 9px;padding-right: 9px;mso-line=
+-height-rule: exactly;-ms-text-size-adjust: 100%;-webkit-text-size-adjust: =
+100%;">
+<table border=3D"0" cellpadding=3D"0" cellspacing=3D"0" class=3D"mcnFollowC=
+ontent" style=3D"min-width: 100%;border-collapse: collapse;mso-table-lspace=
+: 0pt;mso-table-rspace: 0pt;-ms-text-size-adjust: 100%;-webkit-text-size-ad=
+just: 100%;" width=3D"100%">
+<tbody><tr>
+<td align=3D"center" style=3D"padding-top: 9px;padding-right: 9px;padding-l=
+eft: 9px;mso-line-height-rule: exactly;-ms-text-size-adjust: 100%;-webkit-t=
+ext-size-adjust: 100%;" valign=3D"top">
+<table align=3D"center" border=3D"0" cellpadding=3D"0" cellspacing=3D"0" st=
+yle=3D"border-collapse: collapse;mso-table-lspace: 0pt;mso-table-rspace: 0p=
+t;-ms-text-size-adjust: 100%;-webkit-text-size-adjust: 100%;">
+<tbody><tr>
+<td align=3D"center" style=3D"mso-line-height-rule: exactly;-ms-text-size-a=
+djust: 100%;-webkit-text-size-adjust: 100%;" valign=3D"top">
+<!--[if mso]>
+                                    <table align=3D"center" border=3D"0" ce=
+llspacing=3D"0" cellpadding=3D"0">
+                                    <tr>
+                                    <![endif]-->
+<!--[if mso]>
+                                        <td align=3D"center" valign=3D"top"=
+>
+                                        <![endif]-->
+<table align=3D"left" border=3D"0" cellpadding=3D"0" cellspacing=3D"0" clas=
+s=3D"mcnFollowStacked" style=3D"display: inline;border-collapse: collapse;m=
+so-table-lspace: 0pt;mso-table-rspace: 0pt;-ms-text-size-adjust: 100%;-webk=
+it-text-size-adjust: 100%;">
+<tbody><tr>
+<td align=3D"center" class=3D"mcnFollowIconContent" style=3D"padding-right:=
+ 10px;padding-bottom: 9px;mso-line-height-rule: exactly;-ms-text-size-adjus=
+t: 100%;-webkit-text-size-adjust: 100%;" valign=3D"top">
+<a href=3D"https://earth.us15.list-manage.com/track/click?u=3Dxxxxxxxxxxxxx=
+xxxxxxxxxxxx&amp;id=3Dxxxxxxxxxx&amp;e=3Dxxxxxxxxxx" style=3D"mso-line-heig=
+ht-rule: exactly;-ms-text-size-adjust: 100%;-webkit-text-size-adjust: 100%;=
+" target=3D"_blank"><img alt=3D"Facebook" class=3D"mcnFollowBlockIcon" src=
+=3D"https://cdn-images.mailchimp.com/icons/social-block-v2/outline-color-fa=
+cebook-96.png" style=3D"width: 48px;max-width: 48px;display: block;border: =
+0;height: auto;outline: none;text-decoration: none;-ms-interpolation-mode: =
+bicubic;" width=3D"48"/></a>
+</td>
+</tr>
+</tbody></table>
+<!--[if mso]>
+                                        </td>
+                                        <![endif]-->
+<!--[if mso]>
+                                        <td align=3D"center" valign=3D"top"=
+>
+                                        <![endif]-->
+<table align=3D"left" border=3D"0" cellpadding=3D"0" cellspacing=3D"0" clas=
+s=3D"mcnFollowStacked" style=3D"display: inline;border-collapse: collapse;m=
+so-table-lspace: 0pt;mso-table-rspace: 0pt;-ms-text-size-adjust: 100%;-webk=
+it-text-size-adjust: 100%;">
+<tbody><tr>
+<td align=3D"center" class=3D"mcnFollowIconContent" style=3D"padding-right:=
+ 10px;padding-bottom: 9px;mso-line-height-rule: exactly;-ms-text-size-adjus=
+t: 100%;-webkit-text-size-adjust: 100%;" valign=3D"top">
+<a href=3D"https://earth.us15.list-manage.com/track/click?u=3Dxxxxxxxxxxxxx=
+xxxxxxxxxxxx&amp;id=3Dxxxxxxxxxx&amp;e=3Dxxxxxxxxxx" style=3D"mso-line-heig=
+ht-rule: exactly;-ms-text-size-adjust: 100%;-webkit-text-size-adjust: 100%;=
+" target=3D"_blank"><img alt=3D"Twitter" class=3D"mcnFollowBlockIcon" src=
+=3D"https://cdn-images.mailchimp.com/icons/social-block-v2/outline-color-tw=
+itter-96.png" style=3D"width: 48px;max-width: 48px;display: block;border: 0=
+;height: auto;outline: none;text-decoration: none;-ms-interpolation-mode: b=
+icubic;" width=3D"48"/></a>
+</td>
+</tr>
+</tbody></table>
+<!--[if mso]>
+                                        </td>
+                                        <![endif]-->
+<!--[if mso]>
+                                        <td align=3D"center" valign=3D"top"=
+>
+                                        <![endif]-->
+<table align=3D"left" border=3D"0" cellpadding=3D"0" cellspacing=3D"0" clas=
+s=3D"mcnFollowStacked" style=3D"display: inline;border-collapse: collapse;m=
+so-table-lspace: 0pt;mso-table-rspace: 0pt;-ms-text-size-adjust: 100%;-webk=
+it-text-size-adjust: 100%;">
+<tbody><tr>
+<td align=3D"center" class=3D"mcnFollowIconContent" style=3D"padding-right:=
+ 10px;padding-bottom: 9px;mso-line-height-rule: exactly;-ms-text-size-adjus=
+t: 100%;-webkit-text-size-adjust: 100%;" valign=3D"top">
+<a href=3D"https://earth.us15.list-manage.com/track/click?u=3Dxxxxxxxxxxxxx=
+xxxxxxxxxxxx&amp;id=3Dxxxxxxxxxx&amp;e=3Dxxxxxxxxxx" style=3D"mso-line-heig=
+ht-rule: exactly;-ms-text-size-adjust: 100%;-webkit-text-size-adjust: 100%;=
+" target=3D"_blank"><img alt=3D"Instagram" class=3D"mcnFollowBlockIcon" src=
+=3D"https://cdn-images.mailchimp.com/icons/social-block-v2/outline-color-in=
+stagram-96.png" style=3D"width: 48px;max-width: 48px;display: block;border:=
+ 0;height: auto;outline: none;text-decoration: none;-ms-interpolation-mode:=
+ bicubic;" width=3D"48"/></a>
+</td>
+</tr>
+</tbody></table>
+<!--[if mso]>
+                                        </td>
+                                        <![endif]-->
+<!--[if mso]>
+                                        <td align=3D"center" valign=3D"top"=
+>
+                                        <![endif]-->
+<table align=3D"left" border=3D"0" cellpadding=3D"0" cellspacing=3D"0" clas=
+s=3D"mcnFollowStacked" style=3D"display: inline;border-collapse: collapse;m=
+so-table-lspace: 0pt;mso-table-rspace: 0pt;-ms-text-size-adjust: 100%;-webk=
+it-text-size-adjust: 100%;">
+<tbody><tr>
+<td align=3D"center" class=3D"mcnFollowIconContent" style=3D"padding-right:=
+ 10px;padding-bottom: 9px;mso-line-height-rule: exactly;-ms-text-size-adjus=
+t: 100%;-webkit-text-size-adjust: 100%;" valign=3D"top">
+<a href=3D"https://earth.us15.list-manage.com/track/click?u=3Dxxxxxxxxxxxxx=
+xxxxxxxxxxxx&amp;id=3Dxxxxxxxxxx&amp;e=3Dxxxxxxxxxx" style=3D"mso-line-heig=
+ht-rule: exactly;-ms-text-size-adjust: 100%;-webkit-text-size-adjust: 100%;=
+" target=3D"_blank"><img alt=3D"Website" class=3D"mcnFollowBlockIcon" src=
+=3D"https://cdn-images.mailchimp.com/icons/social-block-v2/outline-color-li=
+nk-96.png" style=3D"width: 48px;max-width: 48px;display: block;border: 0;he=
+ight: auto;outline: none;text-decoration: none;-ms-interpolation-mode: bicu=
+bic;" width=3D"48"/></a>
+</td>
+</tr>
+</tbody></table>
+<!--[if mso]>
+                                        </td>
+                                        <![endif]-->
+<!--[if mso]>
+                                        <td align=3D"center" valign=3D"top"=
+>
+                                        <![endif]-->
+<table align=3D"left" border=3D"0" cellpadding=3D"0" cellspacing=3D"0" clas=
+s=3D"mcnFollowStacked" style=3D"display: inline;border-collapse: collapse;m=
+so-table-lspace: 0pt;mso-table-rspace: 0pt;-ms-text-size-adjust: 100%;-webk=
+it-text-size-adjust: 100%;">
+<tbody><tr>
+<td align=3D"center" class=3D"mcnFollowIconContent" style=3D"padding-right:=
+ 0;padding-bottom: 9px;mso-line-height-rule: exactly;-ms-text-size-adjust: =
+100%;-webkit-text-size-adjust: 100%;" valign=3D"top">
+<a href=3D"https://earth.us15.list-manage.com/track/click?u=3Dxxxxxxxxxxxxx=
+xxxxxxxxxxxx&amp;id=3Dxxxxxxxxxx&amp;e=3Dxxxxxxxxxx" style=3D"mso-line-heig=
+ht-rule: exactly;-ms-text-size-adjust: 100%;-webkit-text-size-adjust: 100%;=
+" target=3D"_blank"><img alt=3D"LinkedIn" class=3D"mcnFollowBlockIcon" src=
+=3D"https://cdn-images.mailchimp.com/icons/social-block-v2/outline-color-li=
+nkedin-96.png" style=3D"width: 48px;max-width: 48px;display: block;border: =
+0;height: auto;outline: none;text-decoration: none;-ms-interpolation-mode: =
+bicubic;" width=3D"48"/></a>
+</td>
+</tr>
+</tbody></table>
+<!--[if mso]>
+                                        </td>
+                                        <![endif]-->
+<!--[if mso]>
+                                    </tr>
+                                    </table>
+                                    <![endif]-->
+</td>
+</tr>
+</tbody></table>
+</td>
+</tr>
+</tbody></table>
+</td>
+</tr>
+</tbody></table>
+</td>
+</tr>
+</tbody>
+</table><table border=3D"0" cellpadding=3D"0" cellspacing=3D"0" class=3D"mc=
+nDividerBlock" style=3D"min-width: 100%;border-collapse: collapse;mso-table=
+-lspace: 0pt;mso-table-rspace: 0pt;-ms-text-size-adjust: 100%;-webkit-text-=
+size-adjust: 100%;table-layout: fixed !important;" width=3D"100%">
+<tbody class=3D"mcnDividerBlockOuter">
+<tr>
+<td class=3D"mcnDividerBlockInner" style=3D"min-width: 100%;padding: 18px;m=
+so-line-height-rule: exactly;-ms-text-size-adjust: 100%;-webkit-text-size-a=
+djust: 100%;">
+<table border=3D"0" cellpadding=3D"0" cellspacing=3D"0" class=3D"mcnDivider=
+Content" style=3D"min-width: 100%;border-top: 2px solid #505050;border-coll=
+apse: collapse;mso-table-lspace: 0pt;mso-table-rspace: 0pt;-ms-text-size-ad=
+just: 100%;-webkit-text-size-adjust: 100%;" width=3D"100%">
+<tbody><tr>
+<td style=3D"mso-line-height-rule: exactly;-ms-text-size-adjust: 100%;-webk=
+it-text-size-adjust: 100%;">
+<span></span>
+</td>
+</tr>
+</tbody></table>
+<!--
+                <td class=3D"mcnDividerBlockInner" style=3D"padding: 18px;"=
+>
+                <hr class=3D"mcnDividerContent" style=3D"border-bottom-colo=
+r:none; border-left-color:none; border-right-color:none; border-bottom-widt=
+h:0; border-left-width:0; border-right-width:0; margin-top:0; margin-right:=
+0; margin-bottom:0; margin-left:0;" />
+-->
+</td>
+</tr>
+</tbody>
+</table><table border=3D"0" cellpadding=3D"0" cellspacing=3D"0" class=3D"mc=
+nTextBlock" style=3D"min-width: 100%;border-collapse: collapse;mso-table-ls=
+pace: 0pt;mso-table-rspace: 0pt;-ms-text-size-adjust: 100%;-webkit-text-siz=
+e-adjust: 100%;" width=3D"100%">
+<tbody class=3D"mcnTextBlockOuter">
+<tr>
+<td class=3D"mcnTextBlockInner" style=3D"padding-top: 9px;mso-line-height-r=
+ule: exactly;-ms-text-size-adjust: 100%;-webkit-text-size-adjust: 100%;" va=
+lign=3D"top">
+<!--[if mso]>
+				<table align=3D"left" border=3D"0" cellspacing=3D"0" cellpadding=3D"0" =
+width=3D"100%" style=3D"width:100%;">
+				<tr>
+				<![endif]-->
+<!--[if mso]>
+				<td valign=3D"top" width=3D"600" style=3D"width:600px;">
+				<![endif]-->
+<table align=3D"left" border=3D"0" cellpadding=3D"0" cellspacing=3D"0" clas=
+s=3D"mcnTextContentContainer" style=3D"max-width: 100%;min-width: 100%;bord=
+er-collapse: collapse;mso-table-lspace: 0pt;mso-table-rspace: 0pt;-ms-text-=
+size-adjust: 100%;-webkit-text-size-adjust: 100%;" width=3D"100%">
+<tbody><tr>
+<td class=3D"mcnTextContent" style=3D"padding-top: 0;padding-right: 18px;pa=
+dding-bottom: 9px;padding-left: 18px;mso-line-height-rule: exactly;-ms-text=
+-size-adjust: 100%;-webkit-text-size-adjust: 100%;word-break: break-word;co=
+lor: #FFFFFF;font-family: Helvetica;font-size: 12px;line-height: 150%;text-=
+align: center;" valign=3D"top">
+<em>Copyright =C2=A9 2018 Mossy Earth, All rights reserved.</em><br/>
+<br/>
+<br/>
+<strong>Our mailing address is:</strong><br/>
+team@mossy.earth<br/>
+<br/>
+Want to change how you receive these emails?<br/>
+You can <a href=3D"https://earth.us15.list-manage.com/profile?u=3Dxxxxxxxxx=
+xxxxxxxxxxxxxxxx&amp;id=3Dxxxxxxxxxx&amp;e=3Dxxxxxxxxxx" style=3D"mso-line-=
+height-rule: exactly;-ms-text-size-adjust: 100%;-webkit-text-size-adjust: 1=
+00%;color: #FFFFFF;font-weight: normal;text-decoration: underline;">update =
+your preferences</a> or <a href=3D"https://earth.us15.list-manage.com/unsub=
+scribe?u=3Dxxxxxxxxxxxxxxxxxxxxxxxxx&amp;id=3Dxxxxxxxxxx&amp;e=3Dxxxxxxxxxx=
+&amp;c=3Dxxxxxxxxxx" style=3D"mso-line-height-rule: exactly;-ms-text-size-a=
+djust: 100%;-webkit-text-size-adjust: 100%;color: #FFFFFF;font-weight: norm=
+al;text-decoration: underline;">unsubscribe from this list</a>.<br/>
+<br/>
+=C2=A0
+                        </td>
+</tr>
+</tbody></table>
+<!--[if mso]>
+				</td>
+				<![endif]-->
+<!--[if mso]>
+				</tr>
+				</table>
+				<![endif]-->
+</td>
+</tr>
+</tbody>
+</table></td>
+</tr>
+</table>
+<!--[if (gte mso 9)|(IE)]>
+                                    </td>
+                                    </tr>
+                                    </table>
+                                    <![endif]-->
+</td>
+</tr>
+</table>
+<!-- // END TEMPLATE -->
+</td>
+</tr>
+</table>
+</center>
+<center>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<table border=3D"0" cellpadding=3D"0" cellspacing=3D"0" id=3D"canspamBarWra=
+pper" style=3D"background-color:#FFFFFF; border-top:1px solid #E5E5E5;" wid=
+th=3D"100%">
+<tr>
+<td align=3D"center" style=3D"padding-top:20px; padding-bottom:20px;" valig=
+n=3D"top">
+<table border=3D"0" cellpadding=3D"0" cellspacing=3D"0" id=3D"canspamBar">
+<tr>
+<td align=3D"center" style=3D"color:#606060; font-family:Helvetica, Arial, =
+sans-serif; font-size:11px; line-height:150%; padding-right:20px; padding-b=
+ottom:5px; padding-left:20px; text-align:center;" valign=3D"top">
+                                        This email was sent to <a href=3D"m=
+ailto:xxxxxxx@xxxxx.xxx" style=3D"color:#404040 !important;" target=3D"_bla=
+nk">xxxxxxx@xxxxx.xxx</a>
+<br>
+<a href=3D"https://earth.us15.list-manage.com/about?u=3Dxxxxxxxxxxxxxxxxxxx=
+xxxxxx&amp;id=3Dxxxxxxxxxx&amp;e=3Dxxxxxxxxxx&amp;c=3Dxxxxxxxxxx" style=3D"=
+color:#404040 !important;" target=3D"_blank"><em>why did I get this?</em></=
+a>=C2=A0=C2=A0=C2=A0=C2=A0<a href=3D"https://earth.us15.list-manage.com/uns=
+ubscribe?u=3Dxxxxxxxxxxxxxxxxxxxxxxxxx&amp;id=3Dxxxxxxxxxx&amp;e=3Dxxxxxxxx=
+xx&amp;c=3Dxxxxxxxxxx" style=3D"color:#404040 !important;">unsubscribe from=
+ this list</a>=C2=A0=C2=A0=C2=A0=C2=A0<a href=3D"https://earth.us15.list-ma=
+nage.com/profile?u=3Dxxxxxxxxxxxxxxxxxxxxxxxxx&amp;id=3Dxxxxxxxxxx&amp;e=3D=
+xxxxxxxxxx" style=3D"color:#404040 !important;">update subscription prefere=
+nces</a>
+<br>
+                                        Mossy Earth =C2=B7 Boundary Oak Ear=
+nley Manor Close =C2=B7 Earnley, West Sussex PO20 7JQ =C2=B7 United Kingdom
+                                        <br>
+<br>
+<a href=3D"http://www.mailchimp.com/monkey-rewards/?utm_source=3Dxxxxxxxxxx=
+xxxxxxxxx&amp;utm_medium=3Dxxxxx&amp;utm_campaign=3Dxxxxxxxxxxxxxx&amp;aid=
+=3Dxxxxxxxxxxxxxxxxxxxxxxxxx&amp;afl=3Dx"><img alt=3D"Email Marketing Power=
+ed by Mailchimp" border=3D"0" height=3D"54" src=3D"https://cdn-images.mailc=
+himp.com/monkey_rewards/MC_MonkeyReward_15.png" title=3D"Mailchimp Email Ma=
+rketing" width=3D"139"/></a>
+</br></br></br></br></td>
+</tr>
+</table>
+</td>
+</tr>
+</table>
+<style type=3D"text/css">
+                    @media only screen and (max-width: 480px){
+                        table#canspamBar td{font-size:14px !important;}
+                        table#canspamBar td a{display:block !important; mar=
+gin-top:10px !important;}
+                    }
+                </style>
+</br></br></br></br></br></br></center><img height=3D"1" src=3D"https://ear=
+th.us15.list-manage.com/track/open.php?u=3D894208798927fdb5e3804aa9d&amp;id=
+=3D0c08b80684&amp;e=3Df4ab906c35" width=3D"1"/></body>
+</html>
+--_----------=_MCPart_1897430268--
