@@ -5,5 +5,13 @@
 	"singleQuote": true,
 	"trailingComma": "es5",
 	"jsxBracketSameLine": false,
-	"semi": true
+	"semi": true,
+	"overrides": [
+		{
+			"files": ["*.html"],
+			"options": {
+				"printWidth": 120
+			}
+		}
+	]
 }
