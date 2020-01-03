@@ -1,36 +1,36 @@
 {
-  "name": "tempo-message-splitter",
-  "version": "1.0.0",
-  "description": "",
-  "main": "benchmarks.js",
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "benchmarks": "ts-node ./benchmarks/index.ts"
-  },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/pillarstudio/tempo-message-splitter.git"
-  },
-  "author": "",
-  "license": "ISC",
-  "bugs": {
-    "url": "https://github.com/pillarstudio/tempo-message-splitter/issues"
-  },
-  "homepage": "https://github.com/pillarstudio/tempo-message-splitter#readme",
-  "devDependencies": {
-    "@types/benchmark": "^1.0.31",
-    "@types/cheerio": "^0.22.15",
-    "@types/jsdom": "^12.2.4",
-    "@typescript-eslint/eslint-plugin": "^2.14.0",
-    "@typescript-eslint/parser": "^2.14.0",
-    "benchmark": "^2.1.4",
-    "cheerio": "^1.0.0-rc.3",
-    "eslint": "^6.8.0",
-    "eslint-config-prettier": "^6.9.0",
-    "eslint-plugin-prettier": "^3.1.2",
-    "jsdom": "^15.2.1",
-    "prettier": "^1.19.1",
-    "typescript": "^3.7.4"
-  },
-  "dependencies": {}
+	"name": "tempo-message-splitter",
+	"version": "1.0.0",
+	"description": "",
+	"main": "benchmarks.js",
+	"scripts": {
+		"test": "echo \"Error: no test specified\" && exit 1",
+		"benchmarks": "ts-node ./benchmarks/index.ts"
+	},
+	"repository": {
+		"type": "git",
+		"url": "git+https://github.com/pillarstudio/tempo-message-splitter.git"
+	},
+	"author": "",
+	"license": "ISC",
+	"bugs": {
+		"url": "https://github.com/pillarstudio/tempo-message-splitter/issues"
+	},
+	"homepage": "https://github.com/pillarstudio/tempo-message-splitter#readme",
+	"devDependencies": {
+		"@types/benchmark": "^1.0.31",
+		"@types/cheerio": "^0.22.15",
+		"@types/jsdom": "^12.2.4",
+		"@typescript-eslint/eslint-plugin": "^2.14.0",
+		"@typescript-eslint/parser": "^2.14.0",
+		"benchmark": "^2.1.4",
+		"cheerio": "^1.0.0-rc.3",
+		"eslint": "^6.8.0",
+		"eslint-config-prettier": "^6.9.0",
+		"eslint-plugin-prettier": "^3.1.2",
+		"jsdom": "^15.2.1",
+		"prettier": "^1.19.1",
+		"typescript": "^3.7.4"
+	},
+	"dependencies": {}
 }
