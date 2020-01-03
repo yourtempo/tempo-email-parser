@@ -1,0 +1,55 @@
+Parse#JSDom Size 1
+     Current:	
+         1.634 ms
+         612.2 ops/sec
+         (82 runs sampled)
+         Relative Margin of Error: ±5.78%
+
+Parse#JSDom Size 2
+     Current:	
+         2.432 ms
+         411.2 ops/sec
+         (88 runs sampled)
+         Relative Margin of Error: ±0.82%
+
+Parse#JSDom Size 3
+     Current:	
+         4.006 ms
+         249.6 ops/sec
+         (74 runs sampled)
+         Relative Margin of Error: ±11.10%
+
+Parse#Cheerio Size 1
+     Current:	
+         0.1429 ms
+         6,999 ops/sec
+         (89 runs sampled)
+         Relative Margin of Error: ±1.50%
+
+Parse#Cheerio Size 2
+     Current:	
+         0.2996 ms
+         3,338 ops/sec
+         (90 runs sampled)
+         Relative Margin of Error: ±0.73%
+
+Parse#Cheerio Size 3
+     Current:	
+         0.4697 ms
+         2,129 ops/sec
+         (93 runs sampled)
+         Relative Margin of Error: ±0.64%
+
+Parse#JSDom Marketing email
+     Current:	
+         58.01 ms
+         17.24 ops/sec
+         (35 runs sampled)
+         Relative Margin of Error: ±6.10%
+
+Parse#Cheerio Marketing email
+     Current:	
+         7.517 ms
+         133 ops/sec
+         (87 runs sampled)
+         Relative Margin of Error: ±0.83%

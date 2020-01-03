@@ -2,7 +2,8 @@ import jsdom from 'jsdom';
 import cheerio from 'cheerio';
 import Benchmark from 'benchmark';
 
-import { printResult, extractResult, readFile } from './utils';
+import { printResult, extractResult } from './utils';
+import EMAILS from './emails';
 
 const suite = new Benchmark.Suite();
 
@@ -12,15 +13,7 @@ suite.on('cycle', (event: any) => {
 	printResult(result);
 });
 
-const EMAILS = {
-	BASIC: readFile('basic-lorem-gmail.html'),
-	// The followings are the same as BASIC, but replied to itself one time, and two times
-	// We can consider their relative sizes to be 1, 2 and 3.
-	BASIC_REPLIED_X1: readFile('basic-lorem-gmail-replied-x1.html'),
-	BASIC_REPLIED_X2: readFile('basic-lorem-gmail-replied-x2.html'),
-};
-
-// We test a simple parsing on basic HTML. Using a linear scale of input complexity, we can see if the performance is linear or worst.
+// Test a simple parsing on basic HTML. Using a linear scale of input complexity, we can see if the performance is linear or worst.
 suite
 	.add('Parse#JSDom Size 1', () => {
 		new jsdom.JSDOM(EMAILS.BASIC);
@@ -39,6 +32,15 @@ suite
 	})
 	.add('Parse#Cheerio Size 3', () => {
 		cheerio.load(EMAILS.BASIC_REPLIED_X2);
+	});
+
+// Test parsing a real-world, HTML-heavy, marketing email
+suite
+	.add('Parse#JSDom Marketing email', () => {
+		new jsdom.JSDOM(EMAILS.MARKETING);
+	})
+	.add('Parse#Cheerio Marketing email', () => {
+		cheerio.load(EMAILS.MARKETING);
 	});
 
 suite.run();

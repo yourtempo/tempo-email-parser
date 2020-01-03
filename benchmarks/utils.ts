@@ -3,8 +3,6 @@
  * Those are adapted from past projects of mines (Soreine).
  */
 
-import fs from 'fs';
-import path from 'path';
 import Benchmark from 'benchmark';
 
 type SuccessResult = {
@@ -103,8 +101,4 @@ function print(...strs: any[]) {
 	console.log(...strs);
 }
 
-function readFile(relativePath: string): string {
-	return fs.readFileSync(path.join(__dirname, relativePath)).toString();
-}
-
-export { extractResult, printResult, readFile };
+export { extractResult, printResult };
