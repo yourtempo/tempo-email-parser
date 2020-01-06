@@ -21,6 +21,7 @@
 	"devDependencies": {
 		"@types/benchmark": "^1.0.31",
 		"@types/cheerio": "^0.22.15",
+		"@types/jest": "^24.0.25",
 		"@types/jsdom": "^12.2.4",
 		"@typescript-eslint/eslint-plugin": "^2.14.0",
 		"@typescript-eslint/parser": "^2.14.0",
@@ -32,10 +33,11 @@
 		"jsdom": "^15.2.1",
 		"prettier": "^1.19.1",
 		"ts-jest": "^24.2.0",
-		"typescript": "^3.7.4",
-		"@types/jest": "^24.0.25"
+		"typescript": "^3.7.4"
 	},
 	"dependencies": {
-		"cheerio": "^1.0.0-rc.3"
+		"cheerio": "0.22.0",
+		"planer": "^1.1.1",
+		"talonjs": "^1.0.23"
 	}
 }
