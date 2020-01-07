@@ -1,4 +1,5 @@
-import linkify from './linkify';
 import removeQuotations from './removeQuotations';
+import linkify from './linkify';
+import sanitize from './sanitize';
 
-export { removeQuotations, linkify };
+export { removeQuotations, linkify, sanitize };

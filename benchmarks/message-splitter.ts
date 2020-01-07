@@ -5,7 +5,7 @@ These benchmarks measures the performance of the message-splitter module
 import Benchmark from 'benchmark';
 
 import { printResult, extractResult } from './utils';
-import { removeQuotations, linkify } from '../src';
+import { removeQuotations, linkify, sanitize } from '../src';
 import EMAILS from './emails';
 
 const suite = new Benchmark.Suite();
@@ -39,6 +39,17 @@ suite
 		linkify(EMAILS.BASIC_REPLIED_X2);
 	});
 
+suite
+	.add('sanitize # Size 1', () => {
+		sanitize(EMAILS.BASIC);
+	})
+	.add('sanitize # Size 2', () => {
+		sanitize(EMAILS.BASIC_REPLIED_X1);
+	})
+	.add('sanitize # Size 3', () => {
+		sanitize(EMAILS.BASIC_REPLIED_X2);
+	});
+
 // Measure against a real-world, HTML-heavy, marketing email
 suite
 	.add('removeQuotations # Marketing email', () => {
@@ -46,6 +57,9 @@ suite
 	})
 	.add('linkify # Marketing email', () => {
 		linkify(EMAILS.MARKETING);
+	})
+	.add('sanitize # Marketing email', () => {
+		sanitize(EMAILS.MARKETING);
 	});
 
 suite.run();
