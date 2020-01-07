@@ -58,17 +58,5 @@ suite
 		const document = new jsdom.JSDOM().window.document;
 		planer.extractFrom(EMAILS.MARKETING, 'text/html', document);
 	});
-// // Maybe there's a way to use Planer with XMLDom, but it needs trickery
-// .add('Quotation # Planer with XMLDom # Marketing email', () => {
-// 	const domImpl = new XmlDom.DOMImplementation();
-
-// 	const document = {
-// 		implementation: {
-// 			createHTMLDocument: domImpl.createDocument.bind(domImpl),
-// 		},
-// 	};
-
-// 	planer.extractFrom(EMAILS.MARKETING, 'text/html', document);
-// });
 
 suite.run();
