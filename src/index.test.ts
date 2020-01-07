@@ -1,5 +1,5 @@
 import expect from 'expect';
-import { removeQuotations } from './';
+import { removeQuotations, linkify } from './';
 
 describe('removeQuotations', () => {
 	it('should remove quotation from basic email', () => {
@@ -48,5 +48,22 @@ describe('removeQuotations', () => {
 			didFindQuote: true,
 			isTooLong: false,
 		});
+	});
+});
+
+describe('linkify', () => {
+	it('should linkify URL in paragraph', () => {
+		const email = `<p>
+			Quis est tam dissimile
+			homini. Claudii libidini, qui tum erat summo ne imperio, dederetur.
+			loripsum.net
+		</p>`;
+
+		console.log(linkify(email));
+		expect(linkify(email)).toBe(`<p>
+			Quis est tam dissimile
+			homini. Claudii libidini, qui tum erat summo ne imperio, dederetur.
+			<a href="http://loripsum.net" target="_blank" rel="noopener noreferrer">loripsum.net</a>
+		</p>`);
 	});
 });

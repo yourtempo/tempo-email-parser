@@ -1,5 +1,9 @@
 import Talon from 'talonjs';
+import linkifyHtml from 'linkifyjs/html';
 
+/**
+ * Remove quotations (replied messages) from the email
+ */
 function removeQuotations(
 	emailHtml: string
 ): {
@@ -23,4 +27,18 @@ function removeQuotations(
 	return { body, didFindQuote, isTooLong };
 }
 
-export { removeQuotations };
+/**
+ * Wrap text links in anchor tags
+ */
+function linkify(emailHtml: string): string {
+	return linkifyHtml(emailHtml, {
+		ignoreTags: ['script', 'style', 'head'],
+		className: '',
+		attributes: {
+			// To avoid tabnabbing
+			rel: 'noopener noreferrer',
+		},
+	});
+}
+
+export { removeQuotations, linkify };
