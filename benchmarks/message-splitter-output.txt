@@ -1,0 +1,57 @@
+removeQuotations # Size 1
+     Current:	
+         3.575 ms
+         279.7 ops/sec
+         (86 runs sampled)
+         Relative Margin of Error: ±1.19%
+
+removeQuotations # Size 2
+     Current:	
+         4.372 ms
+         228.7 ops/sec
+         (84 runs sampled)
+         Relative Margin of Error: ±1.02%
+
+removeQuotations # Size 3
+     Current:	
+         5.478 ms
+         182.5 ops/sec
+         (78 runs sampled)
+         Relative Margin of Error: ±0.77%
+
+linkify # Size 1
+     Current:	
+         0.7972 ms
+         1,254 ops/sec
+         (92 runs sampled)
+         Relative Margin of Error: ±0.78%
+
+linkify # Size 2
+     Current:	
+         1.655 ms
+         604.3 ops/sec
+         (92 runs sampled)
+         Relative Margin of Error: ±0.68%
+
+linkify # Size 3
+     Current:	
+         2.558 ms
+         390.9 ops/sec
+         (90 runs sampled)
+         Relative Margin of Error: ±0.72%
+
+removeQuotations # Marketing email
+     Current:	
+         141.4 ms
+         7.072 ops/sec
+         (22 runs sampled)
+         Relative Margin of Error: ±1.26%
+
+linkify # Marketing email
+     Current:	
+         10.63 ms
+         94.06 ops/sec
+         (81 runs sampled)
+         Relative Margin of Error: ±0.62%
+
+Done in 46.49s.

@@ -6,7 +6,8 @@
 	"scripts": {
 		"test": "jest",
 		"lint": "eslint \"./**/*.{js,jsx,ts,tsx}\"",
-		"benchmarks": "ts-node ./benchmarks/index.ts"
+		"benchmarks": "ts-node ./benchmarks/message-splitter.ts",
+		"benchmarks:libraries": "ts-node ./benchmarks/libraries.ts"
 	},
 	"repository": {
 		"type": "git",

@@ -1,7 +1,15 @@
 ## How to run benchmarks
 
+To run benchmarks for `message-splitter` implementation
+
 ```
 yarn run benchmarks
+```
+
+To run general benchmarks for external libraries
+
+```
+yarn run benchmarks:libraries
 ```
 
 ## Understanding the results

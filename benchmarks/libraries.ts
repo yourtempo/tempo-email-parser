@@ -1,3 +1,8 @@
+/*
+These benchmarks compare different libraries (not all are used by this project).
+This helps estimate the cost of using any of them.
+ */
+
 import jsdom from 'jsdom';
 import cheerio from 'cheerio';
 import Benchmark from 'benchmark';
