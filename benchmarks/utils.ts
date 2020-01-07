@@ -65,11 +65,7 @@ function printResult(result: BenchmarkResult) {
 	const { name } = result;
 
 	print(name);
-
-	print(indent(2), 'Current:	');
-
-	formatPerf(result).map(s => print(indent(4), s));
-
+	formatPerf(result).map(s => print(indent(2), s));
 	print(''); // newline
 }
 
