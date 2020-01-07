@@ -1,55 +1,78 @@
-Parse#JSDom Size 1
+Parse # JSDom # Size 1
      Current:	
-         1.634 ms
-         612.2 ops/sec
-         (82 runs sampled)
-         Relative Margin of Error: ±5.78%
+         1.603 ms
+         623.8 ops/sec
+         (81 runs sampled)
+         Relative Margin of Error: ±5.33%
 
-Parse#JSDom Size 2
+Parse # JSDom # Size 2
      Current:	
-         2.432 ms
-         411.2 ops/sec
-         (88 runs sampled)
-         Relative Margin of Error: ±0.82%
+         2.455 ms
+         407.4 ops/sec
+         (85 runs sampled)
+         Relative Margin of Error: ±1.25%
 
-Parse#JSDom Size 3
+Parse # JSDom # Size 3
      Current:	
-         4.006 ms
-         249.6 ops/sec
-         (74 runs sampled)
-         Relative Margin of Error: ±11.10%
+         4.037 ms
+         247.7 ops/sec
+         (79 runs sampled)
+         Relative Margin of Error: ±9.69%
 
-Parse#Cheerio Size 1
+Parse # Cheerio # Size 1
      Current:	
-         0.1429 ms
-         6,999 ops/sec
-         (89 runs sampled)
-         Relative Margin of Error: ±1.50%
-
-Parse#Cheerio Size 2
-     Current:	
-         0.2996 ms
-         3,338 ops/sec
+         0.02855 ms
+         35,020 ops/sec
          (90 runs sampled)
-         Relative Margin of Error: ±0.73%
+         Relative Margin of Error: ±0.67%
 
-Parse#Cheerio Size 3
+Parse # Cheerio # Size 2
      Current:	
-         0.4697 ms
-         2,129 ops/sec
-         (93 runs sampled)
-         Relative Margin of Error: ±0.64%
+         0.06734 ms
+         14,850 ops/sec
+         (92 runs sampled)
+         Relative Margin of Error: ±0.59%
 
-Parse#JSDom Marketing email
+Parse # Cheerio # Size 3
      Current:	
-         58.01 ms
-         17.24 ops/sec
-         (35 runs sampled)
-         Relative Margin of Error: ±6.10%
+         0.1058 ms
+         9,455 ops/sec
+         (95 runs sampled)
+         Relative Margin of Error: ±0.56%
 
-Parse#Cheerio Marketing email
+Parse # JSDom # Marketing email
      Current:	
-         7.517 ms
-         133 ops/sec
+         62.79 ms
+         15.93 ops/sec
+         (41 runs sampled)
+         Relative Margin of Error: ±12.12%
+
+Parse # Cheerio # Marketing email
+     Current:	
+         2.003 ms
+         499.3 ops/sec
          (87 runs sampled)
-         Relative Margin of Error: ±0.83%
+         Relative Margin of Error: ±0.68%
+
+Parse # XmlDom # Marketing email
+     Current:	
+         3.141 ms
+         318.4 ops/sec
+         (85 runs sampled)
+         Relative Margin of Error: ±0.92%
+
+Quotation # TalonJS # Marketing email
+     Current:	
+         170.4 ms
+         5.868 ops/sec
+         (19 runs sampled)
+         Relative Margin of Error: ±4.17%
+
+Quotation # Planer with JSDom # Marketing email
+     Current:	
+         2,624 ms
+         0.3811 ops/sec
+         (5 runs sampled)
+         Relative Margin of Error: ±61.13%
+
+Done in 84.55s.
