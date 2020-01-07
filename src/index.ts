@@ -1,4 +1,3 @@
-import cheerio from 'cheerio';
 import Talon from 'talonjs';
 
 function removeQuotations(
