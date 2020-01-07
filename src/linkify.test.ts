@@ -35,7 +35,6 @@ describe('linkify', () => {
 			ftp://yourtempo.co
 		</p>`;
 
-		console.log(linkify(email));
 		expect(linkify(email)).toBe(`<p>
 			<a href="mailto:hello@email.com" rel="noopener noreferrer">hello@email.com</a>
 			<a href="http://yourtempo.co" target="_blank" rel="noopener noreferrer">yourtempo.co</a>
