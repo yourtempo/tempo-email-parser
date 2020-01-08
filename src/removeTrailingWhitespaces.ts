@@ -10,13 +10,6 @@ function removeTrailingWhitespaces(
 	const isText = el.type === 'text';
 	const isTextual = isTextualElement(el);
 
-	console.log({
-		tagName: el.tagName,
-		hasChildren,
-		isTextual,
-		isText,
-	});
-
 	if (isText) {
 		// Trim it
 		const text = el.nodeValue as string;
@@ -26,12 +19,12 @@ function removeTrailingWhitespaces(
 			// The element was removed completely
 			return true;
 		} else {
-			$(el).text(trimmed);
+			$(el.parent).text(trimmed);
 			// We're done trimming
 			return false;
 		}
 	} else if (!isTextual) {
-		// Not a text element, we consider it important and stop trimming here
+		// Contains content other than text, we stop trimming here
 		return false;
 	} else if (hasChildren) {
 		// Textual element with children
@@ -46,6 +39,9 @@ function removeTrailingWhitespaces(
 			// We stop here
 			return false;
 		}
+	} else if (isRootElement($, el)) {
+		// Stop here
+		return false;
 	} else {
 		// Empty textual element, we can remove it.
 		$(el).remove();
@@ -54,6 +50,7 @@ function removeTrailingWhitespaces(
 }
 
 const TEXTUAL = new Set([
+	'root',
 	'body',
 
 	// Text content
@@ -78,6 +75,10 @@ function isTextualElement(el: CheerioElement): boolean {
 	return TEXTUAL.has(el.tagName);
 }
 
+function isRootElement($: CheerioStatic, el: CheerioElement): boolean {
+	return el.tagName === 'body' || el.tagName === 'root';
+}
+
 function getTopLevelElement($: CheerioStatic): CheerioElement {
 	const body = $('body');
 	if (body.length > 0) {
@@ -86,4 +87,5 @@ function getTopLevelElement($: CheerioStatic): CheerioElement {
 		return $.root().get(0);
 	}
 }
+
 export default removeTrailingWhitespaces;
