@@ -7,8 +7,7 @@ describe('sanitize', () => {
 		// https://portswigger.net/web-security/cross-site-scripting/cheat-sheet
 		const email = `
 <html><head>
-<meta charset="utf-8">
-<link href="xss.js" rel=stylesheet type="text/javascript">
+<link rel="preload" href="main.js" as="script">
 </head>
 <body background="javascript:alert(1)">
 
@@ -54,11 +53,14 @@ Hello
 </body></html>`);
 	});
 
-	it('should work preserve normal stuff', () => {
+	it('should preserve normal stuff', () => {
 		const email = `<html><head>
 		<title>Title</title>
+		<meta http-equiv="Content-Type" content="text/html" charset="UTF-8" />
+		<link href="https://fonts.googleapis.com/css?family=Lato:400,400i,700,700i" rel="stylesheet" />
 		<style type="text/css">
 			p {
+				font-family: Lato;
 				color: red;
 			}
 		</style>
@@ -74,7 +76,6 @@ Hello
 			How are you ?
 		</p>
 </body></html>`;
-
 		expect(sanitize(email)).toBe(email);
 	});
 });
