@@ -2,7 +2,7 @@ import cheerio from 'cheerio';
 
 import linkify from './linkify';
 import removeQuotations from './removeQuotations';
-
+import removeTrailingWhitespaces from './removeTrailingWhitespaces';
 function removeSignatures($: CheerioStatic): boolean {
 	// TODO: Improve this implementation using Talon
 	const SIGNATURE_SELECTORS = ['.gmail_signature', 'signature'];
@@ -87,9 +87,10 @@ function prepareMessage(
 
 		// Remove signature
 		if (noSignature) {
-			const didFindSignature = removeSignatures($);
-			result.messageHtml = $.html();
-			result.didFindSignature = didFindSignature;
+			result.didFindSignature = removeSignatures($);
+			if (result.didFindSignature) {
+				result.messageHtml = $.html();
+			}
 		}
 	}
 
@@ -97,12 +98,28 @@ function prepareMessage(
 	if (noQuotations) {
 		const { body, didFindQuote } = removeQuotations(result.messageHtml);
 		result.didFindQuotation = didFindQuote;
-		result.messageHtml = body;
+		if (result.didFindQuotation) {
+			result.messageHtml = body;
+		}
 	}
 
 	// Remove trailing whitespace
 	if (noTrailingWhitespaces) {
-		// TODO
+		const messageIsCompleteEmail =
+			result.messageHtml === result.completeHtml;
+
+		let $ = cheerio.load(result.messageHtml);
+		removeTrailingWhitespaces($);
+		result.messageHtml = $.html();
+
+		if (messageIsCompleteEmail) {
+			result.completeHtml = result.messageHtml;
+		} else {
+			// Also do it for complete email
+			$ = cheerio.load(result.completeHtml);
+			removeTrailingWhitespaces($);
+			result.completeHtml = $.html();
+		}
 	}
 
 	return result;
