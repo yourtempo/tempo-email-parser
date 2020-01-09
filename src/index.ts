@@ -49,6 +49,7 @@ function prepareMessage(
 		noTrackers?: boolean;
 		noTrailingWhitespaces?: boolean;
 		noScript?: boolean;
+		autolink?: boolean;
 	} = {}
 ): {
 	messageHtml: string;
@@ -62,6 +63,7 @@ function prepareMessage(
 		noTrackers = true,
 		noTrailingWhitespaces = true,
 		noScript = true,
+		autolink = true,
 	} = options;
 
 	let result = {
@@ -70,6 +72,11 @@ function prepareMessage(
 		didFindQuotation: false,
 		didFindSignature: false,
 	};
+
+	if (autolink) {
+		result.completeHtml = linkify(result.completeHtml);
+		result.messageHtml = result.completeHtml;
+	}
 
 	if (noScript || noTrackers || noSignature) {
 		const $ = cheerio.load(result.completeHtml);
@@ -125,4 +132,6 @@ function prepareMessage(
 	return result;
 }
 
-export { prepareMessage, removeQuotations, linkify };
+export default prepareMessage;
+// For development purpose, also expose other main functions for now
+export { removeQuotations, linkify, removeTrailingWhitespaces };
