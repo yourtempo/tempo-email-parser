@@ -1,8 +1,9 @@
 import cheerio from 'cheerio';
 
-import linkify from './linkify';
 import removeQuotations from './removeQuotations';
 import removeTrailingWhitespaces from './removeTrailingWhitespaces';
+import linkify from './linkify';
+import enforceViewport from './enforceViewport';
 
 /**
  * Parse an HTML email and make transformation needed before displaying it to the user.
@@ -23,6 +24,8 @@ function prepareMessage(
 		noScript?: boolean;
 		// Automatically convert text links to anchor tags
 		autolink?: boolean;
+		// Enforce specific viewport for mobile "width=device-width, initial-scale=1"
+		forceMobileViewport?: boolean;
 	} = {}
 ): {
 	// The complete message.
@@ -41,6 +44,7 @@ function prepareMessage(
 		noTrailingWhitespaces = true,
 		noScript = true,
 		autolink = true,
+		forceMobileViewport = true,
 	} = options;
 
 	let result = {
@@ -64,6 +68,10 @@ function prepareMessage(
 
 		if (noTrackers) {
 			removeTrackers($);
+		}
+
+		if (forceMobileViewport) {
+			enforceViewport($);
 		}
 
 		result.completeHtml = $.html();
