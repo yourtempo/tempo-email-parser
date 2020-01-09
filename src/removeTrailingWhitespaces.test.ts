@@ -98,6 +98,17 @@ describe('removeTrailingWhitespaces', () => {
     	`
 		);
 	});
+
+	it('should trim remnants of signature', () => {
+		check(
+			`
+    		<div><div>Hello </div><br clear="all"><br>-- <br></div>
+			`,
+			`
+				<div><div>Hello</div></div>
+    	`
+		);
+	});
 });
 
 function check(before: string, after: string) {

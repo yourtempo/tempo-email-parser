@@ -13,8 +13,12 @@ function removeTrailingWhitespaces(
 	if (isText) {
 		// Trim it
 		const text = el.nodeValue as string;
-		const trimmed = text.trimRight();
-		if (trimmed === '') {
+		const trimmed = text.trim();
+		if (
+			trimmed === '' ||
+			// Dashes are sometimes added before signatures
+			trimmed === '--'
+		) {
 			$(el).remove();
 			// The element was removed completely
 			return true;
