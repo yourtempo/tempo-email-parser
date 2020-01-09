@@ -59,8 +59,17 @@ function prepareMessage(
 		result.messageHtml = result.completeHtml;
 	}
 
-	if (noScript || noTrackers || noSignature) {
+	if (
+		noScript ||
+		noTrackers ||
+		noSignature ||
+		noQuotations ||
+		forceMobileViewport
+	) {
 		const $ = cheerio.load(result.completeHtml);
+
+		// Comments can leads to bug from talonjs (see failing test in removeQuotations)
+		removeComments($);
 
 		if (noScript) {
 			removeScripts($);
@@ -153,6 +162,16 @@ function removeScripts($: CheerioStatic) {
 	$('script').each((_, el) => {
 		$(el).remove();
 	});
+}
+
+function removeComments($: CheerioStatic) {
+	$('*')
+		.contents()
+		.each((_, el) => {
+			if (el.type === 'comment') {
+				$(el).remove();
+			}
+		});
 }
 
 export default prepareMessage;

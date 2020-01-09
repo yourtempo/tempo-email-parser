@@ -9,6 +9,8 @@ function expectHtml(actual: string, expected: string) {
 	actual = prettier.format(actual, { parser: 'html', endOfLine: 'lf' });
 	expected = prettier.format(expected, { parser: 'html', endOfLine: 'lf' });
 
+	// console.log(actual);
+	// console.log(expected);
 	expect(actual).toBe(expected);
 }
 
