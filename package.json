@@ -1,13 +1,16 @@
 {
 	"name": "tempo-message-splitter",
-	"version": "1.0.0",
-	"description": "",
-	"main": "benchmarks.js",
+	"version": "0.1.0",
+	"description": "Processes HTML email for display. Extracts quotations and more.",
+	"main": "./lib/index.js",
+	"types": "./lib/index.d.ts",
 	"scripts": {
+		"prepublish": "yarn run build",
+		"build": "tsc -D",
 		"test": "jest",
 		"lint": "eslint \"./**/*.{js,jsx,ts,tsx}\"",
-		"benchmarks": "ts-node ./benchmarks/message-splitter.ts",
-		"benchmarks:libraries": "ts-node ./benchmarks/libraries.ts"
+		"benchmarks": "ts-node --transpile-only ./benchmarks/message-splitter.ts",
+		"benchmarks:libraries": "ts-node --transpile-only ./benchmarks/libraries.ts"
 	},
 	"repository": {
 		"type": "git",
@@ -25,6 +28,7 @@
 		"@types/jest": "^24.0.25",
 		"@types/jsdom": "^12.2.4",
 		"@types/linkifyjs": "^2.1.3",
+		"@types/prettier": "^1.19.0",
 		"@types/xmldom": "^0.1.29",
 		"@typescript-eslint/eslint-plugin": "^2.14.0",
 		"@typescript-eslint/parser": "^2.14.0",

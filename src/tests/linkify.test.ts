@@ -1,5 +1,5 @@
 import expect from 'expect';
-import linkify from './linkify';
+import linkify from '../linkify';
 
 describe('linkify', () => {
 	it('should linkify URL in paragraph', () => {

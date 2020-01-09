@@ -1,0 +1,7 @@
+lib/
+tsconfig.tsbuildinfo
+
+# Node
+node_modules
+yarn-error.log
+
