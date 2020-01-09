@@ -1,7 +1,6 @@
 import fs from 'fs';
 import path from 'path';
-import prettier from 'prettier';
-import expect from 'expect';
+import { expectHtml } from '../utils';
 import prepareMessage from '../../prepareMessage';
 
 function readFile(relativePath: string): string {
@@ -22,15 +21,6 @@ function readFixture(
 	};
 }
 
-function compareHtml(actual: string, expected: string) {
-	// Use prettier to avoid formatting discrepencies
-
-	actual = prettier.format(actual, { parser: 'html', endOfLine: 'lf' });
-	expected = prettier.format(expected, { parser: 'html', endOfLine: 'lf' });
-
-	expect(actual).toBe(expected);
-}
-
 /**
  * Run tests for a fixture
  */
@@ -41,10 +31,10 @@ function checkFixture(name: string) {
 		const result = prepareMessage(fixture.input);
 
 		it('completeHtml', () => {
-			compareHtml(result.completeHtml, fixture.expectedComplete);
+			expectHtml(result.completeHtml, fixture.expectedComplete);
 		});
 		it('messageHtml', () => {
-			compareHtml(result.messageHtml, fixture.expectedMessage);
+			expectHtml(result.messageHtml, fixture.expectedMessage);
 		});
 	});
 }
