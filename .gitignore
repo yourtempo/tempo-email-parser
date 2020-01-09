@@ -1,4 +1,5 @@
 lib/
+tsconfig.tsbuildinfo
 
 # Node
 node_modules
