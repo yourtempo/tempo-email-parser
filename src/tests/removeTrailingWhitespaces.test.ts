@@ -1,5 +1,5 @@
 import cheerio from 'cheerio';
-import removeTrailingWhitespaces from './removeTrailingWhitespaces';
+import removeTrailingWhitespaces from '../removeTrailingWhitespaces';
 
 describe('removeTrailingWhitespaces', () => {
 	it('should trim an empty body', () => {
@@ -107,6 +107,24 @@ describe('removeTrailingWhitespaces', () => {
 			`
 				<div><div>Hello</div></div>
     	`
+		);
+	});
+
+	it('should trim comments', () => {
+		check(
+			`
+				<div>
+					<div>Hello</div>
+					<p>
+						<!-- Some extra spaces -->
+						<br />
+					</p>
+				</div>
+			`,
+			`
+				<div>
+					<div>Hello</div></div>
+			`
 		);
 	});
 });

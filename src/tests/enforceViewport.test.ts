@@ -1,6 +1,6 @@
 import expect from 'expect';
 import cheerio from 'cheerio';
-import enforceViewport from './enforceViewport';
+import enforceViewport from '../enforceViewport';
 
 describe('enforceViewport', () => {
 	it('should add missing viewport', () => {

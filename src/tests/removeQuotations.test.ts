@@ -1,5 +1,5 @@
 import expect from 'expect';
-import removeQuotations from './removeQuotations';
+import removeQuotations from '../removeQuotations';
 
 describe('removeQuotations', () => {
 	it('should remove quotation from basic email', () => {

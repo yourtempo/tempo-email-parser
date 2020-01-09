@@ -8,9 +8,14 @@ function removeTrailingWhitespaces(
 ): boolean {
 	const hasChildren = el.childNodes && el.childNodes.length > 0;
 	const isText = el.type === 'text';
+	const isComment = el.type === 'comment';
 	const isTextual = isTextualElement(el);
 
-	if (isText) {
+	if (isComment) {
+		// Remove it
+		$(el).remove();
+		return true;
+	} else if (isText) {
 		// Trim it
 		const text = el.nodeValue as string;
 		const trimmed = text.trim();

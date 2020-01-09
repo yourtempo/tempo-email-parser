@@ -102,7 +102,7 @@ function prepareMessage(
 
 		let $ = cheerio.load(result.messageHtml);
 		removeTrailingWhitespaces($);
-		result.messageHtml = $.html();
+		result.messageHtml = $.xml();
 
 		if (messageIsCompleteEmail) {
 			result.completeHtml = result.messageHtml;
@@ -110,7 +110,7 @@ function prepareMessage(
 			// Also do it for complete email
 			$ = cheerio.load(result.completeHtml);
 			removeTrailingWhitespaces($);
-			result.completeHtml = $.html();
+			result.completeHtml = $.xml();
 		}
 	}
 
@@ -156,5 +156,3 @@ function removeScripts($: CheerioStatic) {
 }
 
 export default prepareMessage;
-// For development purpose, also expose other main functions for now
-export { removeQuotations, linkify, removeTrailingWhitespaces };
