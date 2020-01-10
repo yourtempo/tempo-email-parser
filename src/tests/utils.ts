@@ -1,3 +1,5 @@
+import fs from 'fs';
+import path from 'path';
 import prettier from 'prettier';
 import expect from 'expect';
 
@@ -14,4 +16,8 @@ function expectHtml(actual: string, expected: string) {
 	expect(actual).toBe(expected);
 }
 
-export { expectHtml };
+function readFile(...paths: string[]): string {
+	return fs.readFileSync(path.join(...paths)).toString();
+}
+
+export { expectHtml, readFile };
