@@ -16,6 +16,18 @@ suite.on('cycle', (event: any) => {
 	printResult(result);
 });
 
+// Measure against a real-world, HTML-heavy, marketing email
+suite
+	.add('removeQuotations # Marketing email', () => {
+		removeQuotations(EMAILS.MARKETING);
+	})
+	.add('linkify # Marketing email', () => {
+		linkify(EMAILS.MARKETING);
+	})
+	.add('prepareMessage # Marketing email', () => {
+		prepareMessage(EMAILS.MARKETING);
+	});
+
 //  Using a linear scale of input complexity, we can see if the time complexity is linear.
 suite
 	.add('removeQuotations # Size 1', () => {
@@ -48,18 +60,6 @@ suite
 	})
 	.add('prepareMessage # Size 3', () => {
 		prepareMessage(EMAILS.BASIC_REPLIED_X2);
-	});
-
-// Measure against a real-world, HTML-heavy, marketing email
-suite
-	.add('removeQuotations # Marketing email', () => {
-		removeQuotations(EMAILS.MARKETING);
-	})
-	.add('linkify # Marketing email', () => {
-		linkify(EMAILS.MARKETING);
-	})
-	.add('prepareMessage # Marketing email', () => {
-		prepareMessage(EMAILS.MARKETING);
 	});
 
 suite.run();
