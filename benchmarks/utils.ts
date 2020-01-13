@@ -61,6 +61,7 @@ function createBasicSuite(): Suite {
 			console.time('Time');
 			fn();
 			console.timeEnd('Time');
+			console.log('');
 			return this;
 		},
 		run() {},
