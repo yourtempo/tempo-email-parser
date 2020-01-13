@@ -3,38 +3,96 @@ import regx from 'regx';
 function blockRemoteContent($: CheerioStatic) {
 	// Block remote URLs in style tags
 	blockRemoteContentInStyle($);
+	// Block remote URLs in tags attributes
+	blockRemoteContentInAttributes($);
 }
 
 // https://stackoverflow.com/questions/2725156/complete-list-of-html-tag-attributes-which-have-a-url-value
-const URL_ATTRIBUTES = [
-	'action',
-	'archive',
-	'background',
-	'cite',
-	'classid',
-	'codebase',
-	'data',
-	'formaction',
-	'href',
-	'icon',
-	'longdesc',
-	'manifest',
-	'poster',
-	'profile',
-	'src',
-	'srcdoc',
-	'srcset',
-	'usemap',
-];
+const TAGS_THAT_HAVE_URL_ATTRIBUTES: { [key: string]: string[] } = {
+	a: ['href'],
+	applet: ['codebase'],
+	area: ['href'],
+	audio: ['src'],
+	base: ['href'],
+	blockquote: ['cite'],
+	body: ['background'],
+	button: ['formaction'],
+	command: ['icon'],
+	del: ['cite'],
+	embed: ['src'],
+	form: ['action'],
+	frame: ['longdesc', 'src'],
+	head: ['profile'],
+	html: ['manifest'],
+	iframe: ['longdesc', 'src'],
+	img: ['longdesc', 'src', 'usemap'],
+	input: ['src', 'usemap', 'formaction'],
+	ins: ['cite'],
+	link: ['href'],
+	object: ['classid', 'codebase', 'data', 'usemap'],
+	q: ['cite'],
+	script: ['src'],
+	source: ['src'],
+	track: ['src'],
+	video: ['poster', 'src'],
+};
 
-const IMAGE_ATTRIBUTES = [
+/**
+ * Replace all remote URLs
+ */
+function blockRemoteContentInAttributes($: CheerioStatic) {
+	const query = Object.keys(TAGS_THAT_HAVE_URL_ATTRIBUTES).join(',');
+
+	$(query).each((_, el: CheerioElement) => {
+		const $el = $(el);
+
+		getUrlAttributes(el.tagName, $el)
+			.filter(isRemoteUrl)
+			.forEach(attr => {
+				const replacement = isImageAttribute(attr)
+					? TRANSPARENT_1X100_URL
+					: '#';
+				$el.attr(attr, replacement);
+			});
+	});
+}
+
+/**
+ * Returns the list of URL attributes declared on this element
+ */
+function getUrlAttributes(
+	tagName: string,
+	// Cheerio scoped on the element
+	$el: Cheerio
+): string[] {
+	const attrs = $el.attr();
+	const potentialAttributes: string[] =
+		TAGS_THAT_HAVE_URL_ATTRIBUTES[tagName] || [];
+
+	return potentialAttributes.filter(
+		Object.prototype.hasOwnProperty.bind(attrs)
+	);
+}
+
+const IMAGE_ATTRIBUTES = new Set([
 	'background',
 	'icon',
 	'placeholder',
 	'poster',
 	'src',
 	'srcset',
-];
+]);
+
+function isImageAttribute(attr: string): boolean {
+	return IMAGE_ATTRIBUTES.has(attr);
+}
+
+function isRemoteUrl(attributeValue: string) {
+	// There can be several URLs. We consider them remote then.
+	// (for example img srcset: https://developer.mozilla.org/en-US/docs/Web/HTML/Element/img#attr-srcset)
+	const isLocal = /^data:\S*$/.test(attributeValue);
+	return !isLocal;
+}
 
 // To replace all images with a 1x100 transparent PNG
 // Note: using a 1x1 square results in large square empty
