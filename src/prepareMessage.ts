@@ -4,6 +4,7 @@ import removeQuotations from './removeQuotations';
 import removeTrailingWhitespaces from './removeTrailingWhitespaces';
 import linkify from './linkify';
 import enforceViewport from './enforceViewport';
+import blockRemoteContent from './blockRemoteContent';
 
 /**
  * Parse an HTML email and make transformation needed before displaying it to the user.
@@ -26,6 +27,9 @@ function prepareMessage(
 		autolink?: boolean;
 		// Enforce specific viewport for mobile "width=device-width, initial-scale=1"
 		forceMobileViewport?: boolean;
+		// Replace remote images with a transparent image,
+		// and replace other remote URLs with '#'
+		noRemoteContent?: boolean;
 	} = {}
 ): {
 	// The complete message.
@@ -45,6 +49,7 @@ function prepareMessage(
 		noScript = true,
 		autolink = true,
 		forceMobileViewport = true,
+		noRemoteContent = true,
 	} = options;
 
 	let result = {
@@ -77,6 +82,11 @@ function prepareMessage(
 
 		if (noTrackers) {
 			removeTrackers($);
+		}
+
+		// Before mobile viewport, otherwise this breaks the meta tag
+		if (noRemoteContent) {
+			blockRemoteContent($);
 		}
 
 		if (forceMobileViewport) {

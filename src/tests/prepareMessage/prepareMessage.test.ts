@@ -1,11 +1,5 @@
-import fs from 'fs';
-import path from 'path';
-import { expectHtml } from '../utils';
+import { expectHtml, readFile } from '../utils';
 import prepareMessage from '../../prepareMessage';
-
-function readFile(relativePath: string): string {
-	return fs.readFileSync(path.join(__dirname, relativePath)).toString();
-}
 
 function readFixture(
 	name: string
@@ -15,9 +9,9 @@ function readFixture(
 	expectedComplete: string;
 } {
 	return {
-		input: readFile(`./${name}.input.html`),
-		expectedMessage: readFile(`./${name}.output-message.html`),
-		expectedComplete: readFile(`./${name}.output-complete.html`),
+		input: readFile(__dirname, `./${name}.input.html`),
+		expectedMessage: readFile(__dirname, `./${name}.output-message.html`),
+		expectedComplete: readFile(__dirname, `./${name}.output-complete.html`),
 	};
 }
 
