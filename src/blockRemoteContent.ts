@@ -20,7 +20,8 @@ function blockRemoteContent(
 
 // https://stackoverflow.com/questions/2725156/complete-list-of-html-tag-attributes-which-have-a-url-value
 const TAGS_THAT_HAVE_URL_ATTRIBUTES: { [key: string]: string[] } = {
-	a: ['href'],
+	// Keep this one
+	// a: ['href'],
 	applet: ['codebase'],
 	area: ['href'],
 	audio: ['src'],
