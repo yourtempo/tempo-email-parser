@@ -17,6 +17,9 @@ export type ReplacementOptions = {
 	other: string;
 };
 
+/**
+ * Replace all URLs that could be automatically fetched when displaying the HTML. These can be used for tracking, or can consume bandwidth.
+ */
 function blockRemoteContent(
 	$: CheerioStatic,
 	replacements: Partial<ReplacementOptions> = {}

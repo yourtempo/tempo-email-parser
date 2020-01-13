@@ -2,7 +2,7 @@ import { ReplacementOptions } from './';
 
 // https://stackoverflow.com/questions/2725156/complete-list-of-html-tag-attributes-which-have-a-url-value
 const TAGS_THAT_HAVE_URL_ATTRIBUTES: { [key: string]: string[] } = {
-	// Keep this one
+	// Keep this one, since it won't be fetched unless clicked.
 	// a: ['href'],
 	applet: ['codebase'],
 	area: ['href'],
@@ -33,7 +33,7 @@ const TAGS_THAT_HAVE_URL_ATTRIBUTES: { [key: string]: string[] } = {
 };
 
 /**
- * Replace all remote URLs
+ * Replace all remote URLs in tags' attributes
  */
 function blockRemoteContentInAttributes(
 	$: CheerioStatic,
