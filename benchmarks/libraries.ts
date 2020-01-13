@@ -7,21 +7,14 @@ import { JSDOM } from 'jsdom';
 import sanitizeHtml from 'sanitize-html';
 import createDOMPurify from 'dompurify';
 import cheerio from 'cheerio';
-import Benchmark from 'benchmark';
 import Talon from 'talonjs';
 import XmlDom from 'xmldom';
 import planer from 'planer';
 
-import { printResult, extractResult } from './utils';
+import { createSuite } from './utils';
 import EMAILS from './emails';
 
-const suite = new Benchmark.Suite();
-
-// On each benchmark completion
-suite.on('cycle', (event: any) => {
-	const result = extractResult(event);
-	printResult(result);
-});
+const suite = createSuite();
 
 // Test parsing a real-world, HTML-heavy, marketing email
 suite

@@ -2,19 +2,11 @@
 These benchmarks measures the performance of the message-splitter module
  */
 
-import Benchmark from 'benchmark';
-
-import { printResult, extractResult } from './utils';
+import { createSuite } from './utils';
 import prepareMessage, { removeQuotations, linkify } from '../src';
 import EMAILS from './emails';
 
-const suite = new Benchmark.Suite();
-
-// On each benchmark completion
-suite.on('cycle', (event: any) => {
-	const result = extractResult(event);
-	printResult(result);
-});
+const suite = createSuite();
 
 // Measure against a real-world, HTML-heavy, marketing email
 suite
