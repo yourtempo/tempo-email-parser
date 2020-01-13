@@ -1,10 +1,21 @@
 import regx from 'regx';
 
-function blockRemoteContent($: CheerioStatic) {
+// What to replace remote URLs with
+type ReplacementOptions = {
+	image: string;
+	other: string;
+};
+
+function blockRemoteContent(
+	$: CheerioStatic,
+	replacements: Partial<ReplacementOptions> = {}
+) {
+	const { image = TRANSPARENT_1X100_URL, other = '#' } = replacements;
+
 	// Block remote URLs in style tags
-	blockRemoteContentInStyle($);
+	blockRemoteContentInStyle($, image);
 	// Block remote URLs in tags attributes
-	blockRemoteContentInAttributes($);
+	blockRemoteContentInAttributes($, { image, other });
 }
 
 // https://stackoverflow.com/questions/2725156/complete-list-of-html-tag-attributes-which-have-a-url-value
@@ -29,6 +40,7 @@ const TAGS_THAT_HAVE_URL_ATTRIBUTES: { [key: string]: string[] } = {
 	input: ['src', 'usemap', 'formaction'],
 	ins: ['cite'],
 	link: ['href'],
+	meta: ['content'],
 	object: ['classid', 'codebase', 'data', 'usemap'],
 	q: ['cite'],
 	script: ['src'],
@@ -40,7 +52,10 @@ const TAGS_THAT_HAVE_URL_ATTRIBUTES: { [key: string]: string[] } = {
 /**
  * Replace all remote URLs
  */
-function blockRemoteContentInAttributes($: CheerioStatic) {
+function blockRemoteContentInAttributes(
+	$: CheerioStatic,
+	replacements: ReplacementOptions
+) {
 	const query = Object.keys(TAGS_THAT_HAVE_URL_ATTRIBUTES).join(',');
 
 	$(query).each((_, el: CheerioElement) => {
@@ -50,8 +65,8 @@ function blockRemoteContentInAttributes($: CheerioStatic) {
 			.filter(isRemoteUrl)
 			.forEach(attr => {
 				const replacement = isImageAttribute(attr)
-					? TRANSPARENT_1X100_URL
-					: '#';
+					? replacements.image
+					: replacements.other;
 				$el.attr(attr, replacement);
 			});
 	});
@@ -106,13 +121,15 @@ const TRANSPARENT_1X100_URL =
 
 /**
  * Disable all remote-content in styles, and replace images
- * with a transparent pixel.
+ * with the given image URL.
+ *
+ * Non-image URLs that are replaced will no longer be valid, and ignored.
+ * Dirty, but that's what we want.
  */
-function blockRemoteContentInStyle($: CheerioStatic) {
-	// Replace all URLs with a transparent image.
-	// Non-image URLs that were replaced will no longer be valid, and ignored.
-	// Dirty, but that's what we want.
-
+function blockRemoteContentInStyle(
+	$: CheerioStatic,
+	replacementImageUrl: string
+) {
 	// <style> tags
 	$('style').each((_, styleEl) => {
 		const styleText = $(styleEl).text();
@@ -122,7 +139,7 @@ function blockRemoteContentInStyle($: CheerioStatic) {
 		if (hasRemoteUrls) {
 			const replacedText = replaceUrlsInStyle(
 				styleText,
-				TRANSPARENT_1X100_URL
+				replacementImageUrl
 			);
 
 			$(styleEl).text(replacedText);
@@ -140,7 +157,7 @@ function blockRemoteContentInStyle($: CheerioStatic) {
 		if (hasRemoteUrls) {
 			const replacedText = replaceUrlsInStyle(
 				styleText,
-				TRANSPARENT_1X100_URL
+				replacementImageUrl
 			);
 
 			$(styledEl).attr('style', replacedText);
