@@ -25,6 +25,7 @@ const OPTIONS = {
 	noScript: true,
 	autolink: true,
 	forceMobileViewport: true,
+	noRemoteContent: true,
 };
 
 const {
