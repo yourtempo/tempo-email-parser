@@ -16,11 +16,18 @@ Parse # XmlDom # Marketing email
      (92 runs sampled)
      Relative Margin of Error: ±0.50%
 
-Sanitizing # Marketing
+Sanitizing # Marketing # DOMPurify
      88.07 ms
      11.35 ops/sec
      (33 runs sampled)
      Relative Margin of Error: ±2.30%
+
+Sanitizing # Marketing # sanitize-html
+     2.923 ms
+     342.1 ops/sec
+     (87 runs sampled)
+     Relative Margin of Error: ±1.93%
+     
 
 Quotation # TalonJS # Marketing email
      193.1 ms

@@ -4,6 +4,7 @@ This helps estimate the cost of using any of them.
  */
 
 import { JSDOM } from 'jsdom';
+import sanitizeHtml from 'sanitize-html';
 import createDOMPurify from 'dompurify';
 import cheerio from 'cheerio';
 import Benchmark from 'benchmark';
@@ -38,9 +39,13 @@ suite
 const window = new JSDOM().window;
 const DOMPurify = createDOMPurify(window);
 
-suite.add('Sanitizing # Marketing', () => {
-	DOMPurify.sanitize(EMAILS.MARKETING, { WHOLE_DOCUMENT: true });
-});
+suite
+	.add('Sanitizing # Marketing # DOMPurify', () => {
+		DOMPurify.sanitize(EMAILS.MARKETING, { WHOLE_DOCUMENT: true });
+	})
+	.add('Sanitizing # Marketing # sanitize-html', () => {
+		sanitizeHtml(EMAILS.MARKETING);
+	});
 
 suite
 	.add('Quotation # TalonJS # Marketing email', () => {
