@@ -2,19 +2,23 @@
 These benchmarks measures the performance of the message-splitter module
  */
 
-import Benchmark from 'benchmark';
-
-import { printResult, extractResult } from './utils';
+import { createSuite } from './utils';
 import prepareMessage, { removeQuotations, linkify } from '../src';
 import EMAILS from './emails';
 
-const suite = new Benchmark.Suite();
+const suite = createSuite();
 
-// On each benchmark completion
-suite.on('cycle', (event: any) => {
-	const result = extractResult(event);
-	printResult(result);
-});
+// Measure against a real-world, HTML-heavy, marketing email
+suite
+	.add('removeQuotations # Marketing email', () => {
+		removeQuotations(EMAILS.MARKETING);
+	})
+	.add('linkify # Marketing email', () => {
+		linkify(EMAILS.MARKETING);
+	})
+	.add('prepareMessage # Marketing email', () => {
+		prepareMessage(EMAILS.MARKETING);
+	});
 
 //  Using a linear scale of input complexity, we can see if the time complexity is linear.
 suite
@@ -48,18 +52,6 @@ suite
 	})
 	.add('prepareMessage # Size 3', () => {
 		prepareMessage(EMAILS.BASIC_REPLIED_X2);
-	});
-
-// Measure against a real-world, HTML-heavy, marketing email
-suite
-	.add('removeQuotations # Marketing email', () => {
-		removeQuotations(EMAILS.MARKETING);
-	})
-	.add('linkify # Marketing email', () => {
-		linkify(EMAILS.MARKETING);
-	})
-	.add('prepareMessage # Marketing email', () => {
-		prepareMessage(EMAILS.MARKETING);
 	});
 
 suite.run();

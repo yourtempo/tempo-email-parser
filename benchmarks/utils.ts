@@ -25,6 +25,50 @@ type BenchmarkResult = SuccessResult | ErrorResult;
 type BenchmarkCycleEvent = any;
 
 /**
+ * Create a BenchmarkJS suite
+ */
+function createSuite() {
+	const suite = new Benchmark.Suite();
+
+	// On each benchmark completion
+	suite.on('cycle', (event: any) => {
+		const result = extractResult(event);
+		printResult(result);
+	});
+
+	return suite;
+}
+
+interface Suite {
+	on(eventName: string, handler: (event: any) => void);
+	add(title: string, fn: () => void): Suite;
+	run();
+}
+
+/**
+ * Create a basic benchmark suite that follows the same API than BenchmarkJS,
+ * but only run the code once (not feasible with BenchmarkJS).
+ *
+ * This is useful to avoid the "warmup" effect of V8, which sometimes optimize
+ * any piece of code execution the more it runs it.
+ */
+
+function createBasicSuite(): Suite {
+	return {
+		on() {},
+		add(title, fn) {
+			console.log(title);
+			console.time('Time');
+			fn();
+			console.timeEnd('Time');
+			console.log('');
+			return this;
+		},
+		run() {},
+	};
+}
+
+/**
  * Creates a result object for a benchmark cycle event
  */
 function extractResult(event: Benchmark.Event): BenchmarkResult {
@@ -97,4 +141,4 @@ function print(...strs: any[]) {
 	console.log(...strs);
 }
 
-export { extractResult, printResult };
+export { createBasicSuite, createSuite, extractResult, printResult };

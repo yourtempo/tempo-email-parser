@@ -1,3 +1,46 @@
+Parse # JSDom # Marketing email
+     53.83 ms
+     18.58 ops/sec
+     (38 runs sampled)
+     Relative Margin of Error: ±6.17%
+
+Parse # Cheerio # Marketing email
+     1.81 ms
+     552.4 ops/sec
+     (93 runs sampled)
+     Relative Margin of Error: ±0.34%
+
+Parse # XmlDom # Marketing email
+     2.599 ms
+     384.8 ops/sec
+     (92 runs sampled)
+     Relative Margin of Error: ±0.50%
+
+Sanitizing # Marketing # DOMPurify
+     88.07 ms
+     11.35 ops/sec
+     (33 runs sampled)
+     Relative Margin of Error: ±2.30%
+
+Sanitizing # Marketing # sanitize-html
+     2.923 ms
+     342.1 ops/sec
+     (87 runs sampled)
+     Relative Margin of Error: ±1.93%
+     
+
+Quotation # TalonJS # Marketing email
+     193.1 ms
+     5.179 ops/sec
+     (18 runs sampled)
+     Relative Margin of Error: ±6.94%
+
+Quotation # Planer with JSDom # Marketing email
+     1,066 ms
+     0.9384 ops/sec
+     (7 runs sampled)
+     Relative Margin of Error: ±2.38%
+
 Parse # JSDom # Size 1
      Current:	
          1.603 ms
@@ -39,40 +82,3 @@ Parse # Cheerio # Size 3
          9,455 ops/sec
          (95 runs sampled)
          Relative Margin of Error: ±0.56%
-
-Parse # JSDom # Marketing email
-     Current:	
-         62.79 ms
-         15.93 ops/sec
-         (41 runs sampled)
-         Relative Margin of Error: ±12.12%
-
-Parse # Cheerio # Marketing email
-     Current:	
-         2.003 ms
-         499.3 ops/sec
-         (87 runs sampled)
-         Relative Margin of Error: ±0.68%
-
-Parse # XmlDom # Marketing email
-     Current:	
-         3.141 ms
-         318.4 ops/sec
-         (85 runs sampled)
-         Relative Margin of Error: ±0.92%
-
-Quotation # TalonJS # Marketing email
-     Current:	
-         170.4 ms
-         5.868 ops/sec
-         (19 runs sampled)
-         Relative Margin of Error: ±4.17%
-
-Quotation # Planer with JSDom # Marketing email
-     Current:	
-         2,624 ms
-         0.3811 ops/sec
-         (5 runs sampled)
-         Relative Margin of Error: ±61.13%
-
-Done in 84.55s.
