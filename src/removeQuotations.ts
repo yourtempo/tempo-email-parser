@@ -3,7 +3,6 @@ import {
 	isText,
 	isEmpty,
 	hasChildren,
-	containsEmptyText,
 	getTopLevelElement,
 } from './cheerioUtils';
 
@@ -14,29 +13,19 @@ function removeQuotations(
 	$: CheerioStatic
 ): // True if quotes were removed
 boolean {
-	const backup = $.root().clone();
-
 	let didFindQuote = false;
 
 	// remove blockquote elements, images used for tracking
 	// read receipts, etc. from the DOM
 	const nodesToRemove = getNodesToRemove($);
 	didFindQuote = didFindQuote || nodesToRemove.length > 0;
-	nodesToRemove.each(el => $(el).remove());
+	nodesToRemove.each((i, el) => $(el).remove());
 
 	// when all blockquotes are removed, remove any trailing
 	// strings that should not be included
 	const remainingQuoteNodes = findQuoteNodesByString($);
 	didFindQuote = didFindQuote || remainingQuoteNodes.length > 0;
 	remainingQuoteNodes.forEach(el => $(el).remove());
-
-	// if the actions above have resulted in an empty body,
-	// then we should not remove any elements
-	if (containsEmptyText(getTopLevelElement($))) {
-		// Restore everything
-		$.root().replaceWith(backup);
-		return false;
-	}
 
 	return didFindQuote;
 }

@@ -5,6 +5,7 @@ import removeTrailingWhitespaces from './removeTrailingWhitespaces';
 import linkify from './linkify';
 import enforceViewport from './enforceViewport';
 import blockRemoteContent from './blockRemoteContent';
+import { containsEmptyText, getTopLevelElement } from './cheerioUtils';
 
 /**
  * Parse an HTML email and make transformation needed before displaying it to the user.
@@ -13,13 +14,11 @@ import blockRemoteContent from './blockRemoteContent';
 function prepareMessage(
 	emailHtml: string,
 	options: {
-		// Remove signatures. Only affects the result messageHtml
-		noSignature?: boolean;
-		// Remove quotations. Only affects the result messageHtml
+		// Remove quotations and signatures. Only affects the result messageHtml
 		noQuotations?: boolean;
 		// Remove pixel trackers
 		noTrackers?: boolean;
-		// Remove trailing whitespaces, at end of the email
+		// Remove trailing whitespaces, at end of messageHtml
 		noTrailingWhitespaces?: boolean;
 		// Remove script tags
 		noScript?: boolean;
@@ -38,11 +37,8 @@ function prepareMessage(
 	messageHtml: string;
 	// True if a quote was found and stripped
 	didFindQuotation: boolean;
-	// True if a signature was found and stripped
-	didFindSignature: boolean;
 } {
 	const {
-		noSignature = true,
 		noQuotations = true,
 		noTrackers = true,
 		noTrailingWhitespaces = true,
@@ -64,92 +60,56 @@ function prepareMessage(
 		result.messageHtml = result.completeHtml;
 	}
 
-	if (
-		noScript ||
-		noTrackers ||
-		noSignature ||
-		noQuotations ||
-		forceMobileViewport
-	) {
-		const $ = cheerio.load(result.completeHtml);
+	let $ = cheerio.load(result.completeHtml);
 
-		// Comments can leads to bug from talonjs (see failing test in removeQuotations)
-		removeComments($);
+	// Comments are useless, better remove them
+	removeComments($);
 
-		if (noScript) {
-			removeScripts($);
-		}
-
-		if (noTrackers) {
-			removeTrackers($);
-		}
-
-		// Before mobile viewport, otherwise this breaks the meta tag
-		if (noRemoteContent) {
-			blockRemoteContent($);
-		}
-
-		if (forceMobileViewport) {
-			enforceViewport($);
-		}
-
-		result.completeHtml = $.html();
-		result.messageHtml = result.completeHtml;
-
-		// Remove signature
-		if (noSignature) {
-			result.didFindSignature = removeSignatures($);
-			if (result.didFindSignature) {
-				result.messageHtml = $.html();
-			}
-		}
+	if (noScript) {
+		removeScripts($);
 	}
+
+	if (noTrackers) {
+		removeTrackers($);
+	}
+
+	// Before mobile viewport, otherwise this breaks the meta tag
+	if (noRemoteContent) {
+		blockRemoteContent($);
+	}
+
+	if (forceMobileViewport) {
+		enforceViewport($);
+	}
+
+	result.completeHtml = $.xml();
+	result.messageHtml = result.completeHtml;
 
 	// Remove quotations
 	if (noQuotations) {
-		const { body, didFindQuote } = removeQuotations(result.messageHtml);
-		result.didFindQuotation = didFindQuote;
-		if (result.didFindQuotation) {
-			result.messageHtml = body;
-		}
-	}
+		const backup = result.completeHtml;
+		const didFindQuote = removeQuotations($);
 
-	// Remove trailing whitespace
-	if (noTrailingWhitespaces) {
-		const messageIsCompleteEmail =
-			result.messageHtml === result.completeHtml;
+		// if the actions above have resulted in an empty body,
+		// then we should not remove quotations
+		if (containsEmptyText(getTopLevelElement($))) {
+			// Restore everything
+			result.messageHtml = backup;
 
-		let $ = cheerio.load(result.messageHtml);
-		removeTrailingWhitespaces($);
-		result.messageHtml = $.xml();
-
-		if (messageIsCompleteEmail) {
-			result.completeHtml = result.messageHtml;
+			return result;
 		} else {
-			// Also do it for complete email
-			$ = cheerio.load(result.completeHtml);
-			removeTrailingWhitespaces($);
-			result.completeHtml = $.xml();
+			result.didFindQuotation = didFindQuote;
+
+			if (noTrailingWhitespaces) {
+				removeTrailingWhitespaces($);
+				result.messageHtml = $.xml();
+			}
+
+			return result;
 		}
+	} else {
+		return result;
 	}
-
-	return result;
-}
-
-function removeSignatures($: CheerioStatic): boolean {
-	// TODO: Improve this implementation using Talon
-	const SIGNATURE_SELECTORS = ['.gmail_signature', 'signature'];
-
-	const query = SIGNATURE_SELECTORS.join(', ');
-
-	let didFindSignature = false;
-
-	$(query).each((_, el) => {
-		didFindSignature = true;
-		$(el).remove();
-	});
-
-	return didFindSignature;
 }
 
 function removeTrackers($: CheerioStatic) {
