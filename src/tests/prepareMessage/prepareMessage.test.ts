@@ -1,17 +1,23 @@
-import { expectHtml, readFile } from '../utils';
+import { expectHtml, readFileIfExists, readFile } from '../utils';
 import prepareMessage from '../../prepareMessage';
 
 function readFixture(
 	name: string
 ): {
 	input: string;
-	expectedMessage: string;
-	expectedComplete: string;
+	expectedMessage: string | null;
+	expectedComplete: string | null;
 } {
 	return {
 		input: readFile(__dirname, `./${name}.input.html`),
-		expectedMessage: readFile(__dirname, `./${name}.output-message.html`),
-		expectedComplete: readFile(__dirname, `./${name}.output-complete.html`),
+		expectedMessage: readFileIfExists(
+			__dirname,
+			`./${name}.output-message.html`
+		),
+		expectedComplete: readFileIfExists(
+			__dirname,
+			`./${name}.output-complete.html`
+		),
 	};
 }
 
@@ -20,20 +26,26 @@ function readFixture(
  */
 function checkFixture(name: string) {
 	describe(name, () => {
-		const fixture = readFixture(name);
+		const { input, expectedComplete, expectedMessage } = readFixture(name);
 
-		const result = prepareMessage(fixture.input);
+		const result = prepareMessage(input);
 
-		it('completeHtml', () => {
-			expectHtml(result.completeHtml, fixture.expectedComplete);
-		});
-		it('messageHtml', () => {
-			expectHtml(result.messageHtml, fixture.expectedMessage);
-		});
+		if (expectedComplete !== null) {
+			it('completeHtml', () => {
+				expectHtml(result.completeHtml, expectedComplete);
+			});
+		}
+
+		if (expectedMessage !== null) {
+			it('messageHtml', () => {
+				expectHtml(result.messageHtml, expectedMessage);
+			});
+		}
 	});
 }
 
 describe('prepareMessage', () => {
 	checkFixture('all-in-one');
 	checkFixture('no-empty-message');
+	checkFixture('email_19');
 });
