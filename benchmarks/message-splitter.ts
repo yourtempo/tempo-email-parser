@@ -2,16 +2,17 @@
 These benchmarks measures the performance of the message-splitter module
  */
 
-import { createSuite } from './utils';
+import cheerio from 'cheerio';
+import { createSuite, createBasicSuite } from './utils';
 import prepareMessage, { removeQuotations, linkify } from '../src';
 import EMAILS from './emails';
 
-const suite = createSuite();
+const suite = createBasicSuite();
 
 // Measure against a real-world, HTML-heavy, marketing email
 suite
 	.add('removeQuotations # Marketing email', () => {
-		removeQuotations(EMAILS.MARKETING);
+		removeQuotations(cheerio.load(EMAILS.MARKETING));
 	})
 	.add('linkify # Marketing email', () => {
 		linkify(EMAILS.MARKETING);
@@ -23,13 +24,13 @@ suite
 //  Using a linear scale of input complexity, we can see if the time complexity is linear.
 suite
 	.add('removeQuotations # Size 1', () => {
-		removeQuotations(EMAILS.BASIC);
+		removeQuotations(cheerio.load(EMAILS.BASIC));
 	})
 	.add('removeQuotations # Size 2', () => {
-		removeQuotations(EMAILS.BASIC_REPLIED_X1);
+		removeQuotations(cheerio.load(EMAILS.BASIC_REPLIED_X1));
 	})
 	.add('removeQuotations # Size 3', () => {
-		removeQuotations(EMAILS.BASIC_REPLIED_X2);
+		removeQuotations(cheerio.load(EMAILS.BASIC_REPLIED_X2));
 	});
 
 suite
