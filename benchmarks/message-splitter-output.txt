@@ -1,73 +1,37 @@
 removeQuotations # Marketing email
-     2.421 ms
-     413 ops/sec
-     (85 runs sampled)
-     Relative Margin of Error: ±2.01%
+     2.453 ms
+     407.7 ops/sec
+     (84 runs sampled)
+     Relative Margin of Error: ±1.98%
 
 linkify # Marketing email
-     10.57 ms
-     94.61 ops/sec
-     (81 runs sampled)
-     Relative Margin of Error: ±0.43%
-
-prepareMessage # Marketing email
-     19.28 ms
-     51.88 ops/sec
-     (68 runs sampled)
-     Relative Margin of Error: ±1.79%
-
-removeQuotations # Size 1
-     0.1206 ms
-     8,289 ops/sec
-     (88 runs sampled)
+     12.08 ms
+     82.81 ops/sec
+     (71 runs sampled)
      Relative Margin of Error: ±2.21%
 
-removeQuotations # Size 2
-     0.1728 ms
-     5,786 ops/sec
-     (91 runs sampled)
-     Relative Margin of Error: ±1.32%
-
-removeQuotations # Size 3
-     0.2261 ms
-     4,423 ops/sec
-     (90 runs sampled)
-     Relative Margin of Error: ±1.28%
-
-linkify # Size 1
-     0.7506 ms
-     1,332 ops/sec
-     (96 runs sampled)
-     Relative Margin of Error: ±0.42%
-
-linkify # Size 2
-     1.586 ms
-     630.4 ops/sec
-     (92 runs sampled)
-     Relative Margin of Error: ±0.41%
-
-linkify # Size 3
-     2.454 ms
-     407.5 ops/sec
-     (90 runs sampled)
-     Relative Margin of Error: ±0.41%
+prepareMessage # Marketing email
+     20.85 ms
+     47.97 ops/sec
+     (64 runs sampled)
+     Relative Margin of Error: ±2.68%
 
 prepareMessage # Size 1
-     1.477 ms
-     677 ops/sec
+     1.496 ms
+     668.6 ops/sec
      (89 runs sampled)
-     Relative Margin of Error: ±1.31%
+     Relative Margin of Error: ±1.46%
 
 prepareMessage # Size 2
-     2.52 ms
-     396.8 ops/sec
-     (87 runs sampled)
-     Relative Margin of Error: ±1.63%
+     2.493 ms
+     401.1 ops/sec
+     (92 runs sampled)
+     Relative Margin of Error: ±1.03%
 
 prepareMessage # Size 3
-     3.508 ms
-     285.1 ops/sec
-     (84 runs sampled)
-     Relative Margin of Error: ±1.10%
+     3.592 ms
+     278.4 ops/sec
+     (88 runs sampled)
+     Relative Margin of Error: ±1.03%
 
-Done in 65.64s.
+Done in 33.35s.
