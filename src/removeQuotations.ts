@@ -7,38 +7,44 @@ import {
 } from './cheerioUtils';
 
 /**
- * Remove quotations (replied messages) from the HTML
+ * Remove quotations (replied messages) and signatures from the HTML
  */
 function removeQuotations(
 	$: CheerioStatic
-): // True if quotes were removed
-boolean {
-	let didFindQuote = false;
+): { didFindSignature: boolean; didFindQuotation: boolean } {
+	let didFindQuotation = false;
+	let didFindSignature = false;
 
-	// remove blockquote elements, images used for tracking
-	// read receipts, etc. from the DOM
-	const nodesToRemove = getNodesToRemove($);
-	didFindQuote = didFindQuote || nodesToRemove.length > 0;
-	nodesToRemove.each((i, el) => $(el).remove());
+	// Remove blockquote elements
+	const quotes = findQuoteBlocks($);
+	didFindQuotation = didFindQuotation || quotes.length > 0;
+	quotes.each((i, el) => $(el).remove());
 
-	// when all blockquotes are removed, remove any trailing
-	// strings that should not be included
+	// Remove signatures
+	const signatures = findSignatureBlocks($);
+	didFindSignature = didFindSignature || signatures.length > 0;
+	signatures.each((i, el) => $(el).remove());
+
+	// When all blockquotes are removed, remove any remaining quote header text
 	const remainingQuoteNodes = findQuoteNodesByString($);
-	didFindQuote = didFindQuote || remainingQuoteNodes.length > 0;
+	didFindQuotation = didFindQuotation || remainingQuoteNodes.length > 0;
 	remainingQuoteNodes.forEach(el => $(el).remove());
 
-	return didFindQuote;
+	return { didFindQuotation, didFindSignature };
 }
 
 /**
  * Get all quoted elements from an HTML message
  */
-function getNodesToRemove($: CheerioStatic): Cheerio {
-	const GMAIL_QUOTES = '.gmail_quote';
-	const BLOCKQUOTES = 'blockquote';
-	const SIGNATURES = '.gmail_signature, signature';
+function findQuoteBlocks($: CheerioStatic): Cheerio {
+	return $('.gmail_quote, blockquote');
+}
 
-	return $([GMAIL_QUOTES, BLOCKQUOTES, SIGNATURES].join(', '));
+/**
+ * Get all signature elements from an HTML message
+ */
+function findSignatureBlocks($: CheerioStatic): Cheerio {
+	return $('.gmail_signature, signature');
 }
 
 /**

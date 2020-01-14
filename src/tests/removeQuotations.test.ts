@@ -48,7 +48,7 @@ describe('removeQuotations', () => {
 		`;
 
 		const $ = cheerio.load(email);
-		const didFindQuote = removeQuotations($);
+		const result = removeQuotations($);
 		const actual = $.html();
 
 		expectHtml(
@@ -76,7 +76,123 @@ describe('removeQuotations', () => {
 			`
 		);
 
-		expect(didFindQuote).toBe(true);
+		expect(result).toMatchObject({
+			didFindQuotation: true,
+			didFindSignature: false,
+		});
+	});
+
+	it('should remove both signature from basic email', () => {
+		const email = `
+			<div dir="ltr">
+				<div dir="ltr">
+					<p>
+						Hello
+					</p>
+				</div>
+				<br clear="all" />
+				<br />-- <br />
+				<div dir="ltr" class="gmail_signature">
+					<div dir="ltr">
+						<div>Nicolas Gaborit (Soreine)</div>
+						<div>Web Developper<br /></div>
+					</div>
+				</div>
+			</div>
+		`;
+
+		const $ = cheerio.load(email);
+		const result = removeQuotations($);
+		const actual = $.html();
+
+		expectHtml(
+			actual,
+			`
+				<div dir="ltr">
+					<div dir="ltr">
+						<p>
+							Hello
+						</p>
+					</div>
+					<br clear="all" />
+					<br />-- <br />
+				</div>
+			`
+		);
+
+		expect(result).toMatchObject({
+			didFindQuotation: false,
+			didFindSignature: true,
+		});
+	});
+
+	it('should remove both signature and quotations from basic email', () => {
+		const email = `
+			<div dir="ltr">
+				<div dir="ltr">
+					<p>
+						Hello
+					</p>
+				</div>
+				<br />
+				<div class="gmail_quote">
+					<div dir="ltr" class="gmail_attr">
+						On Tue, Dec 31, 2019 at 12:08 AM Nicolas Gaborit &lt;<a
+							href="mailto:hello@soreine.dev"
+							>hello@soreine.dev</a
+						>&gt; wrote:<br />
+					</div>
+					<blockquote
+						class="gmail_quote"
+						style="margin:0px 0px 0px 0.8ex;border-left:1px solid rgb(204,204,204);padding-left:1ex"
+					>
+						<div dir="ltr">
+							<div
+								id="gmail-m_-9156858955879776563gmail-outputholder"
+							>
+								<p>
+									This is the replied message
+								</p>
+							</div>
+						</div>
+					</blockquote>
+				</div>
+				<br clear="all" />
+				<br />-- <br />
+				<div dir="ltr" class="gmail_signature">
+					<div dir="ltr">
+						<div>Nicolas Gaborit (Soreine)</div>
+						<div>Web Developper<br /></div>
+					</div>
+				</div>
+			</div>
+		`;
+
+		const $ = cheerio.load(email);
+		const result = removeQuotations($);
+		const actual = $.html();
+
+		expectHtml(
+			actual,
+			`
+				<div dir="ltr">
+					<div dir="ltr">
+						<p>
+							Hello
+						</p>
+					</div>
+					<br />
+
+					<br clear="all" />
+					<br />-- <br />
+				</div>
+			`
+		);
+
+		expect(result).toMatchObject({
+			didFindQuotation: true,
+			didFindSignature: true,
+		});
 	});
 
 	it('should not wrap body in body', () => {
@@ -94,7 +210,7 @@ describe('removeQuotations', () => {
 		`;
 
 		const $ = cheerio.load(email);
-		const didFindQuote = removeQuotations($);
+		const result = removeQuotations($);
 		const actual = $.html();
 
 		expectHtml(
@@ -113,6 +229,9 @@ describe('removeQuotations', () => {
 			`
 		);
 
-		expect(didFindQuote).toBe(false);
+		expect(result).toMatchObject({
+			didFindQuotation: false,
+			didFindSignature: false,
+		});
 	});
 });

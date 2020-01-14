@@ -7,6 +7,7 @@ Also runs several transformations to the email so that it can be displayed safel
 -   Remove scripts, trackers
 -   Convert text links into anchor tags
 -   Remove trailing whitespaces
+-   Block remote content
 
 ## Usage
 
@@ -18,7 +19,6 @@ const emailHtml = `
 `;
 
 const OPTIONS = {
-	noSignature: true,
 	noQuotations: true,
 	noTrackers: true,
 	noTrailingWhitespaces: true,
@@ -33,5 +33,9 @@ const {
 	messageHtml,
 	// The whole message processed, including quotations and signature
 	completeHtml,
+	// Did we removed quotes
+	didFindQuote,
+	// Did we removed a signature
+	didFindSignature,
 } = prepareMessage(emailHtml, OPTIONS);
 ```

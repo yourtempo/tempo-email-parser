@@ -37,6 +37,8 @@ function prepareMessage(
 	messageHtml: string;
 	// True if a quote was found and stripped
 	didFindQuotation: boolean;
+	// True if a signature was found and stripped
+	didFindSignature: boolean;
 } {
 	const {
 		noQuotations = true,
@@ -88,7 +90,7 @@ function prepareMessage(
 	// Remove quotations
 	if (noQuotations) {
 		const backup = result.completeHtml;
-		const didFindQuote = removeQuotations($);
+		const { didFindQuotation, didFindSignature } = removeQuotations($);
 
 		// if the actions above have resulted in an empty body,
 		// then we should not remove quotations
@@ -98,7 +100,8 @@ function prepareMessage(
 
 			return result;
 		} else {
-			result.didFindQuotation = didFindQuote;
+			result.didFindQuotation = didFindQuotation;
+			result.didFindSignature = didFindSignature;
 
 			if (noTrailingWhitespaces) {
 				removeTrailingWhitespaces($);
