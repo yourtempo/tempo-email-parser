@@ -1,3 +1,10 @@
+import {
+	getTopLevelElement,
+	isRootElement,
+	isTextualElement,
+	isEmptyish,
+} from './cheerioUtils';
+
 /**
  * Remove trailing whitespaces in given element, using given cheerio context.
  * Returns true if the element was empty and removed completely
@@ -16,18 +23,12 @@ function removeTrailingWhitespaces(
 		$(el).remove();
 		return true;
 	} else if (isText) {
-		// Trim it
-		const text = el.nodeValue as string;
-		const trimmed = text.trim();
-		if (
-			trimmed === '' ||
-			// Dashes are sometimes added before signatures
-			trimmed === '--'
-		) {
+		if (isEmptyish(el)) {
 			$(el).remove();
 			// The element was removed completely
 			return true;
 		} else {
+			const trimmed = el.nodeValue.trim();
 			$(el.parent).text(trimmed);
 			// We're done trimming
 			return false;
@@ -48,52 +49,13 @@ function removeTrailingWhitespaces(
 			// We stop here
 			return false;
 		}
-	} else if (isRootElement($, el)) {
+	} else if (isRootElement(el)) {
 		// Stop here
 		return false;
 	} else {
 		// Empty textual element, we can remove it.
 		$(el).remove();
 		return true;
-	}
-}
-
-const TEXTUAL = new Set([
-	'root',
-	'body',
-
-	// Text content
-	'p',
-	'div',
-
-	// Separators
-	'hr',
-	'br',
-
-	// Inline text
-	'span',
-	'b',
-	'a',
-	'em',
-	'i',
-	's',
-	'strong',
-]);
-
-function isTextualElement(el: CheerioElement): boolean {
-	return TEXTUAL.has(el.tagName);
-}
-
-function isRootElement($: CheerioStatic, el: CheerioElement): boolean {
-	return el.tagName === 'body' || el.tagName === 'root';
-}
-
-function getTopLevelElement($: CheerioStatic): CheerioElement {
-	const body = $('body');
-	if (body.length > 0) {
-		return body.get(0);
-	} else {
-		return $.root().get(0);
 	}
 }
 
