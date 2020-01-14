@@ -5,7 +5,7 @@
 	"main": "./lib/index.js",
 	"types": "./lib/index.d.ts",
 	"scripts": {
-		"prepublish": "yarn run build",
+		"prepublishOnly": "yarn run build",
 		"build": "tsc -D",
 		"test": "jest",
 		"lint": "eslint \"./**/*.{js,jsx,ts,tsx}\"",
@@ -52,6 +52,6 @@
 		"cheerio": "0.22.0",
 		"linkifyjs": "^2.1.8",
 		"regx": "^1.0.4",
-		"talonjs": "^1.0.23"
+		"talonjs": "^1.0.24"
 	}
 }

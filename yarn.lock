@@ -4001,10 +4001,10 @@ table@^5.2.3:
     slice-ansi "^2.1.0"
     string-width "^3.0.0"
 
-talonjs@^1.0.23:
-  version "1.0.23"
-  resolved "https://registry.yarnpkg.com/talonjs/-/talonjs-1.0.23.tgz#b9ac855ca66bba10421d3f405c11a3d25377d3f5"
-  integrity sha512-MGOUrRT0RyD9fMQaK/lx1MLIH+JAHfEocgyN0HL0co3MYlFklaWzE9lH1B8jTzznATvvpA9fK5WgAh7rcMJ9ig==
+talonjs@^1.0.24:
+  version "1.0.24"
+  resolved "https://registry.yarnpkg.com/talonjs/-/talonjs-1.0.24.tgz#3257a2bcf04db1cfecba5f0d70d6e5e8a83ac9fd"
+  integrity sha512-hW+co2rDb0muG112IdKgUzxHr+CkJKo/xly5JXtUN4J3ThgH0XNL5Jca0BPhnks2ZQ7Qg9y7YHlHISqFLxrZWQ==
   dependencies:
     cheerio "0.22.0"
     xmldom "0.1.27"
