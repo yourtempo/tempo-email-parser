@@ -1,18 +1,20 @@
-import cheerio from 'cheerio';
-import getTopLevelElement from './getTopLevelElement';
-import { isDocument, isText, isEmpty, hasChildren } from './cheerioUtils';
+import {
+	isDocument,
+	isText,
+	isEmpty,
+	hasChildren,
+	containsEmptyText,
+	getTopLevelElement,
+} from './cheerioUtils';
 
 /**
  * Remove quotations (replied messages) from the HTML
  */
 function removeQuotations(
-	emailHtml: string
-): {
-	body: string;
-	// True if quotes were removed
-	didFindQuote: boolean;
-} {
-	const $ = cheerio.load(emailHtml);
+	$: CheerioStatic
+): // True if quotes were removed
+boolean {
+	const backup = $.root().clone();
 
 	let didFindQuote = false;
 
@@ -24,49 +26,20 @@ function removeQuotations(
 
 	// when all blockquotes are removed, remove any trailing
 	// strings that should not be included
-	for (const el of findQuoteByString(doc)) {
-		if (el) {
-			didFindQuote = true;
-			el.remove();
-		}
-	}
+	const remainingQuoteNodes = findQuoteNodesByString($);
+	didFindQuote = didFindQuote || remainingQuoteNodes.length > 0;
+	remainingQuoteNodes.forEach(el => $(el).remove());
 
 	// if the actions above have resulted in an empty body,
-	// then we should not hide any elements and render the
-	// full body
-	if (
-		!doc.body ||
-		!doc.children[0] ||
-		doc.body.textContent.trim().length === 0
-	) {
-		return {
-			body: convertToDOM(html).body.innerHTML,
-			didFindQuote: false,
-		};
+	// then we should not remove any elements
+	if (containsEmptyText(getTopLevelElement($))) {
+		// Restore everything
+		$.root().replaceWith(backup);
+		return false;
 	}
 
-	// remove any trailing whitespace at the bottom of the message
-	removeWhitespace(doc);
-
-	return { body: doc.body.innerHTML, didFindQuote };
+	return didFindQuote;
 }
-
-/**
- * Convert string/html to DOM Node
- * @param {String} text
- */
-const convertToDOM = text => {
-	const domParser = new DOMParser();
-	let doc;
-	try {
-		doc = domParser.parseFromString(text, 'text/html');
-	} catch (error) {
-		const errText = `Error parsing HTML: ${error.toString()}`;
-		doc = domParser.parseFromString(errText, 'text/html');
-	}
-
-	return doc;
-};
 
 /**
  * Get all quoted elements from an HTML message
@@ -80,66 +53,11 @@ function getNodesToRemove($: CheerioStatic): Cheerio {
 }
 
 /**
- * @param {DOM Document} doc
- */
-const removeWhitespace = doc => {
-	if (!doc.body) return;
-
-	// Loop down the tree and get the last child of the last child.
-	let lastOfLast = doc.body;
-	while (lastOfLast.lastElementChild) {
-		lastOfLast = lastOfLast.lastElementChild;
-	}
-
-	// Move up the tree starting at the bottom
-	const removeTrailingWhitespaceChildren = el => {
-		while (el.lastChild) {
-			const child = el.lastChild;
-			// Node.TEXT_NODE = The actual Text inside an Element or Attr.
-			if (child.nodeType === Node.TEXT_NODE) {
-				if (
-					child.textContent.trim() === '' ||
-					child.textContent.trim() === '--'
-				) {
-					child.remove();
-					continue;
-				}
-			}
-			if (['BR', 'P', 'DIV', 'SPAN', 'HR'].includes(child.nodeName)) {
-				removeTrailingWhitespaceChildren(child);
-				if (
-					child.childElementCount === 0 &&
-					child.textContent.trim() === ''
-				) {
-					child.remove();
-					continue;
-				}
-			}
-			break;
-		}
-	};
-
-	while (lastOfLast.parentElement) {
-		lastOfLast = lastOfLast.parentElement;
-		removeTrailingWhitespaceChildren(lastOfLast);
-	}
-};
-
-/**
- * @param {String} html
- * @returns {NodeList} of style elements
- */
-exports.getStyles = html => {
-	const doc = convertToDOM(html);
-	return doc.querySelectorAll('style');
-};
-
-/**
  * Loop through doc DOM-element starting from the bottom and search for a string like:
  * "On Friday, 27 November 2015, Your Tempo <contact@yourtempo.co> wrote:"
  * When found, this should be excluded from the initial message
  */
-function findQuoteByString($: CheerioStatic) {
+function findQuoteNodesByString($: CheerioStatic): CheerioElement[] {
 	const nodesToRemove: CheerioElement[] = [];
 
 	// If we have seen a "... wrote:" yet

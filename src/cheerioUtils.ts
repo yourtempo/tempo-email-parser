@@ -55,6 +55,19 @@ function isEmptyish(text: CheerioElement): boolean {
 	return EMPTYISH_REGEX.test(text.nodeValue);
 }
 
+/**
+ * True if the element and its children only contains empty texts
+ */
+function containsEmptyText(el: CheerioElement): boolean {
+	if (isText(el)) {
+		return isEmpty(el);
+	} else if (hasChildren(el)) {
+		return el.children.every(containsEmptyText);
+	} else {
+		return true;
+	}
+}
+
 function getTopLevelElement($: CheerioStatic): CheerioElement {
 	const body = $('body');
 	if (body.length > 0) {
@@ -73,5 +86,6 @@ export {
 	isTextualElement,
 	isEmpty,
 	isEmptyish,
+	containsEmptyText,
 	hasChildren,
 };

@@ -1,4 +1,5 @@
 import expect from 'expect';
+import cheerio from 'cheerio';
 import { expectHtml } from './utils';
 import removeQuotations from '../removeQuotations';
 
@@ -46,8 +47,12 @@ describe('removeQuotations', () => {
 			</div>
 		`;
 
+		const $ = cheerio.load(email);
+		const didFindQuote = removeQuotations($);
+		const actual = $.html();
+
 		expectHtml(
-			removeQuotations(email).body,
+			actual,
 			`
 				<html>
 					<body>
@@ -76,13 +81,10 @@ describe('removeQuotations', () => {
 			`
 		);
 
-		expect(removeQuotations(email)).toMatchObject({
-			didFindQuote: true,
-			isTooLong: false,
-		});
+		expect(didFindQuote).toBe(true);
 	});
 
-	it.skip('should not wrap body in body', () => {
+	it('should not wrap body in body', () => {
 		const email = `
 			<html>
 				<!-- This comment will make talon either fail, or wrap in an extra body -->
@@ -96,8 +98,12 @@ describe('removeQuotations', () => {
 			</html>
 		`;
 
+		const $ = cheerio.load(email);
+		const didFindQuote = removeQuotations($);
+		const actual = $.html();
+
 		expectHtml(
-			removeQuotations(email).body,
+			actual,
 			`
 				<html>
 					<!-- This comment will make talon either fail, or wrap in an extra body -->
@@ -112,9 +118,6 @@ describe('removeQuotations', () => {
 			`
 		);
 
-		expect(removeQuotations(email)).toMatchObject({
-			didFindQuote: true,
-			isTooLong: false,
-		});
+		expect(didFindQuote).toBe(true);
 	});
 });
