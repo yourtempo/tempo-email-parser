@@ -16,12 +16,8 @@ function prepareMessage(
 	options: {
 		// Remove quotations and signatures. Only affects the result messageHtml
 		noQuotations?: boolean;
-		// Remove pixel trackers
-		noTrackers?: boolean;
 		// Remove trailing whitespaces, at end of messageHtml
 		noTrailingWhitespaces?: boolean;
-		// Remove script tags
-		noScript?: boolean;
 		// Automatically convert text links to anchor tags
 		autolink?: boolean;
 		// Enforce specific viewport for mobile "width=device-width, initial-scale=1"
@@ -42,9 +38,7 @@ function prepareMessage(
 } {
 	const {
 		noQuotations = true,
-		noTrackers = true,
 		noTrailingWhitespaces = true,
-		noScript = true,
 		autolink = true,
 		forceMobileViewport = true,
 		noRemoteContent = true,
@@ -66,14 +60,8 @@ function prepareMessage(
 
 	// Comments are useless, better remove them
 	removeComments($);
-
-	if (noScript) {
-		removeScripts($);
-	}
-
-	if (noTrackers) {
-		removeTrackers($);
-	}
+	removeScripts($);
+	removeTrackers($);
 
 	// Before mobile viewport, otherwise this breaks the meta tag
 	if (noRemoteContent) {
