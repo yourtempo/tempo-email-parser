@@ -7,7 +7,8 @@ import {
 	isImage,
 	toArray,
 	isEmptyish,
-} from './cheerioUtils';
+} from './cheerio-utils';
+import walkBackwards from './walkBackwards';
 
 /**
  * Remove quotations (replied messages) and signatures from the HTML
@@ -21,7 +22,7 @@ function removeQuotations($: CheerioStatic): { didFindQuotation: boolean } {
 	quoteElements.each((i, el) => $(el).remove());
 
 	// When all blockquotes are removed, remove any remaining quote header text
-	const remainingQuoteNodes = findQuoteNodesByString($);
+	const remainingQuoteNodes = findQuoteString($);
 	didFindQuotation = didFindQuotation || remainingQuoteNodes.length > 0;
 	remainingQuoteNodes.forEach(el => $(el).remove());
 
@@ -114,74 +115,68 @@ function isInlineQuote(
  * "On Friday, 27 November 2015, Your Tempo <contact@yourtempo.co> wrote:"
  * When found, this should be excluded from the initial message
  */
-function findQuoteNodesByString($: CheerioStatic): CheerioElement[] {
-	const nodesToRemove: CheerioElement[] = [];
-
-	// If we have seen a "... wrote:" yet
-	let seenQuoteHeaderEnd = false;
-
+function findQuoteString($: CheerioStatic): CheerioElement[] {
 	const isQuoteHeaderEnd = (el: CheerioElement) =>
 		/wrote:\s*$/gim.test(el.nodeValue);
 
 	const isQuoteHeaderStart = (el: CheerioElement) =>
 		/On \S/gim.test(el.nodeValue);
 
-	const findQuote = (el: CheerioElement): void => {
-		// TODO: We are not looping through nodes like Mailspring does
-		// https://github.com/Foundry376/Mailspring/blob/aa125f0136c093e0aa3deb7c46bb6433f6ede6b9/app/src/services/quote-string-detector.ts#L20:L20
+	const nodesToRemove: CheerioElement[] = [];
 
-		// loop through childNodes backwards
-		for (let i = el.children.length - 1; i >= 0; i--) {
-			const child = el.children[i];
+	// If we have seen a "... wrote:" yet
+	let seenQuoteHeaderEnd = false;
 
-			if (isDocument(child)) {
+	const top = getTopLevelElement($);
+
+	// loop through childNodes backwards
+	for (const el of walkBackwards(top)) {
+		if (isDocument(el)) {
+			continue;
+		}
+
+		if (isText(el)) {
+			if (isEmpty(el)) {
+				// Ignore empty texts
 				continue;
 			}
 
-			if (isText(child)) {
-				if (isEmpty(child)) {
-					continue;
-				}
+			if (!seenQuoteHeaderEnd) {
+				if (isQuoteHeaderEnd(el)) {
+					seenQuoteHeaderEnd = true;
+					nodesToRemove.push(el);
 
-				if (!seenQuoteHeaderEnd) {
-					if (isQuoteHeaderEnd(child)) {
-						nodesToRemove.push(child);
-						seenQuoteHeaderEnd = true;
-
-						// Check if On... + wrote... are in the same node...
-						if (isQuoteHeaderStart(child)) {
-							// We're done. Stop iterating
-							break;
-						} else {
-							continue;
-						}
-					} else {
-						// That's some message body text. Stop iterating
-						break;
-					}
-				} else {
-					// We are inside the quote header. So we remove everything
-					nodesToRemove.push(child);
-					// Until we reach the start of the header
-					if (isQuoteHeaderStart(child)) {
+					// Check if On... + wrote... are in the same node...
+					if (isQuoteHeaderStart(el)) {
+						// We're done. Stop iterating
 						break;
 					} else {
 						continue;
 					}
+				} else {
+					// We have reached content. Stop iterating
+					break;
 				}
 			} else {
-				// Not a text
-				if (!seenQuoteHeaderEnd && hasChildren(child)) {
-					findQuote(child);
+				// We are inside the quote header. So we remove everything
+				nodesToRemove.push(el);
+				// Until we reach the start of the header
+				if (isQuoteHeaderStart(el)) {
+					// This node is also the start of the header. We're done
 					break;
 				} else {
 					continue;
 				}
 			}
+		} else {
+			// It's not a text
+			if (seenQuoteHeaderEnd) {
+				// It's inside the quote
+				nodesToRemove.push(el);
+			}
+			continue;
 		}
-	};
-
-	findQuote(getTopLevelElement($));
+	}
 
 	return nodesToRemove;
 }

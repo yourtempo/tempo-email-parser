@@ -5,7 +5,7 @@ import removeTrailingWhitespaces from './removeTrailingWhitespaces';
 import linkify from './linkify';
 import enforceViewport from './enforceViewport';
 import blockRemoteContent from './blockRemoteContent';
-import { containsEmptyText, getTopLevelElement } from './cheerioUtils';
+import { containsEmptyText, getTopLevelElement } from './cheerio-utils';
 
 /**
  * Parse an HTML email and make transformation needed before displaying it to the user.
