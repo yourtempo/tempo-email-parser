@@ -230,4 +230,72 @@ describe('removeQuotations', () => {
 			didFindQuotation: false,
 		});
 	});
+
+	it('should preserve inline quotes', () => {
+		const email = `
+			<div dir="ltr">
+				<p>
+					Hello.
+				</p>
+				<blockquote>Here is an inline quote</blockquote>
+				<p>Hope you liked it</p>
+				<br />
+				<div class="gmail_quote">
+					<div dir="ltr" class="gmail_attr">
+						On Tue, Dec 31, 2019 at 12:08 AM Nicolas Gaborit &lt;<a
+							href="mailto:hello@soreine.dev"
+							>hello@soreine.dev</a
+						>&gt; wrote:<br />
+					</div>
+					<blockquote
+						class="gmail_quote"
+						style="margin:0px 0px 0px 0.8ex;border-left:1px solid rgb(204,204,204);padding-left:1ex"
+					>
+						<div dir="ltr">
+							<div
+								id="gmail-m_-9156858955879776563gmail-outputholder"
+							>
+								<p>
+									This is the replied message
+								</p>
+							</div>
+						</div>
+					</blockquote>
+				</div>
+				<br clear="all" />
+				<br />-- <br />
+				<div dir="ltr" class="gmail_signature">
+					<div dir="ltr">
+						<div>Nicolas Gaborit (Soreine)</div>
+						<div>Web Developper<br /></div>
+					</div>
+				</div>
+			</div>
+		`;
+
+		const $ = cheerio.load(email);
+		const result = removeQuotations($);
+		const actual = $.html();
+
+		expectHtml(
+			actual,
+			`
+			<div dir="ltr">
+				<p>
+					Hello.
+				</p>
+				<blockquote>Here is an inline quote</blockquote>
+				<p>Hope you liked it</p>
+				<br />
+
+				<br clear="all" />
+				<br />-- <br />
+			</div>
+			`
+		);
+
+		expect(result).toMatchObject({
+			didFindQuotation: true,
+		});
+	});
 });
