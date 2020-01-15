@@ -20,7 +20,6 @@ const emailHtml = `
 
 const OPTIONS = {
 	noQuotations: true,
-	noTrailingWhitespaces: true,
 	autolink: true,
 	forceMobileViewport: true,
 	noRemoteContent: true,

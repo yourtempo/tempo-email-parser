@@ -16,8 +16,6 @@ function prepareMessage(
 	options: {
 		// Remove quotations and signatures. Only affects the result messageHtml
 		noQuotations?: boolean;
-		// Remove trailing whitespaces, at end of messageHtml
-		noTrailingWhitespaces?: boolean;
 		// Automatically convert text links to anchor tags
 		autolink?: boolean;
 		// Enforce specific viewport for mobile "width=device-width, initial-scale=1"
@@ -38,7 +36,6 @@ function prepareMessage(
 } {
 	const {
 		noQuotations = true,
-		noTrailingWhitespaces = true,
 		autolink = true,
 		forceMobileViewport = true,
 		noRemoteContent = true,
@@ -86,21 +83,18 @@ function prepareMessage(
 			// Restore everything
 			result.messageHtml = backup;
 
-			return result;
+			$ = cheerio.load(backup);
 		} else {
 			result.didFindQuotation = didFindQuotation;
 			result.didFindSignature = didFindSignature;
-
-			if (noTrailingWhitespaces) {
-				removeTrailingWhitespaces($);
-				result.messageHtml = $.xml();
-			}
-
-			return result;
 		}
-	} else {
-		return result;
 	}
+
+	removeTrailingWhitespaces($);
+
+	result.messageHtml = $.xml();
+
+	return result;
 }
 
 function removeTrackers($: CheerioStatic) {
