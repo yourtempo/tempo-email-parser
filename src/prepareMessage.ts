@@ -69,30 +69,26 @@ function prepareMessage(
 		enforceViewport($);
 	}
 
+	removeTrailingWhitespaces($);
 	result.completeHtml = $.xml();
 	result.messageHtml = result.completeHtml;
 
 	// Remove quotations
 	if (noQuotations) {
-		const backup = result.completeHtml;
 		const { didFindQuotation, didFindSignature } = removeQuotations($);
 
 		// if the actions above have resulted in an empty body,
 		// then we should not remove quotations
 		if (containsEmptyText(getTopLevelElement($))) {
-			// Restore everything
-			result.messageHtml = backup;
-
-			$ = cheerio.load(backup);
+			// Don't remove anything.
 		} else {
 			result.didFindQuotation = didFindQuotation;
 			result.didFindSignature = didFindSignature;
+
+			removeTrailingWhitespaces($);
+			result.messageHtml = $.xml();
 		}
 	}
-
-	removeTrailingWhitespaces($);
-
-	result.messageHtml = $.xml();
 
 	return result;
 }
