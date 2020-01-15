@@ -3,7 +3,7 @@ import {
 	isRootElement,
 	isTextualElement,
 	isEmptyish,
-} from './cheerioUtils';
+} from './cheerio-utils';
 
 /**
  * Remove trailing whitespaces in given element, using given cheerio context.

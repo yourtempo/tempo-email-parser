@@ -7,7 +7,7 @@ import {
 	isImage,
 	toArray,
 	isEmptyish,
-} from './cheerioUtils';
+} from './cheerio-utils';
 
 /**
  * Remove quotations (replied messages) and signatures from the HTML
