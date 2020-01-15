@@ -37,6 +37,7 @@ function checkFixture(name: string) {
 		}
 
 		if (expectedMessage !== null) {
+			// console.log(result.messageHtml);
 			it('messageHtml', () => {
 				expectHtml(result.messageHtml, expectedMessage);
 			});
@@ -47,5 +48,6 @@ function checkFixture(name: string) {
 describe('prepareMessage', () => {
 	checkFixture('all-in-one');
 	checkFixture('no-empty-message');
+	checkFixture('only-quoted-text');
 	checkFixture('email_19');
 });
