@@ -16,12 +16,6 @@ function prepareMessage(
 	options: {
 		// Remove quotations and signatures. Only affects the result messageHtml
 		noQuotations?: boolean;
-		// Remove pixel trackers
-		noTrackers?: boolean;
-		// Remove trailing whitespaces, at end of messageHtml
-		noTrailingWhitespaces?: boolean;
-		// Remove script tags
-		noScript?: boolean;
 		// Automatically convert text links to anchor tags
 		autolink?: boolean;
 		// Enforce specific viewport for mobile "width=device-width, initial-scale=1"
@@ -35,16 +29,11 @@ function prepareMessage(
 	completeHtml: string;
 	// The body of the message, stripped from secondary information
 	messageHtml: string;
-	// True if a quote was found and stripped
+	// True if a quote or signature was found and stripped
 	didFindQuotation: boolean;
-	// True if a signature was found and stripped
-	didFindSignature: boolean;
 } {
 	const {
 		noQuotations = true,
-		noTrackers = true,
-		noTrailingWhitespaces = true,
-		noScript = true,
 		autolink = true,
 		forceMobileViewport = true,
 		noRemoteContent = true,
@@ -54,7 +43,6 @@ function prepareMessage(
 		messageHtml: emailHtml,
 		completeHtml: emailHtml,
 		didFindQuotation: false,
-		didFindSignature: false,
 	};
 
 	if (autolink) {
@@ -66,14 +54,8 @@ function prepareMessage(
 
 	// Comments are useless, better remove them
 	removeComments($);
-
-	if (noScript) {
-		removeScripts($);
-	}
-
-	if (noTrackers) {
-		removeTrackers($);
-	}
+	removeScripts($);
+	removeTrackers($);
 
 	// Before mobile viewport, otherwise this breaks the meta tag
 	if (noRemoteContent) {
@@ -84,39 +66,32 @@ function prepareMessage(
 		enforceViewport($);
 	}
 
+	removeTrailingWhitespaces($);
 	result.completeHtml = $.xml();
 	result.messageHtml = result.completeHtml;
 
 	// Remove quotations
 	if (noQuotations) {
-		const backup = result.completeHtml;
-		const { didFindQuotation, didFindSignature } = removeQuotations($);
+		const { didFindQuotation } = removeQuotations($);
 
 		// if the actions above have resulted in an empty body,
 		// then we should not remove quotations
 		if (containsEmptyText(getTopLevelElement($))) {
-			// Restore everything
-			result.messageHtml = backup;
-
-			return result;
+			// Don't remove anything.
 		} else {
 			result.didFindQuotation = didFindQuotation;
-			result.didFindSignature = didFindSignature;
 
-			if (noTrailingWhitespaces) {
-				removeTrailingWhitespaces($);
-				result.messageHtml = $.xml();
-			}
-
-			return result;
+			removeTrailingWhitespaces($);
+			result.messageHtml = $.xml();
 		}
-	} else {
-		return result;
 	}
+
+	return result;
 }
 
 function removeTrackers($: CheerioStatic) {
 	const TRACKERS_SELECTORS = [
+		// TODO: Improve by looking at inline styles as well
 		'img[width="0"]',
 		'img[width="1"]',
 		'img[height="0"]',

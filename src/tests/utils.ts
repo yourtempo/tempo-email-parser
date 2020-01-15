@@ -20,4 +20,16 @@ function readFile(...paths: string[]): string {
 	return fs.readFileSync(path.join(...paths)).toString();
 }
 
-export { expectHtml, readFile };
+function fileExists(...paths: string[]): boolean {
+	return fs.existsSync(path.join(...paths));
+}
+
+function readFileIfExists(...paths: string[]): string | null {
+	if (!fileExists(...paths)) {
+		return null;
+	} else {
+		return readFile(...paths);
+	}
+}
+
+export { expectHtml, readFile, fileExists, readFileIfExists };

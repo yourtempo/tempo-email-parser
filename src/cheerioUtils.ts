@@ -36,6 +36,10 @@ function isBody(el: CheerioElement): boolean {
 	return el.tagName === 'body';
 }
 
+function isImage(el: CheerioElement): boolean {
+	return el.tagName === 'img';
+}
+
 function isRootElement(el: CheerioElement): boolean {
 	return isBody(el) || isDocument(el) || el.tagName === 'root';
 }
@@ -77,10 +81,27 @@ function getTopLevelElement($: CheerioStatic): CheerioElement {
 	}
 }
 
+/*
+ * Combine an array of Cheerio selections into one
+ */
+function cheerioUnion(firstSelection: Cheerio, ...rest: Cheerio[]): Cheerio {
+	return rest.reduce((acc, sel) => acc.add(sel), firstSelection);
+}
+
+/**
+ * Convert a Cheerio selection to an array of CheerioElement
+ */
+function toArray(selection: Cheerio): CheerioElement[] {
+	const res: CheerioElement[] = [];
+	selection.each((i, el) => res.push(el));
+	return res;
+}
+
 export {
 	getTopLevelElement,
 	isBody,
 	isDocument,
+	isImage,
 	isRootElement,
 	isText,
 	isTextualElement,
@@ -88,4 +109,6 @@ export {
 	isEmptyish,
 	containsEmptyText,
 	hasChildren,
+	cheerioUnion,
+	toArray,
 };
