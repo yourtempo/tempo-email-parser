@@ -29,10 +29,8 @@ function prepareMessage(
 	completeHtml: string;
 	// The body of the message, stripped from secondary information
 	messageHtml: string;
-	// True if a quote was found and stripped
+	// True if a quote or signature was found and stripped
 	didFindQuotation: boolean;
-	// True if a signature was found and stripped
-	didFindSignature: boolean;
 } {
 	const {
 		noQuotations = true,
@@ -45,7 +43,6 @@ function prepareMessage(
 		messageHtml: emailHtml,
 		completeHtml: emailHtml,
 		didFindQuotation: false,
-		didFindSignature: false,
 	};
 
 	if (autolink) {
@@ -75,7 +72,7 @@ function prepareMessage(
 
 	// Remove quotations
 	if (noQuotations) {
-		const { didFindQuotation, didFindSignature } = removeQuotations($);
+		const { didFindQuotation } = removeQuotations($);
 
 		// if the actions above have resulted in an empty body,
 		// then we should not remove quotations
@@ -83,7 +80,6 @@ function prepareMessage(
 			// Don't remove anything.
 		} else {
 			result.didFindQuotation = didFindQuotation;
-			result.didFindSignature = didFindSignature;
 
 			removeTrailingWhitespaces($);
 			result.messageHtml = $.xml();
@@ -95,6 +91,7 @@ function prepareMessage(
 
 function removeTrackers($: CheerioStatic) {
 	const TRACKERS_SELECTORS = [
+		// TODO: Improve by looking at inline styles as well
 		'img[width="0"]',
 		'img[width="1"]',
 		'img[height="0"]',

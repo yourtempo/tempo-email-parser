@@ -78,11 +78,10 @@ describe('removeQuotations', () => {
 
 		expect(result).toMatchObject({
 			didFindQuotation: true,
-			didFindSignature: false,
 		});
 	});
 
-	it('should remove both signature from basic email', () => {
+	it('should remove signature from basic email', () => {
 		const email = `
 			<div dir="ltr">
 				<div dir="ltr">
@@ -121,8 +120,7 @@ describe('removeQuotations', () => {
 		);
 
 		expect(result).toMatchObject({
-			didFindQuotation: false,
-			didFindSignature: true,
+			didFindQuotation: true,
 		});
 	});
 
@@ -191,7 +189,6 @@ describe('removeQuotations', () => {
 
 		expect(result).toMatchObject({
 			didFindQuotation: true,
-			didFindSignature: true,
 		});
 	});
 
@@ -231,7 +228,6 @@ describe('removeQuotations', () => {
 
 		expect(result).toMatchObject({
 			didFindQuotation: false,
-			didFindSignature: false,
 		});
 	});
 });
