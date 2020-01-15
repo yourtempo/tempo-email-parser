@@ -2,7 +2,6 @@ import {
 	isDocument,
 	isText,
 	isEmpty,
-	hasChildren,
 	getTopLevelElement,
 	isImage,
 	toArray,

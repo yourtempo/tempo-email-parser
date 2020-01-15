@@ -81,13 +81,6 @@ function getTopLevelElement($: CheerioStatic): CheerioElement {
 	}
 }
 
-/*
- * Combine an array of Cheerio selections into one
- */
-function cheerioUnion(firstSelection: Cheerio, ...rest: Cheerio[]): Cheerio {
-	return rest.reduce((acc, sel) => acc.add(sel), firstSelection);
-}
-
 /**
  * Convert a Cheerio selection to an array of CheerioElement
  */
@@ -109,6 +102,5 @@ export {
 	isEmptyish,
 	containsEmptyText,
 	hasChildren,
-	cheerioUnion,
 	toArray,
 };
