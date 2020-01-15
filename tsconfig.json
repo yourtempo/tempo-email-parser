@@ -18,6 +18,8 @@
 		"allowJs": true,
 		"isolatedModules": true,
 		"strict": true,
+		/* Allow use of generators */
+		"downlevelIteration": true,
 		"moduleResolution": "node",
 		"typeRoots": ["./typings", "node_modules/@types"],
 		"allowSyntheticDefaultImports": true,
