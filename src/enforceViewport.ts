@@ -22,34 +22,9 @@ function enforceViewport($: CheerioStatic) {
 		});
 	} else {
 		// Insert a viewport
-		const head = enforceHtmlHead($);
+		const head = $('head'); // Cheerio already makes sure head is present
 		head.append(desiredViewport);
 	}
-}
-
-/**
- * Ensure the email is wrapped in a <html> tag with a <head>
- * and returns the selected <head> element.
- */
-function enforceHtmlHead($: CheerioStatic): Cheerio {
-	const hasHtml = $('html').length === 1;
-	const hasHead = $('head').length === 1;
-
-	if (!hasHtml) {
-		const html = $('<html xmlns="http://www.w3.org/1999/xhtml"></html>');
-		const toWrap = $(
-			$.root()
-				.children()
-				.first()
-		);
-		toWrap.wrap(html);
-	}
-
-	if (!hasHead) {
-		$('html').prepend('<head></head>');
-	}
-
-	return $('head');
 }
 
 export default enforceViewport;
