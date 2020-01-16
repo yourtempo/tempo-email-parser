@@ -34,3 +34,19 @@ const {
 	didFindQuotation,
 } = prepareMessage(emailHtml, OPTIONS);
 ```
+
+## Development
+
+For tests
+
+```
+yarn run test
+```
+
+The main function `prepareMessage` has a list of fixtures used for tests. The input HTML are files named `xxx.input.html`. The expected outputs are named `xxx.output-complete.html` and `xxx.output-message.html`.
+
+### `yarn run generate:fixtures`
+
+This script generates the respective outputs files for any `.input.html` file found without corresponding outputs.
+
+To easily add a fixture from a real-world email, you can put the input HTML at `/src/tests/prepareMessage/my-test.input.html`, and then run `yarn run generate:fixtures` to generate the output files based on what `prepareMessage` produced. You now only have to check that the outputs look good and make adjustments if necessary.
