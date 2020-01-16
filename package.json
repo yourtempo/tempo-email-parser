@@ -33,6 +33,7 @@
 		"@types/xmldom": "^0.1.29",
 		"@typescript-eslint/eslint-plugin": "^2.14.0",
 		"@typescript-eslint/parser": "^2.14.0",
+		"autolinker": "^3.11.1",
 		"benchmark": "^2.1.4",
 		"dompurify": "^2.0.7",
 		"eslint": "^6.8.0",

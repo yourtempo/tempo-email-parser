@@ -10,6 +10,8 @@ import cheerio from 'cheerio';
 import Talon from 'talonjs';
 import XmlDom from 'xmldom';
 import planer from 'planer';
+import Autolinker from 'autolinker';
+import linkifyHtml from 'linkifyjs/html';
 
 import { createSuite } from './utils';
 import EMAILS from './emails';
@@ -47,6 +49,14 @@ suite
 	.add('Quotation # Planer with JSDom # Marketing email', () => {
 		const document = new JSDOM().window.document;
 		planer.extractFrom(EMAILS.MARKETING, 'text/html', document);
+	});
+
+suite
+	.add('Auto links # Marketing # autolink', () => {
+		Autolinker.link(EMAILS.MARKETING);
+	})
+	.add('Auto links # Marketing # linkify', () => {
+		linkifyHtml(EMAILS.MARKETING);
 	});
 
 suite.run();
