@@ -47,11 +47,11 @@ const WROTE_REGEXP = regx('i')`
 `;
 
 function isQuoteHeaderStart(el: CheerioElement): boolean {
-	return ON_REGEXP.test(el.nodeValue);
+	return ON_REGEXP.test(el.data as string);
 }
 
 function isQuoteHeaderEnd(el: CheerioElement): boolean {
-	return WROTE_REGEXP.test(el.nodeValue);
+	return WROTE_REGEXP.test(el.data as string);
 }
 
 /**

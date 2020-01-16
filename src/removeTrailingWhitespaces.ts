@@ -28,7 +28,7 @@ function removeTrailingWhitespaces(
 			// The element was removed completely
 			return true;
 		} else {
-			const trimmed = el.nodeValue.trim();
+			const trimmed = (el.data as string).trim();
 			$(el.parent).text(trimmed);
 			// We're done trimming
 			return false;

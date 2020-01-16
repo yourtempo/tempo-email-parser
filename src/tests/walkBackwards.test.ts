@@ -5,7 +5,7 @@ import { getTopLevelElement } from '../cheerio-utils';
 
 function printEl(el: CheerioElement): string {
 	if (el.type === 'text') {
-		return el.nodeValue.trim();
+		return (el.data as string).trim();
 	} else {
 		return el.tagName;
 	}
