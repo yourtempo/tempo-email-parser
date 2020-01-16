@@ -1,14 +1,5 @@
-import {
-	isDocument,
-	isText,
-	isEmpty,
-	hasChildren,
-	getTopLevelElement,
-	isImage,
-	toArray,
-	isEmptyish,
-} from './cheerio-utils';
-import walkBackwards from './walkBackwards';
+import { isText, isImage, toArray, isEmptyish } from './cheerio-utils';
+import findQuoteString from './findQuoteString';
 
 /**
  * Remove quotations (replied messages) and signatures from the HTML
@@ -108,77 +99,6 @@ function isInlineQuote(
 	}
 
 	return false;
-}
-
-/**
- * Loop through doc DOM-element starting from the bottom and search for a string like:
- * "On Friday, 27 November 2015, Your Tempo <contact@yourtempo.co> wrote:"
- * When found, this should be excluded from the initial message
- */
-function findQuoteString($: CheerioStatic): CheerioElement[] {
-	const isQuoteHeaderEnd = (el: CheerioElement) =>
-		/wrote:\s*$/gim.test(el.nodeValue);
-
-	const isQuoteHeaderStart = (el: CheerioElement) =>
-		/On \S/gim.test(el.nodeValue);
-
-	const nodesToRemove: CheerioElement[] = [];
-
-	// If we have seen a "... wrote:" yet
-	let seenQuoteHeaderEnd = false;
-
-	const top = getTopLevelElement($);
-
-	// loop through childNodes backwards
-	for (const el of walkBackwards(top)) {
-		if (isDocument(el)) {
-			continue;
-		}
-
-		if (isText(el)) {
-			if (isEmpty(el)) {
-				// Ignore empty texts
-				continue;
-			}
-
-			if (!seenQuoteHeaderEnd) {
-				if (isQuoteHeaderEnd(el)) {
-					seenQuoteHeaderEnd = true;
-					nodesToRemove.push(el);
-
-					// Check if On... + wrote... are in the same node...
-					if (isQuoteHeaderStart(el)) {
-						// We're done. Stop iterating
-						break;
-					} else {
-						continue;
-					}
-				} else {
-					// We have reached content. Stop iterating
-					break;
-				}
-			} else {
-				// We are inside the quote header. So we remove everything
-				nodesToRemove.push(el);
-				// Until we reach the start of the header
-				if (isQuoteHeaderStart(el)) {
-					// This node is also the start of the header. We're done
-					break;
-				} else {
-					continue;
-				}
-			}
-		} else {
-			// It's not a text
-			if (seenQuoteHeaderEnd) {
-				// It's inside the quote
-				nodesToRemove.push(el);
-			}
-			continue;
-		}
-	}
-
-	return nodesToRemove;
 }
 
 export default removeQuotations;

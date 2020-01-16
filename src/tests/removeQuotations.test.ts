@@ -298,4 +298,47 @@ describe('removeQuotations', () => {
 			didFindQuotation: true,
 		});
 	});
+
+	it('should remove "On... wrote:" in different languages', () => {
+		const email = `
+			<html>
+				<body>
+					<p>Hello</p>
+					<div dir="ltr">
+						Le lun. 26 janvier 2019 à 17:02, <<a
+							href="mailto:registration-calm@mahi.dhamma.org"
+							>registration-calm@mahi.dhamma.org</a
+						>> a écrit&nbsp;:<br />
+					</div>
+					<blockquote>
+						<div dir="ltr">
+							<p>
+								This is the replied message
+							</p>
+						</div>
+					</blockquote>
+				</body>
+			</html>
+		`;
+
+		const $ = cheerio.load(email);
+		const result = removeQuotations($);
+		const actual = $.html();
+
+		expectHtml(
+			actual,
+			`
+				<html>
+					<body>
+						<p>Hello</p>
+						<div dir="ltr"><br /></div>
+					</body>
+				</html>
+			`
+		);
+
+		expect(result).toMatchObject({
+			didFindQuotation: true,
+		});
+	});
 });
