@@ -10,6 +10,12 @@ import { containsEmptyText, getTopLevelElement } from './cheerio-utils';
 /**
  * Parse an HTML email and make transformation needed before displaying it to the user.
  * Returns the extracted body of the message, and the complete message for reference.
+ *
+ * Beside the optional, this always:
+ * - Remove comments
+ * - Remove scripts
+ * - Remove tracking pixels
+ * - Remove trailing whitespaces
  */
 function prepareMessage(
 	emailHtml: string,
