@@ -73,7 +73,7 @@ function prepareMessage(
 	}
 
 	removeTrailingWhitespaces($);
-	result.completeHtml = $.xml();
+	result.completeHtml = $.html();
 	result.messageHtml = result.completeHtml;
 
 	// Remove quotations
@@ -88,7 +88,7 @@ function prepareMessage(
 			result.didFindQuotation = didFindQuotation;
 
 			removeTrailingWhitespaces($);
-			result.messageHtml = $.xml();
+			result.messageHtml = $.html();
 		}
 	}
 
