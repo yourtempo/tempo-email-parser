@@ -1,53 +1,30 @@
-import { expectHtml, readFileIfExists, readFile } from '../utils';
+import { expectHtml } from '../utils';
 import prepareMessage from '../../prepareMessage';
-
-function readFixture(
-	name: string
-): {
-	input: string;
-	expectedMessage: string | null;
-	expectedComplete: string | null;
-} {
-	return {
-		input: readFile(__dirname, `./${name}.input.html`),
-		expectedMessage: readFileIfExists(
-			__dirname,
-			`./${name}.output-message.html`
-		),
-		expectedComplete: readFileIfExists(
-			__dirname,
-			`./${name}.output-complete.html`
-		),
-	};
-}
+import { listFixtures, Fixture } from './fixtures';
 
 /**
  * Run tests for a fixture
  */
-function checkFixture(name: string) {
-	describe(name, () => {
-		const { input, expectedComplete, expectedMessage } = readFixture(name);
+function checkFixture(fixture: Fixture) {
+	describe(fixture.name, () => {
+		const result = prepareMessage(fixture.input);
 
-		const result = prepareMessage(input);
-
-		if (expectedComplete !== null) {
+		if (fixture.hasOutputComplete) {
 			it('completeHtml', () => {
-				expectHtml(result.completeHtml, expectedComplete);
+				expectHtml(result.completeHtml, fixture.outputComplete);
 			});
 		}
 
-		if (expectedMessage !== null) {
+		if (fixture.hasOutputMessage) {
 			// console.log(result.messageHtml);
 			it('messageHtml', () => {
-				expectHtml(result.messageHtml, expectedMessage);
+				expectHtml(result.messageHtml, fixture.outputMessage);
 			});
 		}
 	});
 }
 
 describe('prepareMessage', () => {
-	checkFixture('all-in-one');
-	checkFixture('no-empty-message');
-	checkFixture('email_19');
-	checkFixture('quote-string-before-blockquote');
+	const fixtures = listFixtures();
+	fixtures.forEach(checkFixture);
 });

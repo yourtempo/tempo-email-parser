@@ -8,6 +8,7 @@
 		"prepublishOnly": "yarn run build",
 		"build": "tsc -D",
 		"test": "jest",
+		"generate:fixtures": "ts-node ./src/tests/prepareMessage/generateFixtureOutputs.ts",
 		"lint": "eslint \"./**/*.{js,jsx,ts,tsx}\"",
 		"benchmarks": "ts-node --transpile-only ./benchmarks/message-splitter.ts",
 		"benchmarks:libraries": "ts-node --transpile-only ./benchmarks/libraries.ts"

@@ -3,13 +3,16 @@ import path from 'path';
 import prettier from 'prettier';
 import expect from 'expect';
 
+function formatHtml(html: string): string {
+	return prettier.format(html, { parser: 'html', endOfLine: 'lf' });
+}
 /**
  * Expect two HTMLs to be identical, disregarding formatting differences
  */
 function expectHtml(actual: string, expected: string) {
 	// Use prettier to avoid formatting discrepencies
-	actual = prettier.format(actual, { parser: 'html', endOfLine: 'lf' });
-	expected = prettier.format(expected, { parser: 'html', endOfLine: 'lf' });
+	actual = formatHtml(actual);
+	expected = formatHtml(expected);
 
 	// console.log(actual);
 	// console.log(expected);
@@ -32,4 +35,4 @@ function readFileIfExists(...paths: string[]): string | null {
 	}
 }
 
-export { expectHtml, readFile, fileExists, readFileIfExists };
+export { expectHtml, formatHtml, readFile, fileExists, readFileIfExists };
