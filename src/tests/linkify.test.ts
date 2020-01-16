@@ -72,4 +72,35 @@ describe('linkify', () => {
 
 		expect(linkify(email)).toBe(email);
 	});
+
+	it('should work fine with DOCTYPE', () => {
+		const email = `
+		<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+		<html>
+		  <!-- No problem -->
+			<head>
+				<meta charset="utf-8">
+				<title>Not a link.com</title>
+				<style type="text/css">
+					p {
+						content: 'Not a link.com ';
+					}
+				</style>
+			</head>
+			<body>
+				Hello
+				<style type="text/css">
+					p {
+						content: 'Not a link.com ';
+					}
+				</style>
+				<script>
+					console.log('This is not a link.com ');
+				</script>
+			</body>
+		</html>
+		`;
+
+		expect(linkify(email)).toBe(email);
+	});
 });
