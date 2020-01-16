@@ -30,9 +30,7 @@ const {
 	messageHtml,
 	// The whole message processed, including quotations and signature
 	completeHtml,
-	// Did we removed quotes
+	// Did we removed quotes or signature
 	didFindQuote,
-	// Did we removed a signature
-	didFindSignature,
 } = prepareMessage(emailHtml, OPTIONS);
 ```

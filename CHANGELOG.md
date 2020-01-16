@@ -7,6 +7,12 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [0.4.0] - 2020-01-15
+
+-   #20 Added detection of inline quotes, as to not remove them
+-   #22 Fixed bug with detection of reply headers (On ... wrote:)
+-   Removed options `noTrailingWhitespaces`, `noScript`, and `noTracker` until they're actually necessary
+
 ## [0.3.0] - 2020-01-14
 
 Replaced TalonJS with old quote removal implementation
@@ -26,7 +32,8 @@ First version for integration tests. Include the following features
 -   Remove trailing whitespaces
 -   Force viewport for mobile device
 
-[unreleased]: https://github.com/pillarstudio/tempo-message-splitter/compare/v0.3.0...HEAD
-[0.3.0]: https://github.com/pillarstudio/tempo-message-splitter/compare/v0.3.0
+[unreleased]: https://github.com/pillarstudio/tempo-message-splitter/compare/v0.4.0...HEAD
+[0.4.0]: https://github.com/pillarstudio/tempo-message-splitter/releases/tag/v0.4.0
+[0.3.0]: https://github.com/pillarstudio/tempo-message-splitter/releases/tag/v0.3.0
 [0.2.0]: https://github.com/pillarstudio/tempo-message-splitter/releases/tag/v0.2.0
 [0.1.0]: https://github.com/pillarstudio/tempo-message-splitter/releases/tag/v0.1.0
