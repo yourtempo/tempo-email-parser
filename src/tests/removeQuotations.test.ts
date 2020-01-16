@@ -54,25 +54,28 @@ describe('removeQuotations', () => {
 		expectHtml(
 			actual,
 			`
-				<div dir="ltr">
-					<div dir="ltr">
-						<p>
-							Lorem ipsum dolor sit amet, consectetur adipiscing
-							elit.
-							<b>An hoc usque quaque, aliter in vita?</b> Terram,
-							mihi crede, ea lanx et maria deprimet. Duo Reges:
-							constructio interrete.
-							<i>Id est enim, de quo quaerimus.</i> Parvi enim
-							primo ortu sic iacent, tamquam omnino sine animo
-							sint. Quis est tam dissimile homini. Claudii
-							libidini, qui tum erat summo ne imperio, dederetur.
-							<a href="http://loripsum.net/" target="_blank"
-								>Beatus sibi videtur esse moriens.</a
-							>
-						</p>
-					</div>
-					<br />
-				</div>
+				<html>
+					<head></head>
+					<body>
+						<div dir="ltr">
+							<div dir="ltr">
+								<p>
+									Lorem ipsum dolor sit amet, consectetur
+									adipiscing elit.
+									<b>An hoc usque quaque, aliter in vita?</b> Terram, mihi crede, ea lanx et maria deprimet. Duo Reges:
+									constructio interrete. <i>Id est enim, de quo quaerimus.</i> Parvi enim primo ortu sic iacent, tamquam omnino
+									sine animo sint. Quis est tam dissimile homini. Claudii libidini, qui tum erat summo ne imperio, dederetur.
+																<a
+										href="http://loripsum.net/"
+										target="_blank"
+										>Beatus sibi videtur esse moriens.</a
+									>
+								</p>
+							</div>
+							<br />
+						</div>
+					</body>
+				</html>
 			`
 		);
 
@@ -98,7 +101,9 @@ describe('removeQuotations', () => {
 					</div>
 				</div>
 			</div>
-		`;
+			</body>
+			</html>
+			`;
 
 		const $ = cheerio.load(email);
 		const result = removeQuotations($);
@@ -107,15 +112,20 @@ describe('removeQuotations', () => {
 		expectHtml(
 			actual,
 			`
-				<div dir="ltr">
-					<div dir="ltr">
-						<p>
-							Hello
-						</p>
-					</div>
-					<br clear="all" />
-					<br />-- <br />
-				</div>
+				<html>
+					<head></head>
+					<body>
+						<div dir="ltr">
+							<div dir="ltr">
+								<p>
+									Hello
+								</p>
+							</div>
+							<br clear="all" />
+							<br />-- <br />
+						</div>
+					</body>
+				</html>
 			`
 		);
 
@@ -126,6 +136,9 @@ describe('removeQuotations', () => {
 
 	it('should remove both signature and quotations from basic email', () => {
 		const email = `
+		<html>
+		<head></head>
+		<body>
 			<div dir="ltr">
 				<div dir="ltr">
 					<p>
@@ -164,6 +177,8 @@ describe('removeQuotations', () => {
 					</div>
 				</div>
 			</div>
+			</body>
+			</html>
 		`;
 
 		const $ = cheerio.load(email);
@@ -173,17 +188,22 @@ describe('removeQuotations', () => {
 		expectHtml(
 			actual,
 			`
-				<div dir="ltr">
-					<div dir="ltr">
-						<p>
-							Hello
-						</p>
-					</div>
-					<br />
+				<html>
+					<head></head>
+					<body>
+						<div dir="ltr">
+							<div dir="ltr">
+								<p>
+									Hello
+								</p>
+							</div>
+							<br />
 
-					<br clear="all" />
-					<br />-- <br />
-				</div>
+							<br clear="all" />
+							<br />-- <br />
+						</div>
+					</body>
+				</html>
 			`
 		);
 
@@ -214,8 +234,7 @@ describe('removeQuotations', () => {
 			actual,
 			`
 				<html>
-					<!-- This comment would make talonjs either fail, or wrap in an extra body -->
-					<head>
+					<!-- This comment would make talonjs either fail, or wrap in an extra body --><head>
 						<meta charset="utf-8" />
 					</head>
 
@@ -280,17 +299,22 @@ describe('removeQuotations', () => {
 		expectHtml(
 			actual,
 			`
-			<div dir="ltr">
-				<p>
-					Hello.
-				</p>
-				<blockquote>Here is an inline quote</blockquote>
-				<p>Hope you liked it</p>
-				<br />
+				<html>
+					<head></head>
+					<body>
+						<div dir="ltr">
+							<p>
+								Hello.
+							</p>
+							<blockquote>Here is an inline quote</blockquote>
+							<p>Hope you liked it</p>
+							<br />
 
-				<br clear="all" />
-				<br />-- <br />
-			</div>
+							<br clear="all" />
+							<br />-- <br />
+						</div>
+					</body>
+				</html>
 			`
 		);
 
@@ -329,6 +353,7 @@ describe('removeQuotations', () => {
 			actual,
 			`
 				<html>
+					<head></head>
 					<body>
 						<p>Hello</p>
 						<div dir="ltr"><br /></div>
