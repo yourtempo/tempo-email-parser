@@ -8,7 +8,7 @@ import {
 import walkBackwards from './walkBackwards';
 
 // https://github.com/quentez/talonjs/blob/26de2941d9ea739e12853534717a820c72a6f8e9/src/Regexp.ts#L9:L9
-const ON_REGEXP = regx('im')`
+const ON_REGEXP = regx('i')`
 	^\s*(${
 		// Beginning of the line.
 		[
@@ -26,8 +26,8 @@ const ON_REGEXP = regx('im')`
   \s
 `;
 
-const WROTE_REGEXP = regx('im')`
-  (${
+const WROTE_REGEXP = regx('i')`
+  \s(${
 		// Ending of the line.
 		[
 			'wrote',
@@ -43,7 +43,7 @@ const WROTE_REGEXP = regx('im')`
 			'escribió', // Spanish
 		].join('|')
   })
-  \s?:?$
+  \s?:?\s*$
 `;
 
 function isQuoteHeaderStart(el: CheerioElement): boolean {
