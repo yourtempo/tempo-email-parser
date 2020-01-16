@@ -4,8 +4,9 @@ These benchmarks measures the performance of the message-splitter module
 
 import cheerio from 'cheerio';
 import { createSuite } from './utils';
-import prepareMessage, { removeQuotations, linkify } from '../src';
+import prepareMessage, { linkify } from '../src';
 import EMAILS from './emails';
+import removeQuotations from '../src/removeQuotations';
 
 const suite = createSuite();
 

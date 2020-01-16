@@ -1,43 +1,55 @@
 Parse # JSDom # Marketing email
-     51.77 ms
-     19.32 ops/sec
-     (38 runs sampled)
-     Relative Margin of Error: ±5.35%
+     53.3 ms
+     18.76 ops/sec
+     (39 runs sampled)
+     Relative Margin of Error: ±5.76%
 
 Parse # Cheerio # Marketing email
-     2.183 ms
-     458.1 ops/sec
-     (91 runs sampled)
-     Relative Margin of Error: ±0.51%
+     1.808 ms
+     553.1 ops/sec
+     (92 runs sampled)
+     Relative Margin of Error: ±0.57%
 
 Parse # XmlDom # Marketing email
-     2.681 ms
-     373 ops/sec
+     2.665 ms
+     375.3 ops/sec
      (90 runs sampled)
-     Relative Margin of Error: ±2.93%
+     Relative Margin of Error: ±0.63%
 
 Sanitizing # Marketing # DOMPurify
-     89.64 ms
-     11.16 ops/sec
-     (33 runs sampled)
-     Relative Margin of Error: ±4.61%
+     89.84 ms
+     11.13 ops/sec
+     (32 runs sampled)
+     Relative Margin of Error: ±2.51%
 
 Sanitizing # Marketing # sanitize-html
-     3.144 ms
-     318.1 ops/sec
+     2.831 ms
+     353.2 ops/sec
      (87 runs sampled)
-     Relative Margin of Error: ±1.87%
+     Relative Margin of Error: ±1.94%
 
 Quotation # TalonJS # Marketing email
-     177.6 ms
-     5.631 ops/sec
-     (19 runs sampled)
-     Relative Margin of Error: ±1.59%
+     184.5 ms
+     5.419 ops/sec
+     (18 runs sampled)
+     Relative Margin of Error: ±2.01%
 
 Quotation # Planer with JSDom # Marketing email
-     1,052 ms
-     0.9504 ops/sec
+     1,096 ms
+     0.9127 ops/sec
      (7 runs sampled)
-     Relative Margin of Error: ±2.82%
+     Relative Margin of Error: ±4.44%
 
-Done in 51.28s.
+Auto links # Marketing # autolink
+     6.578 ms
+     152 ops/sec
+     (86 runs sampled)
+     Relative Margin of Error: ±0.63%
+
+Auto links # Marketing # linkify
+     14.82 ms
+     67.47 ops/sec
+     (70 runs sampled)
+     Relative Margin of Error: ±0.70%
+
+Done in 62.65s.
