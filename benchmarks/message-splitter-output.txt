@@ -1,37 +1,37 @@
 removeQuotations # Marketing email
-     2.826 ms
-     353.8 ops/sec
-     (83 runs sampled)
-     Relative Margin of Error: ±2.07%
+     10.08 ms
+     99.21 ops/sec
+     (73 runs sampled)
+     Relative Margin of Error: ±3.68%
 
 linkify # Marketing email
-     6.488 ms
-     154.1 ops/sec
-     (87 runs sampled)
-     Relative Margin of Error: ±0.45%
+     6.575 ms
+     152.1 ops/sec
+     (86 runs sampled)
+     Relative Margin of Error: ±0.56%
 
 prepareMessage # Marketing email
-     15.8 ms
-     63.3 ops/sec
-     (66 runs sampled)
-     Relative Margin of Error: ±1.04%
+     22.51 ms
+     44.42 ops/sec
+     (59 runs sampled)
+     Relative Margin of Error: ±2.15%
 
 prepareMessage # Size 1
-     1.847 ms
-     541.4 ops/sec
-     (90 runs sampled)
-     Relative Margin of Error: ±1.23%
+     1.908 ms
+     524.2 ops/sec
+     (89 runs sampled)
+     Relative Margin of Error: ±1.35%
 
 prepareMessage # Size 2
-     2.248 ms
-     444.9 ops/sec
-     (93 runs sampled)
-     Relative Margin of Error: ±0.67%
+     2.53 ms
+     395.2 ops/sec
+     (90 runs sampled)
+     Relative Margin of Error: ±1.10%
 
 prepareMessage # Size 3
-     2.743 ms
-     364.6 ops/sec
+     3.188 ms
+     313.7 ops/sec
      (88 runs sampled)
-     Relative Margin of Error: ±1.58%
+     Relative Margin of Error: ±1.21%
 
-Done in 33.38s.
+Done in 33.59s.
