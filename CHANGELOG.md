@@ -7,6 +7,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+-   Replaced linkifyjs dependency with autolink. Faster, better, stronger.
 -   #23 Detect "On date, somebody wrote:" in different languages.
 
 ## [0.4.0] - 2020-01-15
