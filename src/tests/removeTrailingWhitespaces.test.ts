@@ -1,5 +1,6 @@
 import cheerio from 'cheerio';
 import removeTrailingWhitespaces from '../removeTrailingWhitespaces';
+import { expectHtml } from './utils';
 
 describe('removeTrailingWhitespaces', () => {
 	it('should trim an empty body', () => {
@@ -8,7 +9,7 @@ describe('removeTrailingWhitespaces', () => {
     		<html><body></body></html>
 				`,
 			`
-    		<html><body></body></html>
+    		<html><head></head><body></body></html>
   	  `
 		);
 	});
@@ -18,17 +19,17 @@ describe('removeTrailingWhitespaces', () => {
 			`
     		<div></div>
 			`,
-			``
+			`<html><head></head><body></body></html>`
 		);
 	});
 
 	it('should trim text', () => {
 		check(
 			`
-    		<div>Hello    </div>
+				<html><head></head><body><div>Hello    </div></body></html>
 			`,
 			`
-    		<div>Hello</div>
+				<html><head></head><body><div>Hello</div></body></html>
     	`
 		);
 	});
@@ -36,10 +37,10 @@ describe('removeTrailingWhitespaces', () => {
 	it('should trim br, and hr', () => {
 		check(
 			`
-    		<div>Hello<br/>  <hr/> <br/></div>
+				<html><head></head><body><div>Hello<br/>  <hr/> <br/></div></body></html>
 			`,
 			`
-    		<div>Hello</div>
+				<html><head></head><body><div>Hello</div></body></html>
     	`
 		);
 	});
@@ -58,10 +59,10 @@ describe('removeTrailingWhitespaces', () => {
 	it('should not change trimmed content', () => {
 		check(
 			`
-    		<div>Hello</div>
+				<html><head></head><body><div>Hello</div></body></html>
 			`,
 			`
-    		<div>Hello</div>
+				<html><head></head><body><div>Hello</div></body></html>
     	`
 		);
 	});
@@ -69,10 +70,10 @@ describe('removeTrailingWhitespaces', () => {
 	it('should not trim pre', () => {
 		check(
 			`
-    		<div>Hello <pre>Hi, this is code  </pre></div>
+				<html><head></head><body><div>Hello <pre>Hi, this is code  </pre></div></body></html>
 			`,
 			`
-				<div>Hello <pre>Hi, this is code  </pre></div>
+				<html><head></head><body><div>Hello <pre>Hi, this is code  </pre></div></body></html>
     	`
 		);
 	});
@@ -80,10 +81,10 @@ describe('removeTrailingWhitespaces', () => {
 	it('should stop trimming at img', () => {
 		check(
 			`
-    		<div>Hello <img src="src">  <br/></div>
+				<html><head></head><body><div>Hello <img src="src">  <br/></div></body></html>
 			`,
 			`
-				<div>Hello <img src="src"></div>
+				<html><head></head><body><div>Hello <img src="src"></div></body></html>
     	`
 		);
 	});
@@ -91,10 +92,10 @@ describe('removeTrailingWhitespaces', () => {
 	it('should trim recursively up the HTML tree', () => {
 		check(
 			`
-    		<div><div>Hello <hr> </div> <br/></div>
+				<html><head></head><body><div><div>Hello <hr> </div> <br/></div></body></html>
 			`,
 			`
-				<div><div>Hello</div></div>
+				<html><head></head><body><div><div>Hello</div></div></body></html>
     	`
 		);
 	});
@@ -102,10 +103,10 @@ describe('removeTrailingWhitespaces', () => {
 	it('should trim remnants of signature', () => {
 		check(
 			`
-    		<div><div>Hello </div><br clear="all"><br>-- <br></div>
+				<html><head></head><body><div><div>Hello </div><br clear="all"><br>-- <br></div></body></html>
 			`,
 			`
-				<div><div>Hello</div></div>
+				<html><head></head><body><div><div>Hello</div></div></body></html>
     	`
 		);
 	});
@@ -113,25 +114,36 @@ describe('removeTrailingWhitespaces', () => {
 	it('should trim comments', () => {
 		check(
 			`
-				<div>
-					<div>Hello</div>
-					<p>
-						<!-- Some extra spaces -->
-						<br />
-					</p>
-				</div>
+				<html>
+					<head></head>
+					<body>
+						<div>
+							<div>Hello</div>
+							<p>
+								<!-- Some extra spaces -->
+								<br />
+							</p>
+						</div>
+					</body>
+				</html>
 			`,
 			`
-				<div>
-					<div>Hello</div></div>
+				<html>
+					<head></head>
+					<body>
+						<div>
+							<div>Hello</div>
+						</div>
+					</body>
+				</html>
 			`
 		);
 	});
 });
 
 function check(before: string, after: string) {
-	const $ = cheerio.load(before.trim());
+	const $ = cheerio.load(before);
 	removeTrailingWhitespaces($);
 	const result = $.html();
-	expect(result).toBe(after.trim());
+	expectHtml(result, after);
 }

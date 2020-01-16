@@ -14,21 +14,26 @@ function printEl(el: CheerioElement): string {
 describe('walkBackwards', () => {
 	it('should walk depth-first, in reverse order', () => {
 		const $ = cheerio.load(`
-			<k>
-				text-j
-				<i>
-					text-h
-					<g>
-						text-f
-					</g>
-					text-e
-					<d>
-						text-c
-					</d>
-					text-b
-				</i>
-				text-a
-			</k>
+			<html>
+				<head></head>
+				<body>
+					<k>
+						text-j
+						<i>
+							text-h
+							<g>
+								text-f
+							</g>
+							text-e
+							<d>
+								text-c
+							</d>
+							text-b
+						</i>
+						text-a
+					</k>
+				</body>
+			</html>
 		`);
 
 		const order = [];
@@ -50,7 +55,7 @@ describe('walkBackwards', () => {
 			'text-j',
 			'k',
 			'',
-			'root',
+			'body',
 		]);
 	});
 
