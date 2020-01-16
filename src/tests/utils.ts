@@ -4,7 +4,11 @@ import prettier from 'prettier';
 import expect from 'expect';
 
 function formatHtml(html: string): string {
-	return prettier.format(html, { parser: 'html', endOfLine: 'lf' });
+	return prettier.format(html, {
+		parser: 'html',
+		endOfLine: 'lf',
+		printWidth: 120,
+	});
 }
 /**
  * Expect two HTMLs to be identical, disregarding formatting differences

@@ -11,17 +11,23 @@ import { formatHtml } from '../utils';
  *************************************/
 
 listFixtures()
-	.filter(fixture => !fixture.hasOutputComplete && !fixture.hasOutputMessage)
+	.filter(
+		fixture => !fixture.hasOutputComplete() && !fixture.hasOutputMessage()
+	)
 	.forEach(fixture => {
+		console.log('Found lonely input fixture: ' + fixture.name);
+
 		const result = prepareMessage(fixture.input);
 
 		Fs.writeFileSync(
 			fixture.outputMessagePath,
 			formatHtml(result.messageHtml)
 		);
+		console.log('Wrote: ' + fixture.outputMessagePath);
 
 		Fs.writeFileSync(
 			fixture.outputCompletePath,
 			formatHtml(result.completeHtml)
 		);
+		console.log('Wrote: ' + fixture.outputCompletePath);
 	});

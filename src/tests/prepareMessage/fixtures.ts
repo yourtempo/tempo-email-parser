@@ -6,7 +6,7 @@ const FIXTURE_DIR = __dirname;
 class Fixture {
 	name: string;
 
-	constructor(name) {
+	constructor(name: string) {
 		this.name = name;
 	}
 
@@ -44,12 +44,15 @@ class Fixture {
 function listFixtures(): Fixture[] {
 	const files: string[] = Fs.readdirSync(FIXTURE_DIR);
 
-	return files
-		.filter(path => {
-			return path.endsWith('.input.html');
-		})
+	const inputs = files.filter(path => {
+		return path.endsWith('.input.html');
+	});
+
+	const fixtures = inputs
 		.map(path => Path.basename(path, '.input.html'))
 		.map(name => new Fixture(name));
+
+	return fixtures;
 }
 
 export { Fixture, listFixtures };

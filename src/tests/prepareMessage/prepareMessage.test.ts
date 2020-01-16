@@ -9,13 +9,13 @@ function checkFixture(fixture: Fixture) {
 	describe(fixture.name, () => {
 		const result = prepareMessage(fixture.input);
 
-		if (fixture.hasOutputComplete) {
+		if (fixture.hasOutputComplete()) {
 			it('completeHtml', () => {
 				expectHtml(result.completeHtml, fixture.outputComplete);
 			});
 		}
 
-		if (fixture.hasOutputMessage) {
+		if (fixture.hasOutputMessage()) {
 			// console.log(result.messageHtml);
 			it('messageHtml', () => {
 				expectHtml(result.messageHtml, fixture.outputMessage);
@@ -25,6 +25,9 @@ function checkFixture(fixture: Fixture) {
 }
 
 describe('prepareMessage', () => {
-	const fixtures = listFixtures();
+	const fixtures = listFixtures().filter(
+		fixture => fixture.hasOutputComplete() || fixture.hasOutputMessage()
+	);
+
 	fixtures.forEach(checkFixture);
 });
