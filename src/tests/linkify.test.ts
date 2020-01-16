@@ -33,14 +33,16 @@ describe('linkify', () => {
 			http://yourtempo.co
 			https://yourtempo.co
 			ftp://yourtempo.co
+			+33578758785
 		</p>`;
 
 		expect(linkify(email)).toBe(`<p>
-			<a href="mailto:hello@email.com" rel="noopener noreferrer">hello@email.com</a>
+			<a href="mailto:hello@email.com" target="_blank" rel="noopener noreferrer">hello@email.com</a>
 			<a href="http://yourtempo.co" target="_blank" rel="noopener noreferrer">yourtempo.co</a>
 			<a href="http://yourtempo.co" target="_blank" rel="noopener noreferrer">http://yourtempo.co</a>
 			<a href="https://yourtempo.co" target="_blank" rel="noopener noreferrer">https://yourtempo.co</a>
 			<a href="ftp://yourtempo.co" target="_blank" rel="noopener noreferrer">ftp://yourtempo.co</a>
+			<a href="tel:+33578758785" target="_blank" rel="noopener noreferrer">+33578758785</a>
 		</p>`);
 	});
 
