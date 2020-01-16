@@ -7,53 +7,51 @@ import {
 } from './cheerio-utils';
 import walkBackwards from './walkBackwards';
 
-function isQuoteHeaderStart(el: CheerioElement): boolean {
-	const OnRegexp = new RegExp(
-		// https://github.com/quentez/talonjs/blob/26de2941d9ea739e12853534717a820c72a6f8e9/src/Regexp.ts#L9:L9
-		`^\\s*(${
-			// Beginning of the line.
-			[
-				'On', // English,
-				'Le', // French
-				'W dniu', // Polish
-				'Op', // Dutch
-				'Am', // German
-				'På', // Norwegian
-				'Den', // Swedish, Danish,
-				'Em', // Portuguese
-				'El', // Spanish
-			].join('|')
-		})\\s`,
-		'gim'
-	);
+// https://github.com/quentez/talonjs/blob/26de2941d9ea739e12853534717a820c72a6f8e9/src/Regexp.ts#L9:L9
+const ON_REGEXP = regx('im')`
+	^\s*(${
+		// Beginning of the line.
+		[
+			'On', // English,
+			'Le', // French
+			'W dniu', // Polish
+			'Op', // Dutch
+			'Am', // German
+			'På', // Norwegian
+			'Den', // Swedish, Danish,
+			'Em', // Portuguese
+			'El', // Spanish
+		].join('|')
+	})
+  \s
+`;
 
-	const res = OnRegexp.test(el.nodeValue);
-	return res;
+const WROTE_REGEXP = regx('im')`
+  (${
+		// Ending of the line.
+		[
+			'wrote',
+			'sent', // English
+			'a écrit', // French
+			'napisał', // Polish
+			'schreef',
+			'verzond',
+			'geschreven', // Dutch
+			'schrieb', // German
+			'skrev', // Norwegian, Swedish
+			'escreveu', // Portuguese
+			'escribió', // Spanish
+		].join('|')
+  })
+  \s?:?$
+`;
+
+function isQuoteHeaderStart(el: CheerioElement): boolean {
+	return ON_REGEXP.test(el.nodeValue);
 }
 
 function isQuoteHeaderEnd(el: CheerioElement): boolean {
-	const WroteRegexp = new RegExp(
-		// https://github.com/quentez/talonjs/blob/26de2941d9ea739e12853534717a820c72a6f8e9/src/Regexp.ts#L9:L9
-		`(${
-			// Ending of the line.
-			[
-				'wrote',
-				'sent', // English
-				'a écrit', // French
-				'napisał', // Polish
-				'schreef',
-				'verzond',
-				'geschreven', // Dutch
-				'schrieb', // German
-				'skrev', // Norwegian, Swedish
-				'escreveu', // Portuguese
-				'escribió', // Spanish
-			].join('|')
-		})\\s?:?$`,
-		'gim'
-	);
-	const res = WroteRegexp.test(el.nodeValue);
-	return res;
+	return WROTE_REGEXP.test(el.nodeValue);
 }
 
 /**
