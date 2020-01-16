@@ -13,7 +13,9 @@ function blockRemoteContentInStyle(
 ) {
 	// <style> tags
 	$('style').each((_, styleEl) => {
-		const styleText = $(styleEl).text();
+		// We would have used .text() here, but there's a bug on script and style tags
+		// https://github.com/cheeriojs/cheerio/issues/1050
+		const styleText = $(styleEl).html() || '';
 
 		const hasRemoteUrls = REG_STYLE_REMOTE_URLS.test(styleText);
 
