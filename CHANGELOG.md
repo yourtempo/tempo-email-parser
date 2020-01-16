@@ -7,6 +7,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+-   #23 Detect "On date, somebody wrote:" in different languages.
+
 ## [0.4.0] - 2020-01-15
 
 -   #20 Added detection of inline quotes, as to not remove them
