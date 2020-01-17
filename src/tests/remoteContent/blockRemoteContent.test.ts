@@ -1,6 +1,6 @@
 import cheerio from 'cheerio';
 import { expectHtml, readFile } from '../utils';
-import blockRemoteContent from '../../blockRemoteContent';
+import { blockRemoteContent } from '../../blockRemoteContent';
 
 const EMAIL_PRIVACY_TESTER = readFile(__dirname, 'email-privacy-tester.html');
 
@@ -74,9 +74,7 @@ describe('remote-content', () => {
 			</html>
 		`;
 
-		const $ = cheerio.load(input);
-		blockRemoteContent($, { image: 'REPLACED_IMAGE' });
-		const actual = $.html();
+		const actual = blockRemoteContent(input, { image: 'REPLACED_IMAGE' });
 
 		expectHtml(actual, expected);
 	});
@@ -100,9 +98,7 @@ describe('remote-content', () => {
 
 		const expected = input;
 
-		const $ = cheerio.load(input);
-		blockRemoteContent($, { image: 'REPLACED_IMAGE' });
-		const actual = $.html();
+		const actual = blockRemoteContent(input, { image: 'REPLACED_IMAGE' });
 
 		expectHtml(actual, expected);
 	});
@@ -125,9 +121,7 @@ describe('remote-content', () => {
 
 		const expected = input;
 
-		const $ = cheerio.load(input);
-		blockRemoteContent($, { image: 'REPLACED_IMAGE' });
-		const actual = $.html();
+		const actual = blockRemoteContent(input, { image: 'REPLACED_IMAGE' });
 
 		expectHtml(actual, expected);
 	});
@@ -135,19 +129,17 @@ describe('remote-content', () => {
 	it('should replace remote content URLs in the email privacy tester', () => {
 		const input = EMAIL_PRIVACY_TESTER;
 
-		const $ = cheerio.load(input);
-		blockRemoteContent($, {
+		const actual = blockRemoteContent(input, {
 			image: 'REPLACED_IMAGE',
 			other: 'REPLACED_URL',
 		});
-		const actual = $.html();
 
 		const expected = `
     <html lang="en-GB" manifest="REPLACED_URL">
     	<head>
-			<meta name="author" content="Mike Cardwell. &lt;https://grepular.com/&gt;" />
-			<meta name="copyright" content="Copyright &#xA9;2016 Mike Cardwell. All rights reserved." />
-			<meta name="description" content="Email Privacy Tester" />
+				<meta name="author" content="Mike Cardwell. &lt;https://grepular.com/&gt;" />
+				<meta name="copyright" content="Copyright &#xA9;2016 Mike Cardwell. All rights reserved." />
+				<meta name="description" content="Email Privacy Tester" />
     		<title>Email Privacy Tester</title>
     		<link rel="alternate" type="application/rss+xml" href="REPLACED_URL">
     		<link rel="alternate" type="application/atom+xml" href="REPLACED_URL">

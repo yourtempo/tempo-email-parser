@@ -4,7 +4,7 @@ import removeQuotations from './removeQuotations';
 import removeTrailingWhitespaces from './removeTrailingWhitespaces';
 import linkify from './linkify';
 import enforceViewport from './enforceViewport';
-import blockRemoteContent from './blockRemoteContent';
+import { blockRemoteContentCheerio } from './blockRemoteContent';
 import { containsEmptyText, getTopLevelElement } from './cheerio-utils';
 
 /**
@@ -64,7 +64,7 @@ function prepareMessage(
 	removeTrackers($);
 
 	if (noRemoteContent) {
-		blockRemoteContent($);
+		blockRemoteContentCheerio($);
 	}
 
 	if (forceMobileViewport) {

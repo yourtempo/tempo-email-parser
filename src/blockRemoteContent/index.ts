@@ -1,3 +1,4 @@
+import cheerio from 'cheerio';
 import blockRemoteContentInAttributes from './blockRemoteContentInAttributes';
 import blockRemoteContentInStyle from './blockRemoteContentInStyle';
 
@@ -20,7 +21,7 @@ export type ReplacementOptions = {
 /**
  * Replace all URLs that could be automatically fetched when displaying the HTML. These can be used for tracking, or can consume bandwidth.
  */
-function blockRemoteContent(
+function blockRemoteContentCheerio(
 	$: CheerioStatic,
 	replacements: Partial<ReplacementOptions> = {}
 ) {
@@ -32,4 +33,16 @@ function blockRemoteContent(
 	blockRemoteContentInAttributes($, { image, other });
 }
 
-export default blockRemoteContent;
+/**
+ * Same as blockRemoteContentCheerio, but to be used as a standalone.
+ */
+function blockRemoteContent(
+	html: string,
+	replacements: Partial<ReplacementOptions> = {}
+): string {
+	const $ = cheerio.load(html);
+	blockRemoteContentCheerio($, replacements);
+	return $.html();
+}
+
+export { blockRemoteContentCheerio, blockRemoteContent };
