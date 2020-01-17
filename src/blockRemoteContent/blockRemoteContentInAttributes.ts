@@ -44,6 +44,13 @@ function blockRemoteContentInAttributes(
 	$(query).each((_, el: CheerioElement) => {
 		const $el = $(el);
 
+		if (el.tagName === 'meta') {
+			if (isMetaRefresh($el)) {
+				$el.remove();
+			}
+			return;
+		}
+
 		getUrlAttributes(el.tagName, $el)
 			.filter(attr => {
 				const value = $el.attr(attr);
@@ -56,6 +63,13 @@ function blockRemoteContentInAttributes(
 				$el.attr(attr, replacement);
 			});
 	});
+}
+
+function isMetaRefresh(meta: Cheerio): boolean {
+	// https://www.emailprivacytester.com/testDescription?test=metaRefresh
+	const httpEquiv = meta.attr('http-equiv') || '';
+	const content = meta.attr('content') || '';
+	return /^refresh$/i.test(httpEquiv) || /^\d*;\s*URL=/.test(content);
 }
 
 /**

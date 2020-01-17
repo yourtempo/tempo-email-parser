@@ -145,9 +145,9 @@ describe('remote-content', () => {
 		const expected = `
     <html lang="en-GB" manifest="REPLACED_URL">
     	<head>
-    		<meta name="author" content="REPLACED_URL">
-    		<meta name="copyright" content="REPLACED_URL">
-    		<meta name="description" content="REPLACED_URL">
+			<meta name="author" content="Mike Cardwell. &lt;https://grepular.com/&gt;" />
+			<meta name="copyright" content="Copyright &#xA9;2016 Mike Cardwell. All rights reserved." />
+			<meta name="description" content="Email Privacy Tester" />
     		<title>Email Privacy Tester</title>
     		<link rel="alternate" type="application/rss+xml" href="REPLACED_URL">
     		<link rel="alternate" type="application/atom+xml" href="REPLACED_URL">
@@ -155,7 +155,6 @@ describe('remote-content', () => {
     		<link rel="stylesheet" type="text/css" href="REPLACED_URL">
     		<link rel="stylesheet" type="text/css" href="cid:5e175f8d8af4d70022fc5832.css@www.emailprivacytester.com">
     		<link rel="search" type="application/opensearchdescription+xml" href="REPLACED_URL">
-    		<meta content="REPLACED_URL">
     	</head>
     	<body>
     		<p style="border-bottom:1px solid #000;padding-bottom:1em;">

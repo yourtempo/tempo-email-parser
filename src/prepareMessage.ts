@@ -63,7 +63,6 @@ function prepareMessage(
 	removeScripts($);
 	removeTrackers($);
 
-	// Before mobile viewport, otherwise this breaks the meta tag
 	if (noRemoteContent) {
 		blockRemoteContent($);
 	}
