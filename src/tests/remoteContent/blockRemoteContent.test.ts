@@ -79,6 +79,31 @@ describe('remote-content', () => {
 		expectHtml(actual, expected);
 	});
 
+	it('should not replace image attachment (cid:) URLs', () => {
+		const input = `
+			<html>
+				<body>
+					<div>
+						<img
+							alt="attached-image.jpg"
+							apple-inline="yes"
+							id="2F2AD029-71DC-47C2-B217-0DD1152403C3"
+							src="cid:ii_k5cmfars0"
+						/><br /><br />Cheers!<br />Jonathan
+					</div>
+				</body>
+			</html>
+		`;
+
+		const expected = input;
+
+		const $ = cheerio.load(input);
+		blockRemoteContent($, { image: 'REPLACED_IMAGE' });
+		const actual = $.html();
+
+		expectHtml(actual, expected);
+	});
+
 	it('should replace remote content URLs in the email privacy tester', () => {
 		const input = EMAIL_PRIVACY_TESTER;
 
