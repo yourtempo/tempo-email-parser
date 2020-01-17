@@ -12,7 +12,10 @@ Also runs several transformations to the email so that it can be displayed safel
 ## Usage
 
 ```ts
-import prepareMessage from 'tempo-message-splitter';
+import prepareMessage, {
+	blockRemoteContent,
+	linkify,
+} from 'tempo-message-splitter';
 
 const emailHtml = `
 <div>Hello there</div>
@@ -20,9 +23,9 @@ const emailHtml = `
 
 const OPTIONS = {
 	noQuotations: true,
-	autolink: true,
+	autolink: false,
 	forceMobileViewport: true,
-	noRemoteContent: true,
+	noRemoteContent: false,
 };
 
 const {
@@ -33,6 +36,13 @@ const {
 	// Did we removed quotes or signature
 	didFindQuotation,
 } = prepareMessage(emailHtml, OPTIONS);
+
+const withLinks = linkify(messageHtml);
+
+const noRemoteContent = blockRemoteContent(messageHtml, {
+	image: 'replacement-image-url', // Remote image URLs replacement. Default to 1x100 transparent image
+	other: '#', // Other URLs replacements
+});
 ```
 
 ## Development
