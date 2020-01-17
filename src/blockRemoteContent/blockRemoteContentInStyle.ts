@@ -68,8 +68,8 @@ const REG_STYLE_REMOTE_URLS: RegExp = regx('gi')`
     ["']?
   )
 
-  // Ignore data URLs
-  (?!data:)
+  // Ignore data URLs, or cid attachments
+  (?!data:|cid:)
 
   // Capture URL value
   (

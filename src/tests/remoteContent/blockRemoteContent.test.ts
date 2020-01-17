@@ -30,6 +30,7 @@ describe('remote-content', () => {
 							background-image: url('foo/bar.jpg');
 							background-image: url(data:image/gif;base64,ABCDEFGH=);
 							background-image: url('data:image/gif;base64,ABCDEFGH=');
+							background-image: url('cid:ii_k5cmfars0');
 							background-image: url(http://remote.com/asdf/foo/bar.jpg);
 							background-image: url('https://remote.com/asdf/foo/bar.jpg');
 							background-image: url('http://remote.com/asdf/foo/bar.jpg');
@@ -63,6 +64,7 @@ describe('remote-content', () => {
 							background-image: url('foo/bar.jpg');
 							background-image: url(data:image/gif;base64,ABCDEFGH=);
 							background-image: url('data:image/gif;base64,ABCDEFGH=');
+							background-image: url('cid:ii_k5cmfars0');
 							background-image: url(REPLACED_IMAGE);
 							background-image: url('REPLACED_IMAGE');
 							background-image: url('REPLACED_IMAGE');
