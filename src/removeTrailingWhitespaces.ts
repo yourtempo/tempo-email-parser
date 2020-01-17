@@ -29,7 +29,7 @@ function removeTrailingWhitespaces(
 			return true;
 		} else {
 			const trimmed = (el.data as string).trim();
-			$(el.parent).text(trimmed);
+			$(el).text(trimmed);
 			// We're done trimming
 			return false;
 		}
