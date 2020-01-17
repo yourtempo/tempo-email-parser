@@ -79,9 +79,35 @@ describe('remote-content', () => {
 		expectHtml(actual, expected);
 	});
 
+	it('should not replace embedded image (data:)', () => {
+		const input = `
+			<html>
+				<head></head>
+				<body>
+					<div>
+						<img
+							alt="attached-image.jpg"
+							apple-inline="yes"
+							id="2F2AD029-71DC-47C2-B217-0DD1152403C3"
+							src="data:image/png;base64,ADSADSAD"
+						/><br /><br />Cheers!<br />Jonathan
+					</div>
+				</body>
+			</html>
+		`;
+
+		const expected = input;
+
+		const $ = cheerio.load(input);
+		blockRemoteContent($, { image: 'REPLACED_IMAGE' });
+		const actual = $.html();
+
+		expectHtml(actual, expected);
+	});
 	it('should not replace image attachment (cid:) URLs', () => {
 		const input = `
 			<html>
+				<head></head>
 				<body>
 					<div>
 						<img
@@ -125,7 +151,7 @@ describe('remote-content', () => {
     		<link rel="alternate" type="application/atom+xml" href="REPLACED_URL">
     		<script type="text/javascript" src="REPLACED_IMAGE"></script>
     		<link rel="stylesheet" type="text/css" href="REPLACED_URL">
-    		<link rel="stylesheet" type="text/css" href="REPLACED_URL">
+    		<link rel="stylesheet" type="text/css" href="cid:5e175f8d8af4d70022fc5832.css@www.emailprivacytester.com">
     		<link rel="search" type="application/opensearchdescription+xml" href="REPLACED_URL">
     		<meta content="REPLACED_URL">
     	</head>
@@ -140,7 +166,7 @@ describe('remote-content', () => {
     		<p style="behavior:url(&apos;REPLACED_IMAGE&apos;) url(&apos;REPLACED_IMAGE&apos;);"></p>
     		<style type="text/css"></style><style type="text/css"></style>
     		<div id="cssEscape"></div>
-    		<style type="text/css"></style><object type="image/svg+xml" data="REPLACED_URL"><embed type="image/svg+xml" src="REPLACED_IMAGE"></object><iframe src="REPLACED_IMAGE" width="1" height="1"></iframe><span></span><img width="16" height="16" src="REPLACED_IMAGE"><img src="REPLACED_IMAGE" width="16" height="16"><input type="image" src="REPLACED_IMAGE"><a href="http://5e175f8d8af4d70022fc5832.anchor-test.ept.emailprivacytester.com"></a><link rel="dns-prefetch" href="REPLACED_URL"><link rel="prefetch" href="REPLACED_URL"><video src="REPLACED_IMAGE" width="1" height="1"></video><video poster="REPLACED_IMAGE" width="1" height="1">
+    		<style type="text/css"></style><object type="image/svg+xml" data="cid:5e175f8d8af4d70022fc5832.svg@www.emailprivacytester.com"><embed type="image/svg+xml" src="cid:5e175f8d8af4d70022fc5832.svg@www.emailprivacytester.com"></object><iframe src="cid:5e175f8d8af4d70022fc5832.svg@www.emailprivacytester.com" width="1" height="1"></iframe><span></span><img width="16" height="16" src="REPLACED_IMAGE"><img src="REPLACED_IMAGE" width="16" height="16"><input type="image" src="REPLACED_IMAGE"><a href="http://5e175f8d8af4d70022fc5832.anchor-test.ept.emailprivacytester.com"></a><link rel="dns-prefetch" href="REPLACED_URL"><link rel="prefetch" href="REPLACED_URL"><video src="REPLACED_IMAGE" width="1" height="1"></video><video poster="REPLACED_IMAGE" width="1" height="1">
     			<source src="REPLACED_IMAGE" type="video/mp4; codecs=&quot;avc1.4D401E, mp4a.40.2&quot;">
     			<source src="REPLACED_IMAGE" type="video/webm; codecs=&quot;vp8.0, vorbis&quot;">
     			<source src="REPLACED_IMAGE" type="video/ogg; codecs=&quot;theora, vorbis&quot;"></video><audio src="REPLACED_IMAGE" preload="metadata" width="1" height="1"></audio><span></span><object width="16" height="16" data="REPLACED_URL" type="image/png"></object><iframe src="REPLACED_IMAGE" width="1" height="1"></iframe><span></span>

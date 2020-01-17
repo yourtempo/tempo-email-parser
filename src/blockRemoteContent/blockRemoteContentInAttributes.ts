@@ -45,7 +45,10 @@ function blockRemoteContentInAttributes(
 		const $el = $(el);
 
 		getUrlAttributes(el.tagName, $el)
-			.filter(isRemoteUrl)
+			.filter(attr => {
+				const value = $el.attr(attr);
+				return !value || isRemoteUrl(value);
+			})
 			.forEach(attr => {
 				const replacement = isImageAttribute(attr)
 					? replacements.image
@@ -88,7 +91,7 @@ function isImageAttribute(attr: string): boolean {
 function isRemoteUrl(attributeValue: string) {
 	// There can be several URLs. We consider them remote then.
 	// (for example img srcset: https://developer.mozilla.org/en-US/docs/Web/HTML/Element/img#attr-srcset)
-	const isLocal = /^data:\S*$/.test(attributeValue);
+	const isLocal = /^(?:data:|cid:)\S*$/.test(attributeValue);
 	return !isLocal;
 }
 
