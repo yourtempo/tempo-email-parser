@@ -4,7 +4,10 @@ import removeQuotations from './removeQuotations';
 import removeTrailingWhitespaces from './removeTrailingWhitespaces';
 import linkify from './linkify';
 import enforceViewport from './enforceViewport';
-import { blockRemoteContentCheerio } from './blockRemoteContent';
+import {
+	blockRemoteContentCheerio,
+	ReplacementOptions,
+} from './blockRemoteContent';
 import { containsEmptyText, getTopLevelElement } from './cheerio-utils';
 
 /**
@@ -29,6 +32,7 @@ function prepareMessage(
 		// Replace remote images with a transparent image,
 		// and replace other remote URLs with '#'
 		noRemoteContent?: boolean;
+		remoteContentReplacements?: Partial<ReplacementOptions>;
 	} = {}
 ): {
 	// The complete message.
@@ -43,6 +47,7 @@ function prepareMessage(
 		autolink = true,
 		forceMobileViewport = true,
 		noRemoteContent = true,
+		remoteContentReplacements = {},
 	} = options;
 
 	let result = {
@@ -64,7 +69,7 @@ function prepareMessage(
 	removeTrackers($);
 
 	if (noRemoteContent) {
-		blockRemoteContentCheerio($);
+		blockRemoteContentCheerio($, remoteContentReplacements);
 	}
 
 	if (forceMobileViewport) {

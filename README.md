@@ -21,11 +21,17 @@ const emailHtml = `
 <div>Hello there</div>
 `;
 
+const remoteContentReplacements = {
+	image: 'replacement-image-url', // Remote image URLs replacement. Default to 1x100 transparent image
+	other: '#', // Other URLs replacements
+};
+
 const OPTIONS = {
 	noQuotations: true,
 	autolink: false,
 	forceMobileViewport: true,
-	noRemoteContent: false,
+	noRemoteContent: true,
+	remoteContentReplacements,
 };
 
 const {
@@ -39,10 +45,10 @@ const {
 
 const withLinks = linkify(messageHtml);
 
-const noRemoteContent = blockRemoteContent(messageHtml, {
-	image: 'replacement-image-url', // Remote image URLs replacement. Default to 1x100 transparent image
-	other: '#', // Other URLs replacements
-});
+const noRemoteContent = blockRemoteContent(
+	messageHtml,
+	remoteContentReplacements
+);
 ```
 
 ## Development
