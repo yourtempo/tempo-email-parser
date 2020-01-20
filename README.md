@@ -26,12 +26,18 @@ const remoteContentReplacements = {
 	other: '#', // Other URLs replacements
 };
 
+// All options default to false.
 const OPTIONS = {
 	noQuotations: true,
-	autolink: false,
+	autolink: true,
 	forceViewport: '<meta name="viewport" content="width=device-width" />',
 	noRemoteContent: true,
 	remoteContentReplacements,
+	includeStyle: `
+		.custom-style {
+			color: red;
+		}
+	`,
 };
 
 const {
