@@ -29,7 +29,7 @@ const remoteContentReplacements = {
 const OPTIONS = {
 	noQuotations: true,
 	autolink: false,
-	forceMobileViewport: true,
+	forceViewport: '<meta name="viewport" content="width=device-width" />',
 	noRemoteContent: true,
 	remoteContentReplacements,
 };
@@ -42,7 +42,11 @@ const {
 	// Did we removed quotes or signature
 	didFindQuotation,
 } = prepareMessage(emailHtml, OPTIONS);
+```
 
+Autolinking and remote-content blocking are available as separate functions as well.
+
+```js
 const withLinks = linkify(messageHtml);
 
 const noRemoteContent = blockRemoteContent(
