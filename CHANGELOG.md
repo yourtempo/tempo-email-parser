@@ -5,6 +5,10 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [0.6.1] - 2020-01-20
+
+-   Added option for remote-content replacements in `prepareMessage`
+
 ## [0.6.0] - 2020-01-17
 
 -   Only block refresh meta tags when blocking remote content
@@ -43,7 +47,8 @@ First version for integration tests. Include the following features
 -   Remove trailing whitespaces
 -   Force viewport for mobile device
 
-[unreleased]: https://github.com/pillarstudio/tempo-message-splitter/compare/v0.6.0...HEAD
+[unreleased]: https://github.com/pillarstudio/tempo-message-splitter/compare/v0.6.1...HEAD
+[0.6.1]: https://github.com/pillarstudio/tempo-message-splitter/releases/tag/v0.6.1
 [0.6.0]: https://github.com/pillarstudio/tempo-message-splitter/releases/tag/v0.6.0
 [0.5.0]: https://github.com/pillarstudio/tempo-message-splitter/releases/tag/v0.5.0
 [0.4.0]: https://github.com/pillarstudio/tempo-message-splitter/releases/tag/v0.4.0
