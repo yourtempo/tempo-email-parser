@@ -13,6 +13,7 @@ function checkFixture(fixture: Fixture) {
 			noRemoteContent: true,
 			forceViewport:
 				'<meta name="viewport" content="width=device-width" />',
+			includeStyle: '.customStyle { background: red; }',
 		});
 
 		if (fixture.hasOutputComplete()) {

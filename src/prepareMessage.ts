@@ -9,6 +9,7 @@ import {
 	ReplacementOptions,
 } from './blockRemoteContent';
 import { containsEmptyText, getTopLevelElement } from './cheerio-utils';
+import appendStyle from './appendStyle';
 
 /**
  * Parse an HTML email and make transformation needed before displaying it to the user.
@@ -33,6 +34,8 @@ function prepareMessage(
 		// and replace other remote URLs with '#'
 		noRemoteContent?: boolean;
 		remoteContentReplacements?: Partial<ReplacementOptions>;
+		// Append some styles to the HTML <head>
+		includeStyle?: string;
 	} = {}
 ): {
 	// The complete message.
@@ -47,6 +50,7 @@ function prepareMessage(
 		autolink = false,
 		forceViewport = false,
 		noRemoteContent = false,
+		includeStyle = false,
 		remoteContentReplacements = {},
 	} = options;
 
@@ -74,6 +78,10 @@ function prepareMessage(
 
 	if (forceViewport) {
 		enforceViewport($, forceViewport);
+	}
+
+	if (includeStyle) {
+		appendStyle($, includeStyle);
 	}
 
 	removeTrailingWhitespaces($);
