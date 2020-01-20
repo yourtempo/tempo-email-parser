@@ -5,6 +5,11 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## Unreleased
+
+-   Changed all default options for `prepareMessage` to be false. You now need to explicitly enable each feature.
+-   `enforceMobileViewport` option is now `forceViewport` and is an optional HTML string for the viewport meta tag to set.
+
 ## [0.6.1] - 2020-01-20
 
 -   Added option for remote-content replacements in `prepareMessage`

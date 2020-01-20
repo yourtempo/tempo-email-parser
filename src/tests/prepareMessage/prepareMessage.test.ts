@@ -7,7 +7,13 @@ import { listFixtures, Fixture } from './fixtures';
  */
 function checkFixture(fixture: Fixture) {
 	describe(fixture.name, () => {
-		const result = prepareMessage(fixture.input);
+		const result = prepareMessage(fixture.input, {
+			noQuotations: true,
+			autolink: true,
+			noRemoteContent: true,
+			forceViewport:
+				'<meta name="viewport" content="width=device-width" />',
+		});
 
 		if (fixture.hasOutputComplete()) {
 			it('completeHtml', () => {

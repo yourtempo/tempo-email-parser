@@ -27,8 +27,8 @@ function prepareMessage(
 		noQuotations?: boolean;
 		// Automatically convert text links to anchor tags
 		autolink?: boolean;
-		// Enforce specific viewport for mobile "width=device-width, initial-scale=1"
-		forceMobileViewport?: boolean;
+		// Specific viewport to enforce. For example "<meta name="viewport" content="width=device-width">"
+		forceViewport?: string;
 		// Replace remote images with a transparent image,
 		// and replace other remote URLs with '#'
 		noRemoteContent?: boolean;
@@ -43,10 +43,10 @@ function prepareMessage(
 	didFindQuotation: boolean;
 } {
 	const {
-		noQuotations = true,
-		autolink = true,
-		forceMobileViewport = true,
-		noRemoteContent = true,
+		noQuotations = false,
+		autolink = false,
+		forceViewport = false,
+		noRemoteContent = false,
 		remoteContentReplacements = {},
 	} = options;
 
@@ -72,8 +72,8 @@ function prepareMessage(
 		blockRemoteContentCheerio($, remoteContentReplacements);
 	}
 
-	if (forceMobileViewport) {
-		enforceViewport($);
+	if (forceViewport) {
+		enforceViewport($, forceViewport);
 	}
 
 	removeTrailingWhitespaces($);
