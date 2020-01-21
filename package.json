@@ -1,5 +1,5 @@
 {
-	"name": "@pillarstudio/tempo-message-splitter",
+	"name": "@yourtempo/tempo-message-splitter",
 	"private": true,
 	"version": "0.7.0",
 	"description": "Processes HTML email for display. Extracts quotations and more.",
@@ -16,14 +16,14 @@
 	},
 	"repository": {
 		"type": "git",
-		"url": "git+https://github.com/pillarstudio/tempo-message-splitter.git"
+		"url": "git+https://github.com/yourtempo/tempo-message-splitter.git"
 	},
 	"author": "",
 	"license": "ISC",
 	"bugs": {
-		"url": "https://github.com/pillarstudio/tempo-message-splitter/issues"
+		"url": "https://github.com/yourtempo/tempo-message-splitter/issues"
 	},
-	"homepage": "https://github.com/pillarstudio/tempo-message-splitter#readme",
+	"homepage": "https://github.com/yourtempo/tempo-message-splitter#readme",
 	"devDependencies": {
 		"@types/benchmark": "^1.0.31",
 		"@types/dompurify": "^2.0.1",
