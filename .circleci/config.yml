@@ -9,17 +9,27 @@ jobs:
             - checkout
             - node/with-cache:
                   steps:
+                      # Cache yarn packages https://circleci.com/docs/2.0/yarn/
+                      - restore_cache:
+                            name: Restore Yarn Package Cache
+                            keys:
+                                - yarn-packages-{{ checksum "yarn.lock" }}
                       - run:
-                            name: install
-                            command: yarn install
+                            name: Yarn install
+                            command: yarn install --frozen-lockfile
+                      - save_cache:
+                            name: Save Yarn Package Cache
+                            key: yarn-packages-{{ checksum "yarn.lock" }}
+                            paths:
+                                - ~/.cache/yarn
                       - run:
-                            name: lint
+                            name: Lint
                             command: yarn lint
                       - run:
-                            name: test
+                            name: Test
                             command: yarn test
                       - run:
-                            name: build
+                            name: Build
                             command: yarn build
 workflows:
     build-and-test:
