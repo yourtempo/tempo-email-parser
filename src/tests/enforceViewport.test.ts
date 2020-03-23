@@ -115,8 +115,41 @@ describe('enforceViewport', () => {
 						content="width=device-width"
 					/>
 				</head>
+
 				<body>
 					<div>Hello</div>
+				</body>
+			</html>
+		`;
+
+		expectHtml(actual, expected);
+	});
+
+	it('should handle invalid HTML', () => {
+		const email = `
+		<div>
+			<meta name="viewport" content="width=device-width">
+			<p>Forwarding you a message</p>
+		</div>
+		`;
+
+		const $ = cheerio.load(email);
+		enforceViewport($);
+
+		const actual = $.html();
+
+		const expected = `
+			<html>
+				<head>
+					<meta
+						name="viewport"
+						content="width=device-width"
+					/>
+				</head>
+				<body>
+					<div>
+						<p>Forwarding you a message</p>
+					</div>
 				</body>
 			</html>
 		`;

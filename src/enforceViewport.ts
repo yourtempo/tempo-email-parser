@@ -1,6 +1,10 @@
 /**
- * Ensure the email contains a
+ * Removes ALL existing viewport-tags from the email and
+ * appends the following viewport-tag to the most top-level <head> element
  * <meta name="viewport" content="width=device-width" />
+ *
+ * If the email does not contain a <head> element then it will be created
+ * just before the viewport-tag gets appended.
  */
 function enforceViewport(
 	$: CheerioStatic,
@@ -12,20 +16,15 @@ function enforceViewport(
 	const viewportElement = $(desiredViewport);
 
 	if (hasViewport) {
-		// Replace them with the one we want
-		viewports.each((index, el) => {
-			const first = index === 0;
-			if (first) {
-				$(el).replaceWith(viewportElement);
-			} else {
-				$(el).remove();
-			}
+		// remove current viewports
+		viewports.each((_, el) => {
+			$(el).remove();
 		});
-	} else {
-		// Insert a viewport
-		const head = $('head'); // Cheerio already makes sure head is present
-		head.append(viewportElement);
 	}
+
+	// Insert a viewport
+	const head = $('head'); // Cheerio already makes sure head is present
+	head.append(viewportElement);
 }
 
 export default enforceViewport;
