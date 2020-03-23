@@ -1,6 +1,10 @@
 /**
- * Ensure the email contains a
+ * Removes ALL existing viewport-tags from the email and
+ * appends the following viewport-tag to the most top-level <head> element
  * <meta name="viewport" content="width=device-width" />
+ *
+ * If the email does not contain a <head> element then it will be created
+ * just before the viewport-tag gets appended.
  */
 function enforceViewport(
 	$: CheerioStatic,
