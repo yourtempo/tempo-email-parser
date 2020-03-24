@@ -7,31 +7,20 @@ jobs:
             name: node/default
         steps:
             - checkout
-            - node/with-cache:
+            - node/with-cache: # Use node orb's caching of node_modules
+                  cache-key: yarn.lock
                   steps:
-                      # Cache yarn packages https://circleci.com/docs/2.0/yarn/
-                      - restore_cache:
-                            name: Restore Yarn Package Cache
-                            keys:
-                                - yarn-packages-{{ checksum "yarn.lock" }}
-                      - run:
-                            name: Yarn install
-                            command: yarn install --frozen-lockfile
-                      - save_cache:
-                            name: Save Yarn Package Cache
-                            key: yarn-packages-{{ checksum "yarn.lock" }}
-                            paths:
-                                - ~/.cache/yarn
-                      - run:
-                            name: Lint
-                            command: yarn lint
-                      - run:
-                            name: Test
-                            command: yarn test
-                      - run:
-                            name: Build
-                            command: yarn build
+                      - run: yarn install
+            - run:
+                  name: Type check and lint
+                  command: yarn lint
+            - run:
+                  name: Test
+                  command: yarn test
+            - run:
+                  name: Build
+                  command: yarn build
 workflows:
-    build-and-test:
+    test-and-build:
         jobs:
             - build
