@@ -8,7 +8,7 @@
  */
 function enforceViewport(
 	$: CheerioStatic,
-	desiredViewport: string = '<meta name="viewport" content="width=device-width">'
+	desiredViewport = '<meta name="viewport" content="width=device-width">'
 ) {
 	const viewports = $('meta[name="viewport"]');
 	const hasViewport = viewports.length > 0;

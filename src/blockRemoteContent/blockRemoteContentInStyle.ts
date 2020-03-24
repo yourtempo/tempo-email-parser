@@ -86,6 +86,7 @@ const REG_STYLE_REMOTE_URLS: RegExp = regx('gi')`
 function replaceUrlsInStyle(styleText: string, replacement: string): string {
 	return styleText.replace(
 		REG_STYLE_REMOTE_URLS,
+		// eslint-disable-next-line @typescript-eslint/no-unused-vars
 		(match: string, ...[prefix, capturedUrl]: string[]) => {
 			// The original match is `${prefix}${capturedUrl}`
 			return `${prefix}${replacement}`;

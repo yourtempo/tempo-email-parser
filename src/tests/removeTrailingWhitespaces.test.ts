@@ -200,7 +200,7 @@ describe('removeTrailingWhitespaces', () => {
 	});
 });
 
-function check(before: string, after: string) {
+function check(before: string, after: string): void {
 	const $ = cheerio.load(before);
 	removeTrailingWhitespaces($);
 	const result = $.html();

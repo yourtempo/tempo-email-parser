@@ -1,4 +1,3 @@
-import cheerio from 'cheerio';
 import { expectHtml, readFile } from '../utils';
 import { blockRemoteContent } from '../../blockRemoteContent';
 

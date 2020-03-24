@@ -22,6 +22,9 @@ module.exports = {
 		'no-useless-escape': [0, 'unix'],
 		semi: ['error', 'always'],
 		'@typescript-eslint/no-use-before-define': 'off',
+		'@typescript-eslint/explicit-function-return-type': 'off',
+		'@typescript-eslint/no-empty-function': 'off',
+		'@typescript-eslint/no-unused-vars': 'error',
 	},
 	ignorePatterns: ['./old/', './node_modules/'],
 };

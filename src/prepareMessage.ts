@@ -54,7 +54,7 @@ function prepareMessage(
 		remoteContentReplacements = {},
 	} = options;
 
-	let result = {
+	const result = {
 		messageHtml: emailHtml,
 		completeHtml: emailHtml,
 		didFindQuotation: false,
@@ -65,7 +65,7 @@ function prepareMessage(
 		result.messageHtml = result.completeHtml;
 	}
 
-	let $ = cheerio.load(result.completeHtml);
+	const $ = cheerio.load(result.completeHtml);
 
 	// Comments are useless, better remove them
 	removeComments($);
@@ -107,7 +107,7 @@ function prepareMessage(
 	return result;
 }
 
-function removeTrackers($: CheerioStatic) {
+function removeTrackers($: CheerioStatic): void {
 	const TRACKERS_SELECTORS = [
 		// TODO: Improve by looking at inline styles as well
 		'img[width="0"]',
@@ -124,13 +124,13 @@ function removeTrackers($: CheerioStatic) {
 	});
 }
 
-function removeScripts($: CheerioStatic) {
+function removeScripts($: CheerioStatic): void {
 	$('script').each((_, el) => {
 		$(el).remove();
 	});
 }
 
-function removeComments($: CheerioStatic) {
+function removeComments($: CheerioStatic): void {
 	$('*')
 		.contents()
 		.each((_, el) => {

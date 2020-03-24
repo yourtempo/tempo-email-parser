@@ -27,7 +27,7 @@ type BenchmarkCycleEvent = any;
 /**
  * Create a BenchmarkJS suite
  */
-function createSuite() {
+function createSuite(): Benchmark.Suite {
 	const suite = new Benchmark.Suite();
 
 	// On each benchmark completion
