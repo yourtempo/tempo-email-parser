@@ -1,16 +1,29 @@
 version: 2.1
 orbs:
     node: circleci/node@1.1.6
+commands:
+    yarn_install:
+        steps:
+            - restore_cache:
+                  name: Restore Yarn Package Cache
+                  keys:
+                      - yarn-packages-{{ checksum "yarn.lock" }}
+            - run:
+                  name: Install Dependencies
+                  command: yarn install --frozen-lockfile
+            - save_cache:
+                  name: Save Yarn Package Cache
+                  key: yarn-packages-{{ checksum "yarn.lock" }}
+                  paths:
+                      - ~/.cache/yarn
+
 jobs:
     build:
         executor:
             name: node/default
         steps:
             - checkout
-            - node/with-cache: # Use node orb's caching of node_modules
-                  cache-key: yarn.lock
-                  steps:
-                      - run: yarn install
+            - yarn_install
             - run:
                   name: Type check and lint
                   command: yarn lint
