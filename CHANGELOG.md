@@ -7,6 +7,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## Unreleased
 
+## [0.7.2] - 2020-03-25
+
+-   #26 `enforceMobileViewport` should always insert the viewport-tag to the head element in the top
+
 ## [0.7.0] - 2020-01-20
 
 -   Changed package name to `@yourtempo/tempo-message-splitter`
