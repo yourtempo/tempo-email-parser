@@ -8,10 +8,10 @@
 		"prepublishOnly": "yarn run build",
 		"build": "tsc -D",
 		"test": "jest",
-		"generate:fixtures": "ts-node ./src/tests/prepareMessage/generateFixtureOutputs.ts",
+		"generate:fixtures": "npx ts-node ./src/tests/prepareMessage/generateFixtureOutputs.ts",
 		"lint": "tsc --noEmit && eslint \"./**/*.{js,jsx,ts,tsx}\"",
-		"benchmarks": "ts-node --transpile-only ./benchmarks/message-splitter.ts",
-		"benchmarks:libraries": "ts-node --transpile-only ./benchmarks/libraries.ts"
+		"benchmarks": "npx ts-node --transpile-only ./benchmarks/message-splitter.ts",
+		"benchmarks:libraries": "npx ts-node --transpile-only ./benchmarks/libraries.ts"
 	},
 	"repository": {
 		"type": "git",

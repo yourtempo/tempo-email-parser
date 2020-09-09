@@ -366,4 +366,37 @@ describe('removeQuotations', () => {
 			didFindQuotation: true,
 		});
 	});
+
+	it('should remove "On... wrote:" when it is the end of the email', () => {
+		const email = `
+			<div>
+				<div>Hello</div>
+				<blockquote>this is a quote</blockquote>
+				<div>On December 3, 2019 at 05:01, Onno Schwanen wrote:</div>
+			</div>
+		`;
+
+		const $ = cheerio.load(email);
+		const result = removeQuotations($);
+		const actual = $.html();
+
+		expectHtml(
+			actual,
+			`
+				<html>
+					<head></head>
+					<body>
+						<div>
+							<div>Hello</div>
+							<blockquote>this is a quote</blockquote>
+						</div>
+					</body>
+				</html>
+			`
+		);
+
+		expect(result).toMatchObject({
+			didFindQuotation: true,
+		});
+	});
 });
