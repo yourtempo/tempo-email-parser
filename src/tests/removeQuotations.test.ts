@@ -369,11 +369,25 @@ describe('removeQuotations', () => {
 
 	it('should remove "On... wrote:" when it is the end of the email', () => {
 		const email = `
-			<div>
-				<div>Hello</div>
-				<blockquote>this is a quote</blockquote>
-				<div>On December 3, 2019 at 05:01, Onno Schwanen wrote:</div>
-			</div>
+			<html>
+				<head>
+					<meta name="viewport" content="width=device-width" />
+					<style>
+						.customStyle {
+							background: red;
+						}
+					</style>
+				</head>
+				<body>
+					<div>
+						<div>Hello</div>
+						<blockquote>this is a quote</blockquote>
+						<div>
+							On December 3, 2019 at 05:01, Onno Schwanen wrote:
+						</div>
+					</div>
+				</body>
+			</html>
 		`;
 
 		const $ = cheerio.load(email);
@@ -384,11 +398,19 @@ describe('removeQuotations', () => {
 			actual,
 			`
 				<html>
-					<head></head>
+					<head>
+						<meta name="viewport" content="width=device-width" />
+						<style>
+							.customStyle {
+								background: red;
+							}
+						</style>
+					</head>
 					<body>
 						<div>
 							<div>Hello</div>
 							<blockquote>this is a quote</blockquote>
+							<div></div>
 						</div>
 					</body>
 				</html>

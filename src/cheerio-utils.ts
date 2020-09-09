@@ -50,13 +50,13 @@ function hasChildren(el: CheerioElement): boolean {
 
 const EMPTY_REGEX = /^\s*$/;
 function isEmpty(text: CheerioElement): boolean {
-	return EMPTY_REGEX.test(text.data as string);
+	return EMPTY_REGEX.test(text.data || '');
 }
 
 // Also consider signatures and disclaimer remnants like '---' as empty
 const EMPTYISH_REGEX = /^\s*-*\s*$/;
 function isEmptyish(text: CheerioElement): boolean {
-	return EMPTYISH_REGEX.test(text.data as string);
+	return EMPTYISH_REGEX.test(text.data || '');
 }
 
 /**
