@@ -1,6 +1,7 @@
 import cheerio from 'cheerio';
 import removeTrailingWhitespaces from '../removeTrailingWhitespaces';
 import { expectHtml } from './utils';
+import { getTopLevelElement } from '../cheerio-utils';
 
 describe('removeTrailingWhitespaces', () => {
 	it('should trim an empty body', () => {
@@ -203,6 +204,21 @@ describe('removeTrailingWhitespaces', () => {
 function check(before: string, after: string): void {
 	const $ = cheerio.load(before);
 	removeTrailingWhitespaces($);
+
 	const result = $.html();
 	expectHtml(result, after);
+
+	// Check that it did not create text nodes as parent of themselves
+	// which messes up the next steps
+	const top = getTopLevelElement($);
+	function checkForNoCircularTextReference(parent: CheerioElement) {
+		if (parent.type === 'text') {
+			parent.children?.forEach(child => {
+				expect(child.type).not.toEqual('text');
+			});
+		} else {
+			parent.children?.forEach(checkForNoCircularTextReference);
+		}
+	}
+	checkForNoCircularTextReference(top);
 }
