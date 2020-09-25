@@ -7,6 +7,11 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## Unreleased
 
+## [0.7.3] - 2020-09-25
+
+-   #29 Fixed a bug where the trimming of messages would break the HTML structure and fail to extract quotes
+
+
 ## [0.7.2] - 2020-03-25
 
 -   #26 `enforceMobileViewport` should always insert the viewport-tag to the head element in the top
