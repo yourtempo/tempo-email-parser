@@ -5,7 +5,7 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
-## Unreleased
+## [unreleased]
 
 ## [0.7.3] - 2020-09-25
 
@@ -65,7 +65,9 @@ First version for integration tests. Include the following features
 -   Remove trailing whitespaces
 -   Force viewport for mobile device
 
-[unreleased]: https://github.com/yourtempo/tempo-message-splitter/compare/v0.7.0...HEAD
+[unreleased]: https://github.com/yourtempo/tempo-message-splitter/compare/v0.7.3...HEAD
+[0.7.3]: https://github.com/yourtempo/tempo-message-splitter/releases/tag/v0.7.3
+[0.7.2]: https://github.com/yourtempo/tempo-message-splitter/releases/tag/v0.7.2
 [0.7.0]: https://github.com/yourtempo/tempo-message-splitter/releases/tag/v0.7.0
 [0.6.1]: https://github.com/yourtempo/tempo-message-splitter/releases/tag/v0.6.1
 [0.6.0]: https://github.com/yourtempo/tempo-message-splitter/releases/tag/v0.6.0
