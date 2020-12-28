@@ -68,6 +68,18 @@ describe('removeTrailingWhitespaces', () => {
 		);
 	});
 
+	it('should not trim left side of last text', () => {
+		check(
+			`
+			<html><head></head><body><p>--<br />I use <a href="https://www.yourtempo.co">Tempo</a> to improve my focus</p></body></html>
+			
+			`,
+			`
+			<html><head></head><body><p>--<br />I use <a href="https://www.yourtempo.co">Tempo</a> to improve my focus</p></body></html>
+			`
+		);
+	});
+
 	it('should not trim pre', () => {
 		check(
 			`
