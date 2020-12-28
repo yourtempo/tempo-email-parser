@@ -68,13 +68,15 @@ describe('removeTrailingWhitespaces', () => {
 		);
 	});
 
-	it('should preserve meaningful spaces', () => {
+	it('should not trim left side of last text', () => {
 		check(
 			`
-			<p>--<br />I use <a href="https://www.yourtempo.co">Tempo</a> to improve my focus</p>
+			<html><head></head><body><p>--<br />I use <a href="https://www.yourtempo.co">Tempo</a> to improve my focus</p></body></html>
+			
 			`,
 			`
-			<p>--<br />I use <a href="https://www.yourtempo.co">Tempo</a> to improve my focus</p>`
+			<html><head></head><body><p>--<br />I use <a href="https://www.yourtempo.co">Tempo</a> to improve my focus</p></body></html>
+			`
 		);
 	});
 
