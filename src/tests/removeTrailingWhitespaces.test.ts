@@ -68,6 +68,16 @@ describe('removeTrailingWhitespaces', () => {
 		);
 	});
 
+	it('should preserve meaningful spaces', () => {
+		check(
+			`
+			<p>--<br />I use <a href="https://www.yourtempo.co">Tempo</a> to improve my focus</p>
+			`,
+			`
+			<p>--<br />I use <a href="https://www.yourtempo.co">Tempo</a> to improve my focus</p>`
+		);
+	});
+
 	it('should not trim pre', () => {
 		check(
 			`
