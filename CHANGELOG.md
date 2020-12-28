@@ -7,10 +7,13 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [unreleased]
 
+## [0.7.4] - 2020-12-28
+
+-   #30 Fixed unwanted removal of spaces near the end of emails.
+
 ## [0.7.3] - 2020-09-25
 
 -   #29 Fixed a bug where the trimming of messages would break the HTML structure and fail to extract quotes
-
 
 ## [0.7.2] - 2020-03-25
 
@@ -65,7 +68,8 @@ First version for integration tests. Include the following features
 -   Remove trailing whitespaces
 -   Force viewport for mobile device
 
-[unreleased]: https://github.com/yourtempo/tempo-message-splitter/compare/v0.7.3...HEAD
+[unreleased]: https://github.com/yourtempo/tempo-message-splitter/compare/v0.7.4...HEAD
+[0.7.4]: https://github.com/yourtempo/tempo-message-splitter/releases/tag/v0.7.4
 [0.7.3]: https://github.com/yourtempo/tempo-message-splitter/releases/tag/v0.7.3
 [0.7.2]: https://github.com/yourtempo/tempo-message-splitter/releases/tag/v0.7.2
 [0.7.0]: https://github.com/yourtempo/tempo-message-splitter/releases/tag/v0.7.0
