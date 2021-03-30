@@ -25,11 +25,14 @@ function fixBrokenHead(inputHtml: string): string {
 			encounteredTags.add(name);
 
 			const headTag = encounteredTags.has('head');
-			const bodyTag = encounteredTags.has('body');
 			const htmlTag = encounteredTags.has('html');
 
-			if (!htmlTag && headTag && bodyTag) {
+			if (!htmlTag && headTag) {
 				isBroken = true;
+				parserDetect.reset(); // abort parsing
+			} else if (htmlTag) {
+				isBroken = false;
+				parserDetect.reset(); // abort parsing
 			}
 		},
 	});
