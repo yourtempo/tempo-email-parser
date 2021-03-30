@@ -1,20 +1,14 @@
 import { expectHtml } from '../utils';
 import prepareMessage from '../../prepareMessage';
 import { listFixtures, Fixture } from './fixtures';
+import testOptions from './prepareMessageTestOptions';
 
 /**
  * Run tests for a fixture
  */
 function checkFixture(fixture: Fixture) {
 	describe(fixture.name, () => {
-		const result = prepareMessage(fixture.input, {
-			noQuotations: true,
-			autolink: true,
-			noRemoteContent: true,
-			forceViewport:
-				'<meta name="viewport" content="width=device-width" />',
-			includeStyle: '.customStyle { background: red; }',
-		});
+		const result = prepareMessage(fixture.input, testOptions);
 
 		if (fixture.hasOutputComplete()) {
 			it('completeHtml', () => {

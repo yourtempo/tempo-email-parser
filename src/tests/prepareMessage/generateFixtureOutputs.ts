@@ -2,6 +2,7 @@ import Fs from 'fs';
 import { listFixtures } from './fixtures';
 import prepareMessage from '../../prepareMessage';
 import { formatHtml } from '../utils';
+import testOptions from './prepareMessageTestOptions';
 
 /*************************************
 
@@ -17,7 +18,7 @@ listFixtures()
 	.forEach(fixture => {
 		console.log('Found lonely input fixture: ' + fixture.name);
 
-		const result = prepareMessage(fixture.input);
+		const result = prepareMessage(fixture.input, testOptions);
 
 		Fs.writeFileSync(
 			fixture.outputMessagePath,
