@@ -1,5 +1,4 @@
 import cheerio from 'cheerio';
-
 import removeQuotations from './removeQuotations';
 import removeTrailingWhitespaces from './removeTrailingWhitespaces';
 import linkify from './linkify';
@@ -10,6 +9,7 @@ import {
 } from './blockRemoteContent';
 import { containsEmptyText, getTopLevelElement } from './cheerio-utils';
 import appendStyle from './appendStyle';
+import fixBrokenHtml from './fixBrokenHtml';
 
 /**
  * Parse an HTML email and make transformation needed before displaying it to the user.
@@ -59,6 +59,9 @@ function prepareMessage(
 		completeHtml: emailHtml,
 		didFindQuotation: false,
 	};
+
+	result.completeHtml = fixBrokenHtml(result.completeHtml);
+	result.messageHtml = result.completeHtml;
 
 	if (autolink) {
 		result.completeHtml = linkify(result.completeHtml);

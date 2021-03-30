@@ -26,7 +26,7 @@
 	"devDependencies": {
 		"@types/benchmark": "^1.0.31",
 		"@types/dompurify": "^2.0.1",
-		"@types/jest": "^24.0.25",
+		"@types/jest": "^26.0.22",
 		"@types/jsdom": "^12.2.4",
 		"@types/linkifyjs": "^2.1.3",
 		"@types/prettier": "^1.19.0",
@@ -39,21 +39,22 @@
 		"eslint": "^6.8.0",
 		"eslint-config-prettier": "^6.9.0",
 		"eslint-plugin-prettier": "^3.1.2",
-		"jest": "^24.9.0",
+		"jest": "^26.6.3",
 		"jsdom": "^15.2.1",
 		"linkifyjs": "^2.1.8",
 		"planer": "^1.1.1",
 		"prettier": "^1.19.1",
 		"sanitize-html": "^1.20.1",
 		"talonjs": "^1.0.24",
-		"ts-jest": "^24.2.0",
-		"typescript": "^3.7.4",
+		"ts-jest": "^26.5.4",
+		"typescript": "^4.2.3",
 		"xmldom": "^0.2.1"
 	},
 	"dependencies": {
 		"@types/cheerio": "^0.22.15",
 		"autolinker": "^3.11.1",
 		"cheerio": "^1.0.0-rc.3",
+		"htmlparser2": "^6.0.1",
 		"regx": "^1.0.4"
 	}
 }

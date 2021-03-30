@@ -16,6 +16,7 @@
 		"module": "commonjs",
 		"lib": [],
 		"allowJs": true,
+		"skipLibCheck": true,
 		"isolatedModules": true,
 		"strict": true,
 		/* Allow use of generators */

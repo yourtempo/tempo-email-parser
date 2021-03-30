@@ -5,6 +5,7 @@ This helps estimate the cost of using any of them.
 
 import { JSDOM } from 'jsdom';
 import sanitizeHtml from 'sanitize-html';
+import * as htmlparser2 from 'htmlparser2';
 import createDOMPurify from 'dompurify';
 import cheerio from 'cheerio';
 import Talon from 'talonjs';
@@ -25,6 +26,9 @@ suite
 	})
 	.add('Parse # Cheerio # Marketing email', () => {
 		cheerio.load(EMAILS.MARKETING);
+	})
+	.add('Parse # HtmlParser2 # Marketing email', () => {
+		htmlparser2.parseDOM(EMAILS.MARKETING);
 	})
 	.add('Parse # XmlDom # Marketing email', () => {
 		const parser = new XmlDom.DOMParser();
