@@ -24,10 +24,12 @@ function fixBrokenHead(inputHtml: string): string {
 
 			encounteredTags.add(name);
 
-			const headTag = encounteredTags.has('head');
 			const htmlTag = encounteredTags.has('html');
+			const headTag = encounteredTags.has('head');
+			const blockquoteTag = encounteredTags.has('blockquote');
 
-			if (!htmlTag && headTag) {
+			// If there's a blockquote before the head tag, this is likely a quoted message
+			if (!htmlTag && headTag && !blockquoteTag) {
 				isBroken = true;
 				parserDetect.reset(); // abort parsing
 			} else if (htmlTag) {
