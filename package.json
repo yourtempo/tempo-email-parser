@@ -54,7 +54,9 @@
 		"@types/cheerio": "^0.22.15",
 		"autolinker": "^3.11.1",
 		"cheerio": "^1.0.0-rc.3",
+		"email-validator": "^2.0.4",
 		"htmlparser2": "^6.0.1",
+		"is-valid-domain": "^0.0.20",
 		"regx": "^1.0.4"
 	}
 }

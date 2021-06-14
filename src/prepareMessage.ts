@@ -10,6 +10,7 @@ import {
 import { containsEmptyText, getTopLevelElement } from './cheerio-utils';
 import appendStyle from './appendStyle';
 import fixBrokenHtml from './fixBrokenHtml';
+import { enhanceLinks } from './enhanceLinks';
 
 /**
  * Parse an HTML email and make transformation needed before displaying it to the user.
@@ -74,6 +75,8 @@ function prepareMessage(
 	removeComments($);
 	removeScripts($);
 	removeTrackers($);
+
+	enhanceLinks($);
 
 	if (noRemoteContent) {
 		blockRemoteContentCheerio($, remoteContentReplacements);
