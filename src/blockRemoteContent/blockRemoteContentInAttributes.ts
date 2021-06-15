@@ -37,7 +37,7 @@ const TAGS_THAT_HAVE_URL_ATTRIBUTES: { [key: string]: string[] } = {
  */
 function blockRemoteContentInAttributes(
 	$: CheerioStatic,
-	replacements: ReplacementOptions
+	replacements: Required<ReplacementOptions>
 ) {
 	const query = Object.keys(TAGS_THAT_HAVE_URL_ATTRIBUTES).join(',');
 
