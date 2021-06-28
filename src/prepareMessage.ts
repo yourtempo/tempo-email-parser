@@ -10,6 +10,24 @@ import {
 import { containsEmptyText, getTopLevelElement } from './cheerio-utils';
 import appendStyle from './appendStyle';
 import fixBrokenHtml from './fixBrokenHtml';
+import { enhanceLinks as _enhanceLinks } from './enhanceLinks';
+
+export interface PrepareMessageOptions {
+	/** Remove quotations and signatures. Only affects the result messageHtml */
+	noQuotations?: boolean;
+	/** Automatically convert text links to anchor tags */
+	autolink?: boolean;
+	/** Fix broken links and add the href to the title tag */
+	enhanceLinks?: boolean;
+	/** Specific viewport to enforce. For example "<meta name="viewport" content="width=device-width">" */
+	forceViewport?: string;
+	/** Replace remote images with a transparent image, and replace other remote URLs with '#' */
+	noRemoteContent?: boolean;
+	/** Replace remote content with custom URLs */
+	remoteContentReplacements?: ReplacementOptions;
+	/** Append the given style to the HTML <head> */
+	includeStyle?: string;
+}
 
 /**
  * Parse an HTML email and make transformation needed before displaying it to the user.
@@ -23,31 +41,19 @@ import fixBrokenHtml from './fixBrokenHtml';
  */
 function prepareMessage(
 	emailHtml: string,
-	options: {
-		// Remove quotations and signatures. Only affects the result messageHtml
-		noQuotations?: boolean;
-		// Automatically convert text links to anchor tags
-		autolink?: boolean;
-		// Specific viewport to enforce. For example "<meta name="viewport" content="width=device-width">"
-		forceViewport?: string;
-		// Replace remote images with a transparent image,
-		// and replace other remote URLs with '#'
-		noRemoteContent?: boolean;
-		remoteContentReplacements?: Partial<ReplacementOptions>;
-		// Append some styles to the HTML <head>
-		includeStyle?: string;
-	} = {}
+	options: PrepareMessageOptions = {}
 ): {
-	// The complete message.
+	/** The complete message. */
 	completeHtml: string;
-	// The body of the message, stripped from secondary information
+	/** The body of the message, stripped from secondary information */
 	messageHtml: string;
-	// True if a quote or signature was found and stripped
+	/** True if a quote or signature was found and stripped */
 	didFindQuotation: boolean;
 } {
 	const {
 		noQuotations = false,
 		autolink = false,
+		enhanceLinks = false,
 		forceViewport = false,
 		noRemoteContent = false,
 		includeStyle = false,
@@ -74,6 +80,10 @@ function prepareMessage(
 	removeComments($);
 	removeScripts($);
 	removeTrackers($);
+
+	if (enhanceLinks) {
+		_enhanceLinks($);
+	}
 
 	if (noRemoteContent) {
 		blockRemoteContentCheerio($, remoteContentReplacements);

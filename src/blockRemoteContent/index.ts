@@ -14,8 +14,8 @@ const TRANSPARENT_1X100_URL =
 
 // What to replace remote URLs with
 export type ReplacementOptions = {
-	image: string;
-	other: string;
+	image?: string;
+	other?: string;
 };
 
 /**
@@ -23,7 +23,7 @@ export type ReplacementOptions = {
  */
 function blockRemoteContentCheerio(
 	$: CheerioStatic,
-	replacements: Partial<ReplacementOptions> = {}
+	replacements: ReplacementOptions = {}
 ) {
 	const { image = TRANSPARENT_1X100_URL, other = '#' } = replacements;
 
@@ -38,7 +38,7 @@ function blockRemoteContentCheerio(
  */
 function blockRemoteContent(
 	html: string,
-	replacements: Partial<ReplacementOptions> = {}
+	replacements: ReplacementOptions = {}
 ): string {
 	const $ = cheerio.load(html);
 	blockRemoteContentCheerio($, replacements);
