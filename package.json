@@ -1,5 +1,5 @@
 {
-	"name": "tempo-message-splitter",
+	"name": "tempo-email-parser",
 	"version": "0.7.5",
 	"description": "Processes HTML email for display. Extracts quotations and more.",
 	"main": "./lib/index.js",
@@ -15,14 +15,14 @@
 	},
 	"repository": {
 		"type": "git",
-		"url": "git+https://github.com/yourtempo/tempo-message-splitter.git"
+		"url": "git+https://github.com/yourtempo/tempo-email-parser.git"
 	},
 	"author": "",
 	"license": "ISC",
 	"bugs": {
-		"url": "https://github.com/yourtempo/tempo-message-splitter/issues"
+		"url": "https://github.com/yourtempo/tempo-email-parser/issues"
 	},
-	"homepage": "https://github.com/yourtempo/tempo-message-splitter#readme",
+	"homepage": "https://github.com/yourtempo/tempo-email-parser#readme",
 	"devDependencies": {
 		"@types/benchmark": "^1.0.31",
 		"@types/dompurify": "^2.0.1",

@@ -1,7 +1,7 @@
-# tempo-message-splitter
+# tempo-email-parser
 
 Parse and extract main message from an HTML email.
-Also runs several transformations to the email so that it can be displayed safely and correctly.
+Also runs several transformations to the email so that it can be displayed safely and correctly inside a browser or Electron iframe for example.
 
 -   Extract quotations (replies), signatures
 -   Remove scripts, trackers
@@ -15,7 +15,7 @@ Also runs several transformations to the email so that it can be displayed safel
 import prepareMessage, {
 	blockRemoteContent,
 	linkify,
-} from 'tempo-message-splitter';
+} from 'tempo-email-parser';
 
 const emailHtml = `
 <div>Hello there</div>
@@ -76,3 +76,7 @@ The main function `prepareMessage` has a list of fixtures used for tests. The in
 This script generates the respective outputs files for any `.input.html` file found without corresponding outputs.
 
 To easily add a fixture from a real-world email, you can put the input HTML at `/src/tests/prepareMessage/my-test.input.html`, and then run `yarn run generate:fixtures` to generate the output files based on what `prepareMessage` produced. You now only have to check that the outputs look good and make adjustments if necessary.
+
+### Benchmarks
+
+There are benchmarks to ensure the tool remains fast to not alter UI performance, and also to compare some external libraries. See the `benchmark` folder.
