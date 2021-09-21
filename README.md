@@ -1,4 +1,6 @@
-# tempo-email-parser
+# `tempo-email-parser`
+
+(previously `tempo-message-splitter`)
 
 Parse and extract main message from an HTML email.
 Also runs several transformations to the email so that it can be displayed safely and correctly inside a browser or Electron iframe for example.
