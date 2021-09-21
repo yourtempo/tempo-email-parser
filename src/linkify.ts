@@ -1,5 +1,7 @@
 import Autolinker from 'autolinker';
 
+const GH_EMOJI_URL = 'github.githubassets.com/images/icons/emoji';
+
 /**
  * Wrap text links in anchor tags
  */
@@ -30,6 +32,11 @@ function linkify(inputHtml: string): string {
 				const previousChar = inputHtml.charAt(match.getOffset() - 1);
 				if (previousChar === '/') {
 					return false; // don't autolink this match
+				}
+
+				// Don't autolink URLs for GitHub's Emoji
+				if (match.getAnchorHref().includes(GH_EMOJI_URL)) {
+					return false;
 				}
 
 				// Ignore URLs in head
