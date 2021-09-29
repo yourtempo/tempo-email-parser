@@ -7,10 +7,13 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [unreleased]
 
+## [0.7.7] - 2021-09-29
+
+-   #32 Added exception to accept <head> inside a blockquote (for when replying)
+
 ## [0.7.6] - 2021-09-22
 
 -   #35 Avoid linkifying URLs in GitHub's emoji components
-
 
 ## [0.7.5] - 2021-03-30
 
@@ -77,7 +80,8 @@ First version for integration tests. Include the following features
 -   Remove trailing whitespaces
 -   Force viewport for mobile device
 
-[unreleased]: https://github.com/yourtempo/tempo-email-parser/compare/v0.7.6...HEAD
+[unreleased]: https://github.com/yourtempo/tempo-email-parser/compare/v0.7.7...HEAD
+[0.7.7]: https://github.com/yourtempo/tempo-email-parser/compare/v0.7.7...HEAD
 [0.7.6]: https://github.com/yourtempo/tempo-email-parser/compare/v0.7.6...HEAD
 [0.7.5]: https://github.com/yourtempo/tempo-email-parser/compare/v0.7.5...HEAD
 [0.7.4]: https://github.com/yourtempo/tempo-email-parser/releases/tag/v0.7.4
